@@ -1,21 +1,27 @@
 {
-  "display": "Node 16",
   "compilerOptions": {
-    "lib": ["ES2021"],
-    "target": "ES2021",
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "baseUrl": "src",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "dist",
-    "baseUrl": "./",
-    "paths": {
-      "#@/*": ["./src/*"]
-    }
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
-  "include": ["./src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts", "**/*.spec.tsx", ".vscode"]
+  "include": [
+    "src"
+  ]
 }
