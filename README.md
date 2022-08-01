@@ -1,6 +1,6 @@
 <div id="top"></div>
 
-## Data Team NodeJS Express Github Template
+## Data Team create-react-app Github Template
 
 <div>
   <p>Table of Contents</p>
@@ -36,11 +36,9 @@ This repository is a GitHub template that could be used to create and deploy qui
 
 * CircleCI
 * Terraform
-* NodeJs
-* Express
+* React
 * Typescript
 * Jest
-* Middleware - Helm, Joi
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -49,17 +47,16 @@ This repository is a GitHub template that could be used to create and deploy qui
 ## Getting Started
 
 When creating a new repository, select
-`Repository template` and pick the `newscorp-ghfb/nuk-nodejs-express-template` value. This is going to copy the code from this repository into the new repository.
+`Repository template` and pick the `newscorp-ghfb/nuk-create-react-app-template` value. This is going to copy the code from this repository into the new repository.
 
 ![repository template](https://user-images.githubusercontent.com/8719799/172373465-3bf1914b-c0da-4b99-947d-0f3bccdc4bd9.png)
-
 ### CircleCI Changes
 
 Inside the `.circleci/config.yaml` file you will need to apply the following changes:
 
-1. Uncomment the following code for [staging](https://github.com/newscorp-ghfb/nuk-nodejs-express-template/blob/master/.circleci/config.yml#L251)
-2. Uncomment the following code for [production](https://github.com/newscorp-ghfb/nuk-nodejs-express-template/blob/master/.circleci/config.yml#L271)
-3. Change the values of `IMAGE_SERVICE_NAME` [here](https://github.com/newscorp-ghfb/nuk-nodejs-express-template/blob/master/.circleci/config.yml#L88) and [here](https://github.com/newscorp-ghfb/nuk-nodejs-express-template/blob/master/.circleci/config.yml#L205) with the name of your service. For example, if your service is called `Service Name`, the name would be `nuk-service-name`. These lines will look like this in our case:
+1. Uncomment the following code for [staging](https://github.com/newscorp-ghfb/nuk-create-react-app-template/blob/master/.circleci/config.yml#L251)
+2. Uncomment the following code for [production](https://github.com/newscorp-ghfb/nuk-create-react-app-template/blob/master/.circleci/config.yml#L271)
+3. Change the values of `IMAGE_SERVICE_NAME` [here](https://github.com/newscorp-ghfb/nuk-create-react-app-template/blob/master/.circleci/config.yml#L88) and [here](https://github.com/newscorp-ghfb/nuk-create-react-app-template/blob/master/.circleci/config.yml#L205) with the name of your service. For example, if your service is called `Service Name`, the name would be `nuk-service-name`. These lines will look like this in our case:
 ```
   IMAGE_SERVICE_NAME="nuk-service-name"
 ```
