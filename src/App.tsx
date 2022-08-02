@@ -1,8 +1,11 @@
 import React from 'react'
+import { useIntl } from 'react-intl'
 import logo from 'logo.svg'
 import 'App.css'
 
 function App() {
+  const { formatMessage } = useIntl()
+
   return (
     <div className="App">
       <header className="App-header">
@@ -48,6 +51,7 @@ function App() {
             React Redux
           </a>
         </span>
+        <h1>{formatMessage({ id: 'component.home.title' })}</h1>
       </header>
     </div>
   );
