@@ -1,7 +1,8 @@
 import { createAction } from '@reduxjs/toolkit'
 import {
   CONSUME_ERROR,
-  CLEAR_ERRORS, HANDLE_ERROR
+  CLEAR_ERRORS,
+  HANDLE_ERROR
 } from 'redux/actions/errors/constants'
 import { ConsumeErrorPayload, HandleErrorPayload } from 'redux/actions/errors/types'
 

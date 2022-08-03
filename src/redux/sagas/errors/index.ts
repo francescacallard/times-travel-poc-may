@@ -6,7 +6,6 @@ import { PayloadAction } from '@reduxjs/toolkit'
 import { HandleErrorPayload } from 'redux/actions/errors/types'
 import { ApiRoutePaths, HTTPMethods } from 'api/types'
 
-
 function* handleError({ payload: { response, config: { url, method } } }: PayloadAction<HandleErrorPayload>) {
   if (response && url ) {
     const { status, data } = response
