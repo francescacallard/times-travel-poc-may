@@ -52,8 +52,8 @@ This repository is a GitHub template that could be used to create and deploy qui
 
 When creating a new repository, select
 `Repository template` and pick the `newscorp-ghfb/nuk-create-react-app-template` value. This is going to copy the code from this repository into the new repository.
+![Screenshot 2022-08-01 at 14 24 29](https://user-images.githubusercontent.com/58942028/182595796-e25843c3-42fc-4315-ad3f-372fb6ea258f.png)
 
-![repository template](https://user-images.githubusercontent.com/8719799/172373465-3bf1914b-c0da-4b99-947d-0f3bccdc4bd9.png)
 ### CircleCI Changes
 
 Inside the `.circleci/config.yaml` file you will need to apply the following changes:
