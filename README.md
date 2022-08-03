@@ -37,6 +37,10 @@ This repository is a GitHub template that could be used to create and deploy qui
 * CircleCI
 * Terraform
 * React
+* Redux
+* Redux Saga
+* React Router
+* React Intl
 * Typescript
 * Jest
 
