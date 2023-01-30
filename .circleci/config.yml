@@ -243,7 +243,7 @@ jobs:
       - terraform_validate
       - terraform_plan:
           environment: << parameters.environment >>
-#      - terraform_apply
+      - terraform_apply
 
   build_service_image_and_push:
     executor: node
