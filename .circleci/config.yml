@@ -32,7 +32,7 @@ default-remote-docker: &default-remote-docker
 only_on_develop_branch: &only_on_develop_branch
   filters:
     branches:
-      only: feature/CIDI-5419-add-pipeline
+      only: develop
 
 only_on_feature_branch: &only_on_feature_branch
   filters:
