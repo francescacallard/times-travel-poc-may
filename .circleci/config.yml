@@ -34,14 +34,6 @@ only_on_develop_branch: &only_on_develop_branch
     branches:
       only: develop
 
-only_on_feature_branch: &only_on_feature_branch
-  filters:
-    branches:
-      ignore:
-        - master
-        - develop
-        - /^release.*/
-
 only_on_pr_branch: &only_on_pr_branch
   filters:
     branches:
@@ -320,14 +312,6 @@ workflows:
     jobs:
       - install_deps:
           <<: *only_on_pr_branch
-      #      - lint:
-      #          <<: *only_on_pr_branch
-      #          requires:
-      #            - install_deps
-#      - test:
-#          <<: *only_on_pr_branch
-#          requires:
-#            - install_deps
 
   deploy_to_staging:
     jobs:
@@ -351,26 +335,3 @@ workflows:
           project: news-data-products-dev
           requires:
             - build_service_image_and_push_stage
-
-#  deploy_to_prod:
-#    jobs:
-#      - init_gcloud:
-#          <<: *only_on_master_branch
-#          name: init_gcloud_prod
-#          environment: prod
-#          context:
-#            - gcp-oidc-prod
-#      - build_service_image_and_push:
-#          <<: *only_on_master_branch
-#          name: build_service_image_and_push_prod
-#          environment: prod
-#          project: news-data-products-prod
-#          requires:
-#            - init_gcloud_prod
-#      - terraform_deploy:
-#          <<: *only_on_master_branch
-#          name: terraform_deploy_prod
-#          environment: prod
-#          project: news-data-products-prod
-#          requires:
-#            - build_service_image_and_push_prod
