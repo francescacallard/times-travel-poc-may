@@ -1,20 +1,28 @@
-FROM node:16-alpine
+FROM node:16-alpine as buildenv
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy everything to Workdir
-COPY . .
+ARG TARGET_ENV=dev
 
-# Install dev dependencies
+COPY package.json yarn.lock ./
+COPY tsconfig.json ./
+COPY public/ ./public
+COPY src/ ./src
+
 RUN yarn --frozen-lockfile
-# Build dist folder with Typescript
+
 RUN yarn build
-
-# Re-install only with production dependencies
-ENV NODE_ENV=production
-RUN yarn --frozen-lockfile
-
-# Remove unneeded source folder
 RUN rm -rf src/
 
-CMD ["yarn", "start"]
+FROM nginx:1.18.0-alpine AS production
+WORKDIR /app
+
+ARG TARGET_ENV=dev
+
+RUN rm -rf /etc/nginx/conf.d
+
+COPY ./config-nginx/conf-${TARGET_ENV}/ /etc/nginx
+COPY --from=buildenv /app/build /usr/share/nginx/html
+
+EXPOSE 8080
+CMD ["nginx","-g","daemon off;"]
