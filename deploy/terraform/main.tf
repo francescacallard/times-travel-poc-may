@@ -1,7 +1,7 @@
 terraform {
   backend "gcs" {
     bucket = var.bucket
-    prefix = "YOUR SERVICE NAME" // Can't be variable should be static value
+    prefix = "nuc-create-react-template" // Can't be variable should be static value
   }
 }
 

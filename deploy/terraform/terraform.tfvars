@@ -1,4 +1,4 @@
 region              = "europe-west1"
-max_total_instances = 2
-service_name        = "YOUR SERVICE NAME"
-service_name_tag    = "YOUR SERVICE NAME TAG"
+max_total_instances = 1
+service_name        = "nuc-create-react-template"
+service_name_tag    = "nuc-create-react-template"
