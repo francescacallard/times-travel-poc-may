@@ -24,11 +24,6 @@ default-remote-docker: &default-remote-docker
     version: 20.10.2
     docker_layer_caching: false
 
-#only_on_master_branch: &only_on_master_branch
-#  filters:
-#    branches:
-#      only: master
-
 only_on_develop_branch: &only_on_develop_branch
   filters:
     branches:
