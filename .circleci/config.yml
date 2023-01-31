@@ -6,7 +6,7 @@ parameters:
     default: europe-west2
 
 orbs:
-  gcp-cli: circleci/gcp-cli@2.4.0
+  gcp-cli: circleci/gcp-cli@2.4.1
 
 executors:
   node:
@@ -23,7 +23,7 @@ default-remote-docker: &default-remote-docker
   setup_remote_docker:
     version: 20.10.2
     docker_layer_caching: false
-  
+
 only_on_master_branch: &only_on_master_branch
   filters:
     branches:
@@ -34,13 +34,12 @@ only_on_develop_branch: &only_on_develop_branch
     branches:
       only: develop
 
-only_on_feature_branch: &only_on_feature_branch
+only_on_pr_branch: &only_on_pr_branch
   filters:
     branches:
       ignore:
-        - master
         - develop
-        - /^release.*/
+        - master
 
 commands:
   setup_google_account:
@@ -52,6 +51,23 @@ commands:
         type: string
     steps:
       - gcp-cli/install
+      - run:
+          name: Request Credentials
+          command: |
+            if [[ "<< parameters.environment >>" == "prod" ]]; then
+              SERVICE_ACCOUNT_EMAIL=$GOOGLE_APPLICATION_DEPLOY_EMAIL_PROD
+              WIF_AUDIENCE=$WIF_AUDIENCE_PROD
+            else
+              SERVICE_ACCOUNT_EMAIL=$GOOGLE_APPLICATION_DEPLOY_EMAIL_STAGE
+              WIF_AUDIENCE=$WIF_AUDIENCE_STAGE
+            fi
+
+            gcloud iam workload-identity-pools create-cred-config \
+              $WIF_AUDIENCE \
+              --service-account=$SERVICE_ACCOUNT_EMAIL \
+              --credential-source-file="./tmp/oidc_token" \
+              --output-file="./tmp/google_service_account.json"
+
       - run:
           name: Setup Google Credentials
           command: |
@@ -66,9 +82,10 @@ commands:
             else
               GOOGLE_APPLICATION_DEPLOY_EMAIL_TEMP=$GOOGLE_APPLICATION_DEPLOY_EMAIL_STAGE
             fi
+
             gcloud components update
             gcloud config set project << parameters.project >>
-            gcloud auth activate-service-account $GOOGLE_APPLICATION_DEPLOY_EMAIL_TEMP --key-file "./tmp/google_service_account.json"
+            gcloud auth login --brief --cred-file "./tmp/google_service_account.json" --quiet
             gcloud auth configure-docker --quiet
 
   build_image:
@@ -83,9 +100,9 @@ commands:
           command: |
             source $BASH_ENV
             BUILD_SHA="<< pipeline.git.revision >>"
-            
+
             # Image repository name, change accordingly to the service name you are creating
-            IMAGE_SERVICE_NAME="IMAGE_SERVICE_NAME"
+            IMAGE_SERVICE_NAME="<YOUR_IMAGE_SERVICE_NAME>"
             IMAGE_REPOSITORY="eu.gcr.io/<< parameters.project >>/$IMAGE_SERVICE_NAME"
 
             echo "export IMAGE_REPOSITORY=$IMAGE_REPOSITORY" >> $BASH_ENV
@@ -100,8 +117,7 @@ commands:
           command: |
             source $BASH_ENV
             BUILD_SHA="<< pipeline.git.revision >>"
-            echo $GOOGLE_APPLICATION_CREDENTIALS
-            gcloud auth list
+
             docker tag "$IMAGE_REPOSITORY:${BUILD_SHA}" "$IMAGE_REPOSITORY:latest"
             docker tag "$IMAGE_REPOSITORY:${BUILD_SHA}" "$IMAGE_REPOSITORY:${BUILD_SHA}"
             docker push "$IMAGE_REPOSITORY:latest"
@@ -112,6 +128,11 @@ commands:
       environment:
         type: string
     steps:
+      - run:
+          name: Copy Credentials
+          command: |
+            mkdir "./deploy/terraform/tmp"
+            cp "./tmp/oidc_token" "./deploy/terraform/tmp/"
       - run:
           name: Terraform init
           command: |
@@ -169,20 +190,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Create Google's credential file"
+          name: "Create oidc token folder"
           command: |
             mkdir -p ./tmp
-            if [[ "<< parameters.environment >>" == "prod" ]]; then
-              GOOGLE_APPLICATION_CREDENTIALS_TEMP=$GOOGLE_APPLICATION_CREDENTIALS_PROD
-            else
-              GOOGLE_APPLICATION_CREDENTIALS_TEMP=$GOOGLE_APPLICATION_CREDENTIALS_STAGE
-            fi
-            echo $GOOGLE_APPLICATION_CREDENTIALS_TEMP > "./tmp/google_service_account.json"
-            echo 'export GOOGLE_APPLICATION_CREDENTIALS="./tmp/google_service_account.json"' >> $BASH_ENV
+            echo $CIRCLE_OIDC_TOKEN > "./tmp/oidc_token"
       - persist_to_workspace:
           root: ./
           paths:
-            - ./tmp/google_service_account.json
+            - ./tmp/oidc_token
 
   terraform_deploy:
     executor: terraform
@@ -202,7 +217,7 @@ jobs:
             echo 'export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/tmp/google_service_account.json"' >> $BASH_ENV
 
             # Image repository name, change accordingly to the service name you are creating
-            IMAGE_SERVICE_NAME="IMAGE_SERVICE_NAME"
+            IMAGE_SERVICE_NAME="<YOUR_IMAGE_SERVICE_NAME>"
             IMAGE_REPOSITORY="eu.gcr.io/<< parameters.project >>/$IMAGE_SERVICE_NAME:<< pipeline.git.revision >>"
 
             echo "export TF_VAR_image_repository=$IMAGE_REPOSITORY" >> $BASH_ENV
@@ -213,6 +228,7 @@ jobs:
               SERVICE_ACCOUNT_EMAIL=$GOOGLE_APPLICATION_DEPLOY_EMAIL_STAGE
             fi
             echo "export TF_VAR_service_account=$SERVICE_ACCOUNT_EMAIL" >> $BASH_ENV
+
       - terraform_init:
           environment: << parameters.environment >>
       - terraform_lint
@@ -243,45 +259,102 @@ jobs:
       - build_image:
           project: << parameters.project >>
           environment: << parameters.environment >>
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./tmp/google_service_account.json
+
+  install_deps:
+    executor: node
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-deps-{{ checksum "yarn.lock" }}
+            - yarn-deps-
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: Install dependencies
+          command: yarn
+      - save_cache:
+          key: yarn-deps-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+            - ~/.cache/yarn
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - node_modules/*
+
+  lint:
+    executor: node
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: Lint
+          command: yarn lint
+
+  test:
+    executor: node
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: Test
+          command: yarn test-ci
 
 workflows:
-  # deploy_to_staging:
-  #   jobs:
-  #     - init_gcloud:
-  #         <<: *only_on_develop_branch
-  #         name: init_gcloud_stage
-  #         environment: staging
-  #     - build_service_image_and_push:
-  #         <<: *only_on_develop_branch
-  #         name: build_service_image_and_push_stage
-  #         environment: staging
-  #         project: news-data-products-dev
-  #         requires:
-  #           - init_gcloud_stage
-  #     - terraform_deploy:
-  #         <<: *only_on_develop_branch
-  #         name: terraform_deploy_stage
-  #         environment: staging
-  #         project: news-data-products-dev
-  #         requires:
-  #           - build_service_image_and_push_stage
-  # deploy_to_prod:
-  #   jobs:
-  #     - init_gcloud:
-  #         <<: *only_on_master_branch
-  #         name: init_gcloud_prod
-  #         environment: prod
-  #     - build_service_image_and_push:
-  #         <<: *only_on_master_branch
-  #         name: build_service_image_and_push_prod
-  #         environment: prod
-  #         project: news-data-products-prod
-  #         requires:
-  #           - init_gcloud_prod
-  #     - terraform_deploy:
-  #         <<: *only_on_master_branch
-  #         name: terraform_deploy_prod
-  #         environment: prod
-  #         project: news-data-products-prod
-  #         requires:
-  #           - build_service_image_and_push_prod
+#  pull_request:
+#    jobs:
+#      - install_deps:
+#          <<: *only_on_pr_branch
+#
+#  deploy_to_staging:
+#    jobs:
+#      - init_gcloud:
+#          <<: *only_on_develop_branch
+#          name: init_gcloud_stage
+#          environment: staging
+#          context:
+#            - gcp-oidc-stage
+#      - build_service_image_and_push:
+#          <<: *only_on_develop_branch
+#          name: build_service_image_and_push_stage
+#          environment: staging
+#          project: news-data-products-dev
+#          requires:
+#            - init_gcloud_stage
+#      - terraform_deploy:
+#          <<: *only_on_develop_branch
+#          name: terraform_deploy_stage
+#          environment: staging
+#          project: news-data-products-dev
+#          requires:
+#            - build_service_image_and_push_stage
+#
+#  deploy_to_prod:
+#    jobs:
+#      - init_gcloud:
+#          <<: *only_on_master_branch
+#          name: init_gcloud_prod
+#          environment: prod
+#          context:
+#            - gcp-oidc-prod
+#      - build_service_image_and_push:
+#          <<: *only_on_master_branch
+#          name: build_service_image_and_push_prod
+#          environment: prod
+#          project: news-data-products-prod
+#          requires:
+#            - init_gcloud_prod
+#      - terraform_deploy:
+#          <<: *only_on_master_branch
+#          name: terraform_deploy_prod
+#          environment: prod
+#          project: news-data-products-prod
+#          requires:
+#            - build_service_image_and_push_prod

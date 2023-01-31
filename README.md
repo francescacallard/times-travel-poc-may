@@ -66,13 +66,13 @@ Inside the `.circleci/config.yaml` file you will need to apply the following cha
 ```
 
 The CircleCI contains the following:
-1. Worksflows: 
-    1. Workflow for staging (`deploy_to_staging`)
-    2. Workflow for production (`deploy_to_prod`)
+1. Worksflows:
+   1. Workflow for staging (`deploy_to_staging`)
+   2. Workflow for production (`deploy_to_prod`)
 2. Each workflow contains the following jobs:
-    1. `init_gcloud` - job to initialise the google credentials and persist them through the whole pipeline
-    2. `build_service_image_and_push` - job to build, tag and publish the image of the service to the container registry
-    3. `terraform_deploy` - job to provide all the gcloud resources required for your service. This include `init`, `fmt`, `validate`, `plan` and `apply`
+   1. `init_gcloud` - job to initialise the google credentials and persist them through the whole pipeline
+   2. `build_service_image_and_push` - job to build, tag and publish the image of the service to the container registry
+   3. `terraform_deploy` - job to provide all the gcloud resources required for your service. This include `init`, `fmt`, `validate`, `plan` and `apply`
 
 ### Terraform Changes
 
@@ -80,7 +80,7 @@ Inside the `deploy/terraform/main.tf` file you will need to apply the following 
 
 Replace:
 ```
-prefix = "YOUR SERVICE NAME".
+prefix = "<YOUR_BUCKET_FOLDER_NAME>".
 ```
 
 If your service is called `Service Name`, then your prefix value will be:
@@ -98,8 +98,8 @@ Inside the `deploy/terraform/terraform.tfvars` file you will need to apply the f
 
 Replace:
 ```
-service_name        = "YOUR SERVICE NAME"
-service_name_tag    = "YOUR SERVICE NAME TAG"
+service_name        = "<YOUR_SERVICE_NAME>"
+service_name_tag    = "<YOUR_SERVICE_NAME_TAG>"
 ```
 
 If your service is called `Service Name` and your service name tag is `nuk-service-name-server` then your `service_name` and `service_name_tag` will look like:
@@ -124,35 +124,16 @@ Replace `YOUR REPOSITORY NAME` with the actual name of your repository in the fo
 You will need to set the following env variables:
 1. `GOOGLE_APPLICATION_CREDENTIALS_STAGE` - you will need to put the whole json file of the staging service account key as value.
 2. `GOOGLE_APPLICATION_DEPLOY_EMAIL_STAGE` - you will need to put the email of the staging service account as value.
-3. `GOOGLE_APPLICATION_CREDENTIALS_PROD` - you will need to put the the whole json file of the production service account key as value.
-4. `GOOGLE_APPLICATION_DEPLOY_EMAIL_PROD` - you will need to put the email of the production service account as value.
-
-The Google Application Credentials will have the following structure:
-```
-  {
-    "type": "service_account",
-    "project_id": "lorem impusu",
-    "private_key_id": "lorem impusu",
-    "private_key": "lorem impusu",
-    "client_email": "lorem-ipsus@news-data-products-dev.iam.gserviceaccount.com",
-    "client_id": "lorem impusu",
-    "auth_uri": "lorem impusu",
-    "token_uri": "lorem impusu",
-    "auth_provider_x509_cert_url": "lorem impusu",
-    "client_x509_cert_url": "lorem impusu"
-}
-
-```
+3. `WIF_AUDIENCE_STAGE` - Workload Identity Federation audience (STAGE).
+4. `WIF_AUDIENCE_PROD` - Workload Identity Federation audience (PROD)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- USAGE EXAMPLES -->
 ## Congratulations
 
 You are done! After running the pipeline you should have a new service hosted in Cloud Run instance. Please feel free to contribute to this template or contact us if you have any questions in slack: [#data-technology](https://newsuktechnology.slack.com/archives/C039881D0H3).
 
-  * Contributors: Data Team
+* Contributors: Data Team
 
 <p align="right">(<a href="#top">back to top</a>)</p>
