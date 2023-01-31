@@ -102,7 +102,7 @@ commands:
             BUILD_SHA="<< pipeline.git.revision >>"
 
             # Image repository name, change accordingly to the service name you are creating
-            IMAGE_SERVICE_NAME="<YOUR_IMAGE_SERVICE_NAME_HERE>"
+            IMAGE_SERVICE_NAME="<YOUR_IMAGE_SERVICE_NAME>"
             IMAGE_REPOSITORY="eu.gcr.io/<< parameters.project >>/$IMAGE_SERVICE_NAME"
 
             echo "export IMAGE_REPOSITORY=$IMAGE_REPOSITORY" >> $BASH_ENV
@@ -217,7 +217,7 @@ jobs:
             echo 'export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/tmp/google_service_account.json"' >> $BASH_ENV
 
             # Image repository name, change accordingly to the service name you are creating
-            IMAGE_SERVICE_NAME="<YOUR_IMAGE_SERVICE_NAME_HERE>"
+            IMAGE_SERVICE_NAME="<YOUR_IMAGE_SERVICE_NAME>"
             IMAGE_REPOSITORY="eu.gcr.io/<< parameters.project >>/$IMAGE_SERVICE_NAME:<< pipeline.git.revision >>"
 
             echo "export TF_VAR_image_repository=$IMAGE_REPOSITORY" >> $BASH_ENV
