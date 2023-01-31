@@ -308,11 +308,11 @@ jobs:
           command: yarn test-ci
 
 workflows:
-  pull_request:
-    jobs:
-      - install_deps:
-          <<: *only_on_pr_branch
-
+#  pull_request:
+#    jobs:
+#      - install_deps:
+#          <<: *only_on_pr_branch
+#
 #  deploy_to_staging:
 #    jobs:
 #      - init_gcloud:
