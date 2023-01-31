@@ -24,6 +24,11 @@ default-remote-docker: &default-remote-docker
     version: 20.10.2
     docker_layer_caching: false
 
+only_on_master_branch: &only_on_master_branch
+  filters:
+    branches:
+      only: master
+
 only_on_develop_branch: &only_on_develop_branch
   filters:
     branches:
@@ -97,7 +102,7 @@ commands:
             BUILD_SHA="<< pipeline.git.revision >>"
 
             # Image repository name, change accordingly to the service name you are creating
-            IMAGE_SERVICE_NAME="nuk-create-react-template"
+            IMAGE_SERVICE_NAME="<YOUR_IMAGE_SERVICE_NAME_HERE>"
             IMAGE_REPOSITORY="eu.gcr.io/<< parameters.project >>/$IMAGE_SERVICE_NAME"
 
             echo "export IMAGE_REPOSITORY=$IMAGE_REPOSITORY" >> $BASH_ENV
@@ -212,7 +217,7 @@ jobs:
             echo 'export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/tmp/google_service_account.json"' >> $BASH_ENV
 
             # Image repository name, change accordingly to the service name you are creating
-            IMAGE_SERVICE_NAME="nuk-create-react-template"
+            IMAGE_SERVICE_NAME="<YOUR_IMAGE_SERVICE_NAME_HERE>"
             IMAGE_REPOSITORY="eu.gcr.io/<< parameters.project >>/$IMAGE_SERVICE_NAME:<< pipeline.git.revision >>"
 
             echo "export TF_VAR_image_repository=$IMAGE_REPOSITORY" >> $BASH_ENV
@@ -308,25 +313,48 @@ workflows:
       - install_deps:
           <<: *only_on_pr_branch
 
-  deploy_to_staging:
-    jobs:
-      - init_gcloud:
-          <<: *only_on_develop_branch
-          name: init_gcloud_stage
-          environment: staging
-          context:
-            - gcp-oidc-stage
-      - build_service_image_and_push:
-          <<: *only_on_develop_branch
-          name: build_service_image_and_push_stage
-          environment: staging
-          project: news-data-products-dev
-          requires:
-            - init_gcloud_stage
-      - terraform_deploy:
-          <<: *only_on_develop_branch
-          name: terraform_deploy_stage
-          environment: staging
-          project: news-data-products-dev
-          requires:
-            - build_service_image_and_push_stage
+#  deploy_to_staging:
+#    jobs:
+#      - init_gcloud:
+#          <<: *only_on_develop_branch
+#          name: init_gcloud_stage
+#          environment: staging
+#          context:
+#            - gcp-oidc-stage
+#      - build_service_image_and_push:
+#          <<: *only_on_develop_branch
+#          name: build_service_image_and_push_stage
+#          environment: staging
+#          project: news-data-products-dev
+#          requires:
+#            - init_gcloud_stage
+#      - terraform_deploy:
+#          <<: *only_on_develop_branch
+#          name: terraform_deploy_stage
+#          environment: staging
+#          project: news-data-products-dev
+#          requires:
+#            - build_service_image_and_push_stage
+#
+#  deploy_to_prod:
+#    jobs:
+#      - init_gcloud:
+#          <<: *only_on_master_branch
+#          name: init_gcloud_prod
+#          environment: prod
+#          context:
+#            - gcp-oidc-prod
+#      - build_service_image_and_push:
+#          <<: *only_on_master_branch
+#          name: build_service_image_and_push_prod
+#          environment: prod
+#          project: news-data-products-prod
+#          requires:
+#            - init_gcloud_prod
+#      - terraform_deploy:
+#          <<: *only_on_master_branch
+#          name: terraform_deploy_prod
+#          environment: prod
+#          project: news-data-products-prod
+#          requires:
+#            - build_service_image_and_push_prod
