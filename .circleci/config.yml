@@ -86,7 +86,7 @@ commands:
             gcloud components update
             gcloud config set project << parameters.project >>
             gcloud auth login --brief --cred-file "./tmp/google_service_account.json" --quiet
-            gcloud auth configure-docker --quiet
+            gcloud auth configure-docker europe-west2-docker.pkg.dev --quiet
 
   build_image:
     parameters:
@@ -94,16 +94,28 @@ commands:
         type: string
       project:
         type: string
+      service:
+        type: string
     steps:
+      - run:
+          name: Create repository if not exists
+          command: |
+            ALL_REPOSITORIES=$(gcloud artifacts repositories list --project=<< parameters.project >> --location=europe-west2)
+            if [[ "$ALL_REPOSITORIES" == *"<< parameters.service >>"* ]]; then
+              echo "Repository already exists"
+            else
+              gcloud artifacts repositories create "<< parameters.service >>" \
+                --project=<< parameters.project >> \
+                --location=europe-west2 \
+                --repository-format=docker
+            fi
       - run:
           name: Build Docker image
           command: |
             source $BASH_ENV
             BUILD_SHA="<< pipeline.git.revision >>"
 
-            # Image repository name, change accordingly to the service name you are creating
-            IMAGE_SERVICE_NAME="<YOUR_IMAGE_SERVICE_NAME>"
-            IMAGE_REPOSITORY="eu.gcr.io/<< parameters.project >>/$IMAGE_SERVICE_NAME"
+            IMAGE_REPOSITORY="europe-west2-docker.pkg.dev/<< parameters.project >>/<< parameters.service >>/<< parameters.service >>"
 
             echo "export IMAGE_REPOSITORY=$IMAGE_REPOSITORY" >> $BASH_ENV
             docker build \
@@ -207,6 +219,8 @@ jobs:
         type: string
       project:
         type: string
+      service:
+        type: string
     steps:
       - checkout
       - attach_workspace:
@@ -216,9 +230,7 @@ jobs:
           command: |
             echo 'export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/tmp/google_service_account.json"' >> $BASH_ENV
 
-            # Image repository name, change accordingly to the service name you are creating
-            IMAGE_SERVICE_NAME="<YOUR_IMAGE_SERVICE_NAME>"
-            IMAGE_REPOSITORY="eu.gcr.io/<< parameters.project >>/$IMAGE_SERVICE_NAME:<< pipeline.git.revision >>"
+            IMAGE_REPOSITORY="europe-west2-docker.pkg.dev/<< parameters.project >>/<< parameters.service >>/<< parameters.service >>:<< pipeline.git.revision >>"
 
             echo "export TF_VAR_image_repository=$IMAGE_REPOSITORY" >> $BASH_ENV
 
@@ -245,6 +257,8 @@ jobs:
         type: string
       project:
         type: string
+      service:
+        type: string
     steps:
       - checkout
       - *default-remote-docker
@@ -256,9 +270,15 @@ jobs:
       - run:
           name: Install dependencies
           command: cd "./" && yarn
+      - run:
+          name: Set project id
+          command: |
+            echo "export GOOGLE_PROJECT_ID=<< parameters.project >>" >> $BASH_ENV
+            source $BASH_ENV
       - build_image:
           project: << parameters.project >>
           environment: << parameters.environment >>
+          service: << parameters.service >>
       - persist_to_workspace:
           root: ./
           paths:
@@ -326,6 +346,7 @@ workflows:
 #          name: build_service_image_and_push_stage
 #          environment: staging
 #          project: news-data-products-dev
+#          service: <<ADD_SERVICE_NAME>>
 #          requires:
 #            - init_gcloud_stage
 #      - terraform_deploy:
@@ -333,6 +354,7 @@ workflows:
 #          name: terraform_deploy_stage
 #          environment: staging
 #          project: news-data-products-dev
+#          service: <<ADD_SERVICE_NAME>>
 #          requires:
 #            - build_service_image_and_push_stage
 #
@@ -349,6 +371,7 @@ workflows:
 #          name: build_service_image_and_push_prod
 #          environment: prod
 #          project: news-data-products-prod
+#          service: <<ADD_SERVICE_NAME>>
 #          requires:
 #            - init_gcloud_prod
 #      - terraform_deploy:
@@ -356,5 +379,6 @@ workflows:
 #          name: terraform_deploy_prod
 #          environment: prod
 #          project: news-data-products-prod
+#          service: <<ADD_SERVICE_NAME>>
 #          requires:
 #            - build_service_image_and_push_prod
