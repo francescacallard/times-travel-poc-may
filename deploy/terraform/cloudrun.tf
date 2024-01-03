@@ -8,6 +8,7 @@ resource "google_cloud_run_v2_service" "cloud-run-instance" {
 
   traffic {
     percent = 100
+    type    = "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
   }
 
   template {
