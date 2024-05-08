@@ -15,7 +15,7 @@ export const InspireButtons = () => {
     }
     
   return (
-    <div className='container'>
+    <div className='inspireContainer'>
         <div className='leftSection'>
             <img src={aiSparkle} alt='aiSparkle' className='aiSparkle'/>
             <button className='leftButton'>Inspire me</button>

@@ -12,7 +12,11 @@
 }
 
 .textContainer {
-    background-color: #317AAB;
+    background-image: linear-gradient(to right, #317AAB 25%, transparent 50%),
+    url('../../assets/timesTravel.png');
+background-size: 200% 100%, cover;
+background-position: left, right;
+background-repeat: no-repeat;
 }
 
 .specifyTextBox,
