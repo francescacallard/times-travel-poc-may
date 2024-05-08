@@ -16,7 +16,7 @@
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
-    margin-top: 16px;
+    margin-top: 36px;
   }
 
   .subHeading {
@@ -37,7 +37,7 @@
   }
   .budgetButtons {
     margin: 8px;
-    padding: 16px;
+    padding: 8px 16px;
     border-radius: 100px;
     color: #2A6495;
     border: solid #2A6495 1px;
