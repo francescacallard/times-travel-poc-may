@@ -4,25 +4,29 @@
 
 .container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    flex-wrap: wrap ;
     margin: 8px;
-    align-items: center;
     background-color: #317AAB;
+    margin-left: 32px;
 }
 
-.textContainer {
-    color: #FFFFFF;
-    align-items: flex-start;
-    font-family: 'Times Modern';
+.specifyTextBox,
+.inspireTextBox {
+    display: flex;
+    margin-left: 32px;
+    flex-wrap: wrap;
 }
 
-  
+.inspireTextBox {
+    margin-top: 61px;
+}
+
   .container .ant-dropdown-trigger {
     margin-right: 16px;
   }
   
   .container .ant-btn {
-    padding: 8px 16px;
     font-size: 16px;
     border-radius: 10px;
     justify-content: center;
