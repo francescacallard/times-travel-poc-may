@@ -9,6 +9,10 @@
     flex-wrap: nowrap;
     gap: 30px;
   }
+
+  .leftSection {
+    display: flex;
+  }
   
   .middleSection {
     display: flex;
@@ -33,11 +37,19 @@
     border: none;
   }
 
-  .leftButton, .rightButton {
+  .leftButton {
     background-color: #317AAB;
     color: #FFFFFF;
     border-radius: 100px;   
     border: none;
+  }
+
+  .rightButton {
+    background-color: #2A6495;
+    color: #FFFFFF;
+    border-radius: 100px;   
+    border: none;
+    padding: 8px 16px
   }
 
   .whiteLine {
@@ -45,15 +57,18 @@
     height: 51px;
   }
 
-  .rightButton {
+  .rightSection {
+    display: flex;
     border: solid 1px #FFFFFF;
+    background-color: #2A6495;
+    border-radius: 100px;
     padding: 8px 16px;
-    background-color: #2A6495 ;
   }
 
   .middleButtons.active {
     background-color: #FFFFFF;
     color: #317AAB;
   }
+
 
 

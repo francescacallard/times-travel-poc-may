@@ -1,5 +1,7 @@
 import React, { useState} from 'react'
 import './styles.css'
+import aiSparkle from '../../assets/aiSparkle.svg'
+import more from '../../assets/more.svg'
 
 export const InspireButtons = () => {
     const [activeButtons, setActiveButtons] = useState([])
@@ -15,6 +17,7 @@ export const InspireButtons = () => {
   return (
     <div className='container'>
         <div className='leftSection'>
+            <img src={aiSparkle} alt='aiSparkle' className='aiSparkle'/>
             <button className='leftButton'>Inspire me</button>
         </div>
 
@@ -57,7 +60,9 @@ export const InspireButtons = () => {
           Relaxation
         </button>
         </div>
+        <img src={more} alt='more' className='more'/>
         <div className='rightSection'>
+            <img src={aiSparkle} alt='aiSparkle' className='aiSparkle'/>   
             <button className='rightButton'>Build trip</button>
         </div>
     </div>
