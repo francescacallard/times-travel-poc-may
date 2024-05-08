@@ -1,5 +1,5 @@
-import React from 'react';
-import './styles.css';
+import React from 'react'
+import './styles.css'
 
 export const DestinationCards = ({ continent, country, image }) => {
   return (
@@ -11,5 +11,5 @@ export const DestinationCards = ({ continent, country, image }) => {
       </div>
       <button className='destinationSelectButton'>Select</button>
     </div>
-  );
-};
+  )
+}
