@@ -39,7 +39,9 @@
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     margin-bottom: 20px;
-    width:1200px
+    width:1200px;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
   }
   
   .destinationCardContainer {

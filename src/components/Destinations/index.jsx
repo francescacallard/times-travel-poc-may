@@ -2,11 +2,13 @@ import React from 'react';
 import './styles.css';
 import { DestinationCards } from 'components/DestinationCards';
 import greece from '../../assets/greece.png';
+import france from '../../assets/france.png';
+import italy from '../../assets/italy.png';
 
 const destinations = [
-  { continent: 'Europe', country: 'Italy', image: greece },
-  { continent: 'Asia', country: 'Japan', image: greece },
-  { continent: 'North America', country: 'USA', image: greece },
+  { continent: 'Europe', country: 'Italy', image: italy },
+  { continent: 'Europe', country: 'Greece', image: greece },
+  { continent: 'Europe', country: 'France', image: france },
   { continent: 'South America', country: 'Brazil', image: greece },
   { continent: 'Africa', country: 'South Africa', image: greece },
 ];
