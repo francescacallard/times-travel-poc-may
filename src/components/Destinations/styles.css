@@ -32,3 +32,18 @@
     font-weight: 400;
     margin-top: 10px;
 }
+
+.destinationSuggestionContainer {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 20px;
+    width:1200px
+  }
+  
+  .destinationCardContainer {
+    flex: 0 0 300px;
+    margin-right: 20px;
+    scroll-snap-align: start;
+  }
