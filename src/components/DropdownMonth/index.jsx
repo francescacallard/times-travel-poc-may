@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Dropdown, Button, Space, Menu } from 'antd'
 import { DownOutlined, CalendarOutlined  } from '@ant-design/icons'
 import { DurationMenu } from 'components/DurationMenu'
+import InspireButtons from 'components/InspireButtons'
 import './styles.css'
 
 const months = [
@@ -40,6 +41,7 @@ export const DropdownMonth = () => {
     <DurationMenu />
     </div>
     <p className='inspireTextBox'>Select three of the options that match what you're looking for in your next adventure!</p>
+    <InspireButtons />
     </div>
   )
 };
