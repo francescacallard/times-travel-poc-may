@@ -1,47 +1,91 @@
-import React, { useState } from 'react'
-import { Dropdown, Button, Space, Menu } from 'antd'
-import { DownOutlined, CalendarOutlined  } from '@ant-design/icons'
-import { DurationMenu } from 'components/DurationMenu'
-import InspireButtons from 'components/InspireButtons'
-import './styles.css'
-
-const months = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
-]
+import React, { useState } from 'react';
+import { Dropdown, Button, Space, Menu } from 'antd';
+import { DownOutlined, CalendarOutlined } from '@ant-design/icons';
+import { DurationMenu } from 'components/DurationMenu';
+import InspireButtons from 'components/InspireButtons';
+import './styles.css';
+import { months } from '../Destinations/constants';
+import { Budget } from 'components/Budget';
+import { Destinations } from 'components/Destinations';
+import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
 
 export const DropdownMonth = () => {
-  const [selectedMonth, setSelectedMonth] = useState('May')
+  const [selectedMonth, setSelectedMonth] = useState('May');
+  const [selectedDuration, setSelectedDuration] = useState('7 days');
 
-  const handleMenuClick = (event) => {
-    setSelectedMonth(event.key)
-  }
+  const handleMonthChange = ({ key }) => {
+    setSelectedMonth(key);
+  };
+
+  const handleDurationChange = (duration) => {
+    setSelectedDuration(duration);
+  };
+
+  const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
+  const azureApiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
+  const [aiResponse, setAiResponse] = useState('');
+
+  const systemPrompt = {
+    role: 'system',
+    content: `You are a travel agent that takes information based on the users choices. You need to write back what month they chose and for how long before you recommend them an itinerary`,
+  };
+
+  const handleSubmit = async (event) => {
+
+    const userMessage = {
+      role: 'user',
+      content: `The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}.`,
+    };
+
+
+
+    try {
+      const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
+      const deploymentId = 'gpt4';
+      console.log('Hit3');
+
+      const messages = [systemPrompt, userMessage];
+
+      const result = await client.getChatCompletions(deploymentId, messages);
+
+      const aiResponse = result.choices[0].message.content;
+      setAiResponse(aiResponse);
+      console.log(aiResponse);
+      console.log('hello')
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   const menu = (
-    <Menu onClick={handleMenuClick}>
+    <Menu onClick={handleMonthChange}>
       {months.map(month => (
         <Menu.Item key={month}>{month}</Menu.Item>
       ))}
     </Menu>
-  )
+  );
 
   return (
+    <>
     <div className='textContainer'>
-    <p className='specifyTextBox'>Specify your preferred travel month and the duration of your trip</p>
-    <div className='container'>
-    <Dropdown overlay={menu} trigger={['click']}>
-      <Button>
-        <Space>
-        <CalendarOutlined />
-        <span className='month-text'>{selectedMonth}</span>
-          <DownOutlined />
-        </Space>
-      </Button>
-    </Dropdown>
-    <DurationMenu />
+      <p className='specifyTextBox'>Specify your preferred travel month and the duration of your trip</p>
+      <div className='container'>
+        <Dropdown overlay={menu} trigger={['click']}>
+          <Button>
+            <Space>
+              <CalendarOutlined />
+              <span className='month-text'>{selectedMonth}</span>
+              <DownOutlined />
+            </Space>
+          </Button>
+        </Dropdown>
+        <DurationMenu onDurationChange={handleDurationChange} />
+      </div>
+      <p className='inspireTextBox'>Select three of the options that match what you're looking for in your next adventure!</p>
+      <InspireButtons handleSubmit={handleSubmit}/>
     </div>
-    <p className='inspireTextBox'>Select three of the options that match what you're looking for in your next adventure!</p>
-    <InspireButtons />
-    </div>
-  )
+    <Budget selectedMonth={selectedMonth}/>
+    <Destinations selectedMonth={selectedMonth} />
+    </>
+  );
 };
