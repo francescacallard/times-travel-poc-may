@@ -7,6 +7,7 @@ import france from '../../assets/france.png';
 import italy from '../../assets/italy.png';
 import timesFavicon from '../../assets/timesFavicon.svg';
 import { destinations, journalists } from './constants'
+import { GenerateButton } from 'components/GenerateButton';
 
 
 
@@ -41,6 +42,9 @@ export const Destinations = () => {
           />
         ))}
       </div>
-   </>
+      <div className='generateSaveContainer'>
+      <GenerateButton />
+      </div>
+     </>
   );
 };

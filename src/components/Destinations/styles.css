@@ -53,8 +53,8 @@
   .suggestionMessage {
     display: flex;
     margin-left: 36px;
-   align-items: center;
-   width: 100%;
+    align-items: center;
+    width: 100%;
   }
 
   .suggestionHeading {
@@ -65,3 +65,7 @@
     font-weight: 400;
   }
 
+  .generateSaveContainer {
+    display: flex;
+    justify-content: center; 
+  }
