@@ -30,3 +30,8 @@
     border: solid #5F5F5F 1px;
     color: #FFFFFF;
   }
+
+  .button.active {
+    background-color: #317AAB;
+    color: white;
+  }
