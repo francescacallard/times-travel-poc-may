@@ -1,12 +1,21 @@
 import React, { useState } from 'react'
 import './styles.css'
 
-export const Budget = ({ selectedMonth }) => {
+export const Budget = ({ selectedMonth, selectedBudget, setSelectedBudget }) => {
   const [activeButton, setActiveButton] = useState(null)
 
+  const budgetOptions = [
+    '£500 - £1000 pp',
+    '£1000 - £2000 pp',
+    '£2000 - £3000 pp',
+    '£3000+ pp',
+    'Not sure',
+  ];
+
   const handleButtonClick = (buttonIndex) => {
-    setActiveButton(buttonIndex === activeButton ? null : buttonIndex)
-  }
+    setActiveButton(buttonIndex === activeButton ? null : buttonIndex);
+    setSelectedBudget(budgetOptions[buttonIndex]);
+  };
   console.log(selectedMonth, 'from budget component')
 
   return (

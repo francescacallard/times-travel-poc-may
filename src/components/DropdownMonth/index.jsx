@@ -13,6 +13,7 @@ export const DropdownMonth = () => {
   const [selectedMonth, setSelectedMonth] = useState('May');
   const [selectedDuration, setSelectedDuration] = useState('7 days');
   const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedBudget, setSelectedBudget] = useState('');
 
   const handleMonthChange = ({ key }) => {
     setSelectedMonth(key);
@@ -35,7 +36,7 @@ export const DropdownMonth = () => {
 
     const userMessage = {
       role: 'user',
-      content:`The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}. They are interested in the following: ${selectedItems.join(', ')}.`,
+      content:`The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}. They are interested in the following: ${selectedItems.join(', ')}. Their budget is ${selectedBudget}.`,
     };
 
     try {
@@ -49,8 +50,7 @@ export const DropdownMonth = () => {
 
       const aiResponse = result.choices[0].message.content;
       setAiResponse(aiResponse);
-      console.log(aiResponse);
-      console.log('hello')
+      console.log("This is the AI Response", aiResponse);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -83,7 +83,7 @@ export const DropdownMonth = () => {
       <p className='inspireTextBox'>Select three of the options that match what you're looking for in your next adventure!</p>
       <InspireButtons selectedItems={selectedItems} setSelectedItems={setSelectedItems} handleSubmit={handleSubmit}/>
     </div>
-    <Budget selectedMonth={selectedMonth}/>
+    <Budget selectedMonth={selectedMonth} selectedBudget={selectedBudget} setSelectedBudget={setSelectedBudget} />
     <Destinations selectedMonth={selectedMonth} />
     </>
   );
