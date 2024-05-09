@@ -1,13 +1,15 @@
 import React from 'react'
 import './styles.css'
 import { DropdownMonth } from 'components/DropdownMonth'
-import { Options } from 'components/Options'
+import { Budget } from 'components/Budget'
+import { Destinations } from 'components/Destinations'
 
 export const Layout = () => {
   return (
     <div className='container'>
         <DropdownMonth />
-        <Options />
+        <Budget />
+        <Destinations />
     </div>
   )
 }

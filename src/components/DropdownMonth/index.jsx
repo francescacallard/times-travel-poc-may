@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Dropdown, Button, Space, Menu } from 'antd'
 import { DownOutlined, CalendarOutlined  } from '@ant-design/icons'
 import { DurationMenu } from 'components/DurationMenu'
+import InspireButtons from 'components/InspireButtons'
 import './styles.css'
 
 const months = [
@@ -26,7 +27,7 @@ export const DropdownMonth = () => {
 
   return (
     <div className='textContainer'>
-    <p>Specify your preferred travel month and the duration of your trip</p>
+    <p className='specifyTextBox'>Specify your preferred travel month and the duration of your trip</p>
     <div className='container'>
     <Dropdown overlay={menu} trigger={['click']}>
       <Button>
@@ -39,6 +40,8 @@ export const DropdownMonth = () => {
     </Dropdown>
     <DurationMenu />
     </div>
+    <p className='inspireTextBox'>Select three of the options that match what you're looking for in your next adventure!</p>
+    <InspireButtons />
     </div>
   )
 };
