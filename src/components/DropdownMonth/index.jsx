@@ -12,6 +12,7 @@ import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
 export const DropdownMonth = () => {
   const [selectedMonth, setSelectedMonth] = useState('May');
   const [selectedDuration, setSelectedDuration] = useState('7 days');
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const handleMonthChange = ({ key }) => {
     setSelectedMonth(key);
@@ -34,10 +35,8 @@ export const DropdownMonth = () => {
 
     const userMessage = {
       role: 'user',
-      content: `The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}.`,
+      content:`The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}. They are interested in the following: ${selectedItems.join(', ')}.`,
     };
-
-
 
     try {
       const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
@@ -82,7 +81,7 @@ export const DropdownMonth = () => {
         <DurationMenu onDurationChange={handleDurationChange} />
       </div>
       <p className='inspireTextBox'>Select three of the options that match what you're looking for in your next adventure!</p>
-      <InspireButtons handleSubmit={handleSubmit}/>
+      <InspireButtons selectedItems={selectedItems} setSelectedItems={setSelectedItems} handleSubmit={handleSubmit}/>
     </div>
     <Budget selectedMonth={selectedMonth}/>
     <Destinations selectedMonth={selectedMonth} />

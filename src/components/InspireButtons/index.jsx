@@ -3,16 +3,29 @@ import './styles.css'
 import aiSparkle from '../../assets/aiSparkle.svg'
 import more from '../../assets/more.svg'
 
-export const InspireButtons = ({ handleSubmit }) => {
+export const InspireButtons = ({ selectedItems, setSelectedItems, handleSubmit }) => {
+
+    const buttonTexts = [
+        'Solo travel',
+        'Hidden gems',
+        'Food and wine',
+        'Romantic getaway for two',
+        'Nightlife',
+        'Relaxation',
+      ];
+
+      
     const [activeButtons, setActiveButtons] = useState([])
 
     const handleButtonClick = (buttonIndex) => {
         if (activeButtons.includes(buttonIndex)) {
-            setActiveButtons(activeButtons.filter(index => index !== buttonIndex))
+          setActiveButtons(activeButtons.filter(index => index !== buttonIndex));
+          setSelectedItems(selectedItems.filter(item => item !== buttonTexts[buttonIndex]));
         } else {
-            setActiveButtons([...activeButtons, buttonIndex])
-        }       
-    }
+          setActiveButtons([...activeButtons, buttonIndex]);
+          setSelectedItems([...selectedItems, buttonTexts[buttonIndex]]);
+        }
+      };
 
     const handleBuildTripClick = () => {
         handleSubmit();
