@@ -14,6 +14,8 @@ export const DropdownMonth = () => {
   const [selectedDuration, setSelectedDuration] = useState('7 days');
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedBudget, setSelectedBudget] = useState('');
+  const [showDestinations, setShowDestinations] = useState(false);
+  
 
   const handleMonthChange = ({ key }) => {
     setSelectedMonth(key);
@@ -51,6 +53,7 @@ export const DropdownMonth = () => {
       const aiResponse = result.choices[0].message.content;
       setAiResponse(aiResponse);
       console.log("This is the AI Response", aiResponse);
+      setShowDestinations(true);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -84,7 +87,7 @@ export const DropdownMonth = () => {
       <InspireButtons selectedItems={selectedItems} setSelectedItems={setSelectedItems} handleSubmit={handleSubmit}/>
     </div>
     <Budget selectedMonth={selectedMonth} selectedBudget={selectedBudget} setSelectedBudget={setSelectedBudget} />
-    <Destinations selectedMonth={selectedMonth} />
+    {showDestinations && <Destinations selectedMonth={selectedMonth} />}
     </>
   );
 };

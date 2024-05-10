@@ -2,18 +2,9 @@ import React, { useState} from 'react'
 import './styles.css'
 import aiSparkle from '../../assets/aiSparkle.svg'
 import more from '../../assets/more.svg'
+import { buttonTexts } from './constants'
 
 export const InspireButtons = ({ selectedItems, setSelectedItems, handleSubmit }) => {
-
-    const buttonTexts = [
-        'Solo travel',
-        'Hidden gems',
-        'Food and wine',
-        'Romantic getaway for two',
-        'Nightlife',
-        'Relaxation',
-      ];
-
       
     const [activeButtons, setActiveButtons] = useState([])
 
@@ -30,6 +21,11 @@ export const InspireButtons = ({ selectedItems, setSelectedItems, handleSubmit }
     const handleBuildTripClick = () => {
         handleSubmit();
       };
+
+      const randomItem = buttonTexts[Math.floor(Math.random() * buttonTexts.length)];
+      console.log(randomItem)
+
+     
     
   return (
     <div className='inspireContainer'>
