@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './styles.css';
 import { DestinationCards } from 'components/DestinationCards';
 import { JournalistCard } from 'components/JournalistCard';
@@ -9,6 +9,13 @@ import { CountrySelection } from 'components/CountrySelection';
 
 export const Destinations = ({ selectedMonth }) => {
   const [selectedCountry, setSelectedCountry] = useState(null);
+  const countrySelectionRef = useRef(null);
+
+  useEffect(() => {
+    if (selectedCountry) {
+      countrySelectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [selectedCountry]);
 
   const handleCountrySelect = (country) => {
     setSelectedCountry(country);
@@ -59,7 +66,9 @@ export const Destinations = ({ selectedMonth }) => {
       <div className='generateSaveContainer'>
         <GenerateButton />
       </div>
-      {selectedCountry && <CountrySelection country={selectedCountry} />}
+      <div className='selectedCountryHeadingContainer' ref={countrySelectionRef}>
+        {selectedCountry && <CountrySelection country={selectedCountry} />}
+      </div>
     </>
   );
 };
