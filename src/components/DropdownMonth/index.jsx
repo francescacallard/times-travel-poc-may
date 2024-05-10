@@ -8,6 +8,8 @@ import { months } from '../Destinations/constants';
 import { Budget } from 'components/Budget';
 import { Destinations } from 'components/Destinations';
 import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
+import { Loading } from 'components/Loading';
+import { CountrySelection } from 'components/CountrySelection';
 
 export const DropdownMonth = () => {
   const [selectedMonth, setSelectedMonth] = useState('May');
@@ -15,6 +17,8 @@ export const DropdownMonth = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedBudget, setSelectedBudget] = useState('');
   const [showDestinations, setShowDestinations] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState('');
   
 
   const handleMonthChange = ({ key }) => {
@@ -35,6 +39,7 @@ export const DropdownMonth = () => {
   };
 
   const handleSubmit = async (event) => {
+    setIsLoading(true);
 
     const userMessage = {
       role: 'user',
@@ -54,6 +59,7 @@ export const DropdownMonth = () => {
       setAiResponse(aiResponse);
       console.log("This is the AI Response", aiResponse);
       setShowDestinations(true);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -87,7 +93,12 @@ export const DropdownMonth = () => {
       <InspireButtons selectedItems={selectedItems} setSelectedItems={setSelectedItems} handleSubmit={handleSubmit}/>
     </div>
     <Budget selectedMonth={selectedMonth} selectedBudget={selectedBudget} setSelectedBudget={setSelectedBudget} />
-    {showDestinations && <Destinations selectedMonth={selectedMonth} />}
+    {isLoading ? (
+        <Loading />
+      ) : (
+        showDestinations && <Destinations selectedMonth={selectedMonth} />
+      )}
+      <CountrySelection />
     </>
   );
 };
