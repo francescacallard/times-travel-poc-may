@@ -9,17 +9,15 @@ import { Budget } from 'components/Budget';
 import { Destinations } from 'components/Destinations';
 import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
 import { Loading } from 'components/Loading';
-import { CountrySelection } from 'components/CountrySelection';
 
 export const DropdownMonth = () => {
+  const [aiResponse, setAiResponse] = useState('');
   const [selectedMonth, setSelectedMonth] = useState('May');
   const [selectedDuration, setSelectedDuration] = useState('7 days');
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedBudget, setSelectedBudget] = useState('');
   const [showDestinations, setShowDestinations] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState('');
-  
 
   const handleMonthChange = ({ key }) => {
     setSelectedMonth(key);
@@ -31,7 +29,6 @@ export const DropdownMonth = () => {
 
   const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
   const azureApiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
-  const [aiResponse, setAiResponse] = useState('');
 
   const systemPrompt = {
     role: 'system',
@@ -49,7 +46,7 @@ export const DropdownMonth = () => {
     try {
       const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
       const deploymentId = 'gpt4';
-      console.log('Hit3');
+      console.log('User selection sent to the AI');
 
       const messages = [systemPrompt, userMessage];
 
@@ -57,7 +54,6 @@ export const DropdownMonth = () => {
 
       const aiResponse = result.choices[0].message.content;
       setAiResponse(aiResponse);
-      console.log("This is the AI Response", aiResponse);
       setShowDestinations(true);
       setIsLoading(false);
     } catch (error) {
@@ -98,7 +94,6 @@ export const DropdownMonth = () => {
       ) : (
         showDestinations && <Destinations selectedMonth={selectedMonth} />
       )}
-      <CountrySelection />
     </>
   );
 };

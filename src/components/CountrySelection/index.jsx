@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
-import './styles.css'
+import React, { useState } from 'react';
+import './styles.css';
 
-export const CountrySelection = () => {
-
-  const [activeButton, setActiveButton] = useState(null)
-
+export const CountrySelection = ({ country }) => {
+  const [activeButton, setActiveButton] = useState(null);
   const transportOptions = [
     'Rental car',
     'Coach',
@@ -18,13 +16,20 @@ export const CountrySelection = () => {
     setActiveButton(buttonIndex === activeButton ? null : buttonIndex);
     // setSelectedBudget(transportOptions[buttonIndex]);
   };
+
   return (
     <div className='selectedCountryHeadingContainer'>
-      <h2 className='selectedCountryHeading'>{`Great Choice!  has some of the most beautiful scenery in the world`}</h2>
-      <h3 className='selectedCountrySubheading'>{`There is so much to see and do in , it offers many different travel experiences`}</h3>
-      <h2 className='transportText'>To receive personalised holiday recommendations tailored just for you, kindly specify your preferred mode of transportation</h2>
+      <h2 className='selectedCountryHeading'>
+        {`Great Choice! ${country} has some of the most beautiful scenery in the world`}
+      </h2>
+      <h3 className='selectedCountrySubheading'>
+        {`There is so much to see and do in ${country}, it offers many different travel experiences`}
+      </h3>
+      <h2 className='transportText'>
+        To receive personalised holiday recommendations tailored just for you, kindly specify your preferred mode of transportation
+      </h2>
       <div className='selectedTransportContainer'>
-      <button
+        <button
           className={`transportButtons ${activeButton === 0 ? 'active' : ''}`}
           onClick={() => handleButtonClick(0)}
         >
@@ -46,7 +51,7 @@ export const CountrySelection = () => {
           className={`transportButtons ${activeButton === 3 ? 'active' : ''}`}
           onClick={() => handleButtonClick(3)}
         >
-         Private driver
+          Private driver
         </button>
         <button
           className={`transportButtons ${activeButton === 4 ? 'active' : ''}`}
@@ -60,7 +65,7 @@ export const CountrySelection = () => {
         >
           Not sure
         </button>
+      </div>
     </div>
-    </div>
-  )
-}
+  );
+};
