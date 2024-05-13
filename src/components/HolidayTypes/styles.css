@@ -7,10 +7,14 @@
   display: flex;
 flex-direction: column;
 align-items: flex-start;
+background-color: #FFFFFF;
+margin-top: 20px;
+border-radius: 10px 10px 0px 0px;
 }
 
 .holidayTypesTextContainer {
   padding: 16px;
+  border-radius: 0px 0px 10px 10px;
 }
 
 .countryHeading {
@@ -36,7 +40,7 @@ align-items: flex-start;
 .holidayTypesButton {
   display: flex;
 width: 101px;
-padding: 16px;
+padding: 8px 16px;
 justify-content: center;
 align-items: center;
 gap: 16px;
@@ -48,4 +52,5 @@ margin-top: px;
 font-size: 16px;
 font-style: normal;
 font-weight: 500;
+
 }
