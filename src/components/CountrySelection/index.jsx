@@ -4,11 +4,13 @@ import { HolidayTypes } from 'components/HolidayTypes';
 import { holidayTypes } from './constants';
 import { JournalistCard } from 'components/JournalistCard';
 import { journalists } from '../Destinations/constants'
+import { ItineraryHeading } from 'components/ItineraryHeading';
 
 export const CountrySelection = ({ country }) => {
   const [activeButton, setActiveButton] = useState(null);
   const [showHolidayTypes, setShowHolidayTypes] = useState(false);
-  const [holidayType, setSelectedHolidayType] = useState('');
+  const [holidayType, setSelectedHolidayType] = useState(null);
+
 
   const transportOptions = [
     'Rental car',
@@ -19,7 +21,7 @@ export const CountrySelection = ({ country }) => {
     'Not sure',
   ];
 
-  const handleHolidaySelection = () => {
+  const handleHolidaySelection = (holidayType) => {
     setSelectedHolidayType(holidayType);
   };
 
@@ -28,6 +30,7 @@ export const CountrySelection = ({ country }) => {
     setShowHolidayTypes(true);
   };
   return (
+    <>
     <div className='selectedCountryHeadingContainer'>
       <h2 className='selectedCountryHeading'>
         {`Great Choice! ${country} has some of the most beautiful scenery in the world`}
@@ -102,5 +105,11 @@ export const CountrySelection = ({ country }) => {
         </div>
       )}
     </div>
+    {holidayType && (
+  <div className='itineraryHeadingContainer'>
+    <ItineraryHeading selectedHolidayType={holidayType} />
+  </div>
+)}
+    </>
   );
 };
