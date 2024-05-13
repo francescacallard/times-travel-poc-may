@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './styles.css';
 import { HolidayTypes } from 'components/HolidayTypes';
 import { holidayTypes } from './constants';
@@ -10,6 +10,8 @@ export const CountrySelection = ({ country }) => {
   const [activeButton, setActiveButton] = useState(null);
   const [showHolidayTypes, setShowHolidayTypes] = useState(false);
   const [holidayType, setSelectedHolidayType] = useState(null);
+  const holidaySelectionRef = useRef(null);
+  const intineraryHeadingRef = useRef(null); 
 
 
   const transportOptions = [
@@ -29,6 +31,19 @@ export const CountrySelection = ({ country }) => {
     setActiveButton(buttonIndex === activeButton ? null : buttonIndex);
     setShowHolidayTypes(true);
   };
+
+  useEffect(() => {
+    if (showHolidayTypes) {
+      holidaySelectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [showHolidayTypes]);
+
+  useEffect(() => {
+    if (holidayType) {
+      intineraryHeadingRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [holidayType])
+
   return (
     <>
     <div className='selectedCountryHeadingContainer'>
@@ -92,8 +107,9 @@ export const CountrySelection = ({ country }) => {
             />
           ))}
       </div>
+    
       {showHolidayTypes && (
-        <div className='journalistCardContainer'>
+        <div className='journalistCardContainer'  ref={holidaySelectionRef}>
           {journalists.map((journalist) => (
             <JournalistCard
               key={journalist.id}
@@ -106,7 +122,7 @@ export const CountrySelection = ({ country }) => {
       )}
     </div>
     {holidayType && (
-  <div className='itineraryHeadingContainer'>
+  <div className='itineraryHeadingContainer' ref={intineraryHeadingRef}>
     <ItineraryHeading selectedHolidayType={holidayType} />
   </div>
 )}

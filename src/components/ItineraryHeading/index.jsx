@@ -1,9 +1,11 @@
 import React from 'react';
 import './styles.css';
 import { ItineraryRecommendations } from 'components/ItineraryRecommendations';
+import { HappyWithOptions } from 'components/HappyWithOptions';
 
 export const ItineraryHeading = ({ selectedHolidayType }) => {
   return (
+    <>
     <div className='itineraryHeadingContainer'>
       <h3 className='itineraryHeadingText'>{`AI Response for ${selectedHolidayType}`}</h3>
       <p className='itineraryHeadingDescription'>
@@ -14,6 +16,10 @@ export const ItineraryHeading = ({ selectedHolidayType }) => {
       <ItineraryRecommendations />
      </div>
     </div>
+    <HappyWithOptions />
+
+    </>
+    
 
   );
 };

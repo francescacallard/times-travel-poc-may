@@ -7,6 +7,12 @@
   height: 793px;
 }
 
+.itineraryContentContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .itineraryDayText {
   color: #1D1D1B;
   font-size: 16px;
@@ -28,3 +34,12 @@
   font-weight: 400;
 }
 
+.itinerarySelectButton {
+  background-color: #FFFFFF;
+  color: #317AAB;
+  font-size: 16px;
+  font-style: normal;
+  border-radius: 100px;
+  padding: 8px 16px;
+  margin-top: auto;
+}

@@ -1,0 +1,24 @@
+.happyWithOptionsContainer {
+  display: flex;
+  height: 17px;
+  flex-direction: column;
+  justify-content: center; 
+  margin-top: 56px;
+}
+
+.happyWithOptionsHeading {
+  color: #1D1D1B;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  text-align: center;
+}
+
+.happyWithOptionsSubheading {
+  color: #1D1D1B;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  margin-top:-10px
+}
