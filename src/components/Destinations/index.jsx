@@ -10,6 +10,7 @@ import { CountrySelection } from 'components/CountrySelection';
 export const Destinations = ({ selectedMonth }) => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const countrySelectionRef = useRef(null);
+  const [ showHolidayTypes, setShowHolidayTypes ] = useState(false)
 
   useEffect(() => {
     if (selectedCountry) {
@@ -20,6 +21,10 @@ export const Destinations = ({ selectedMonth }) => {
   const handleCountrySelect = (country) => {
     setSelectedCountry(country);
   };
+
+  const handleTransportButtonClick = () => {
+    setShowHolidayTypes(true)
+  }
 
   return (
     <>

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import './styles.css';
+import { HolidayTypes } from 'components/HolidayTypes';
 
 export const CountrySelection = ({ country }) => {
   const [activeButton, setActiveButton] = useState(null);
+  const [showHolidayTypes, setShowHolidayTypes] = useState(false);
+
   const transportOptions = [
     'Rental car',
     'Coach',
@@ -14,6 +17,7 @@ export const CountrySelection = ({ country }) => {
 
   const handleButtonClick = (buttonIndex) => {
     setActiveButton(buttonIndex === activeButton ? null : buttonIndex);
+    setShowHolidayTypes(true);
     // setSelectedBudget(transportOptions[buttonIndex]);
   };
 
@@ -66,6 +70,7 @@ export const CountrySelection = ({ country }) => {
           Not sure
         </button>
       </div>
+      <HolidayTypes showHolidayTypes={showHolidayTypes} />
     </div>
   );
 };
