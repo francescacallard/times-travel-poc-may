@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './styles.css';
 import { HolidayTypes } from 'components/HolidayTypes';
+import { holidayTypes } from './constants';
 
 export const CountrySelection = ({ country }) => {
   const [activeButton, setActiveButton] = useState(null);
   const [showHolidayTypes, setShowHolidayTypes] = useState(false);
+  const [holidayType, setSelectedHolidayType] = useState('');
 
   const transportOptions = [
     'Rental car',
@@ -15,12 +17,14 @@ export const CountrySelection = ({ country }) => {
     'Not sure',
   ];
 
+  const handleHolidaySelection = () => {
+    setSelectedHolidayType(holidayType);
+  };
+
   const handleButtonClick = (buttonIndex) => {
     setActiveButton(buttonIndex === activeButton ? null : buttonIndex);
     setShowHolidayTypes(true);
-    // setSelectedBudget(transportOptions[buttonIndex]);
   };
-
   return (
     <div className='selectedCountryHeadingContainer'>
       <h2 className='selectedCountryHeading'>
@@ -70,7 +74,19 @@ export const CountrySelection = ({ country }) => {
           Not sure
         </button>
       </div>
-      <HolidayTypes showHolidayTypes={showHolidayTypes} />
+      <div className='holidayTypesContainer'>
+        {showHolidayTypes &&
+          holidayTypes.map((holidayType) => (
+            <HolidayTypes
+              key={holidayType.id}
+              country={holidayType.country}
+              holidayType={holidayType.holidayType}
+              description={holidayType.description}
+              image={holidayType.image}
+              onSelect={handleHolidaySelection}
+            />
+          ))}
+      </div>
     </div>
   );
 };

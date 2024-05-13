@@ -22,9 +22,7 @@ export const Destinations = ({ selectedMonth }) => {
     setSelectedCountry(country);
   };
 
-  const handleTransportButtonClick = () => {
-    setShowHolidayTypes(true)
-  }
+ 
 
   return (
     <>

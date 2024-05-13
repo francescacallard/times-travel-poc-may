@@ -1,21 +1,23 @@
 import React from 'react';
 import './styles.css';
-import rural from '../../assets/rural.png';
+import holidayTypes from '../CountrySelection/constants'
 
-export const HolidayTypes = ({ showHolidayTypes, country }) => {
+export const HolidayTypes = ({ country, holidayType, description, image, onSelect }) => {
+  const handleSelect = () => {
+    onSelect(holidayType);
+  };
+
   return (
     <div className='textImageContainer'>
-      {showHolidayTypes && (
-        <>
-          <img src={rural} alt='rural' />
-          <div className='holidayTypesTextContainer'>
-            <h3 className='countryHeading'>{country}Italy</h3>
-            <h2 className='holidayTypesHeading'>Rural Retreat</h2>
-            <p className='holidayTypesDescription'>Nestled amidst rolling hills and picturesque vineyards, explore timeless escapes far from the Hustle and Bustle.</p>
-            <button className='holidayTypesButton'>Select</button>
-          </div>
-        </>
-      )}
+      <img src={image} alt={holidayType} />
+      <div className='holidayTypesTextContainer'>
+        <h3 className='countryHeading'>{country}</h3>
+        <h2 className='holidayTypesHeading'>{holidayType}</h2>
+        <p className='holidayTypesDescription'>{description}</p>
+        <button className='holidayTypesButton' onClick={handleSelect}>
+          Select
+        </button>
+      </div>
     </div>
   );
 };
