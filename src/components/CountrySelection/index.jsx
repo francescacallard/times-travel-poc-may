@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './styles.css';
 import { HolidayTypes } from 'components/HolidayTypes';
 import { holidayTypes } from './constants';
+import { JournalistCard } from 'components/JournalistCard';
+import { journalists } from '../Destinations/constants'
 
 export const CountrySelection = ({ country }) => {
   const [activeButton, setActiveButton] = useState(null);
@@ -87,6 +89,18 @@ export const CountrySelection = ({ country }) => {
             />
           ))}
       </div>
+      {showHolidayTypes && (
+        <div className='journalistCardContainer'>
+          {journalists.map((journalist) => (
+            <JournalistCard
+              key={journalist.id}
+              name={journalist.name}
+              title={journalist.title}
+              image={journalist.image}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

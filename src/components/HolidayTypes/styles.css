@@ -39,18 +39,17 @@ border-radius: 10px 10px 0px 0px;
 
 .holidayTypesButton {
   display: flex;
-width: 101px;
-padding: 8px 16px;
-justify-content: center;
-align-items: center;
-gap: 16px;
-border-radius: 100px;
-border: 1px solid var(--Time-Travel-Link, #2A6495);
-background: #FFF;
-color:  var(--Time-Travel-Link, #2A6495);
-margin-top: px;
-font-size: 16px;
-font-style: normal;
-font-weight: 500;
-
+  width: 101px;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 100px;
+  border: 1px solid var(--Time-Travel-Link, #2A6495);
+  background: #FFF;
+  color:  var(--Time-Travel-Link, #2A6495);
+  margin-top: px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
 }

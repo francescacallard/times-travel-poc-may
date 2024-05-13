@@ -5,6 +5,7 @@ import holidayTypes from '../CountrySelection/constants'
 export const HolidayTypes = ({ country, holidayType, description, image, onSelect }) => {
   const handleSelect = () => {
     onSelect(holidayType);
+    console.log("This is the holidayType", holidayType)
   };
 
   return (
