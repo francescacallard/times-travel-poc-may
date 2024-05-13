@@ -1,4 +1,28 @@
 * {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: #000000;
+}
+.itineraryHeadingContainer {
+margin-top: 20px;
+}
+
+.itineraryHeadingText {
+  color: #1D1D1B;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  text-align: center;
+}
+
+.itineraryHeadingDescription {
+  color: #1D1D1B;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.itineraryRecommendationsSide {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }

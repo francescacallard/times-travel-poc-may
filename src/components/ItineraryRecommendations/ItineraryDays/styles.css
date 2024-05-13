@@ -1,0 +1,30 @@
+.itineraryDaysContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  padding: 16px;
+  height: 793px;
+}
+
+.itineraryDayText {
+  color: #1D1D1B;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.itineraryTitleText {
+  color: #1D1D1B;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.itineraryDescriptionText {
+  color: #1D1D1B;
+  font-size: 17.84px;
+  font-style: normal;
+  font-weight: 400;
+}
+
