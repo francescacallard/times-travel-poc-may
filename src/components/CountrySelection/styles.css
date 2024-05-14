@@ -11,7 +11,7 @@
   margin: 0 auto;
   width: 100%;
   color: #000000;
-  background-color: #FFFFFF;
+  background-color: #F3F3F3;
   margin-top: 20px;
 }
 
@@ -68,9 +68,12 @@
   -ms-overflow-style: none; 
   margin-top: 16px;
   background-color: #F7F7F8;
+  /* border-radius: 10px 0px 10px 10px; */
 }
 
 .textImageContainer {
   flex: 0 0 auto;
   margin-right: 20px;
+  border: solid 1px red;
+  border-radius: 100px;
 }

@@ -4,6 +4,8 @@
   flex-direction: column;
   justify-content: center; 
   margin-top: 56px;
+  margin-bottom: 40px;
+  border: solid 1px red;
 }
 
 .happyWithOptionsHeading {

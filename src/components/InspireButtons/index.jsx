@@ -72,6 +72,36 @@ export const InspireButtons = ({ selectedItems, setSelectedItems, handleSubmit }
         >
           Relaxation
         </button>
+        <button
+          className={`middleButtons ${activeButtons.includes(6) ? 'active' : ''}`}
+          onClick={() => handleButtonClick(6)}
+        >
+          Hiking
+        </button>
+        <button
+          className={`middleButtons ${activeButtons.includes(7) ? 'active' : ''}`}
+          onClick={() => handleButtonClick(7)}
+        >
+          Sports and Activities
+        </button>
+        <button
+          className={`middleButtons ${activeButtons.includes(8) ? 'active' : ''}`}
+          onClick={() => handleButtonClick(8)}
+        >
+          Nature and sceneary
+        </button>
+        <button
+          className={`middleButtons ${activeButtons.includes(9) ? 'active' : ''}`}
+          onClick={() => handleButtonClick(9)}
+        >
+          History
+        </button>
+        <button
+          className={`middleButtons ${activeButtons.includes(10) ? 'active' : ''}`}
+          onClick={() => handleButtonClick(10)}
+        >
+          Culture
+        </button>
         </div>
         <img src={more} alt='more' className='more'/>
         <div className='rightSection'>

@@ -107,9 +107,9 @@ export const CountrySelection = ({ country }) => {
             />
           ))}
       </div>
-    
+    <div ref={holidaySelectionRef}>
       {showHolidayTypes && (
-        <div className='journalistCardContainer'  ref={holidaySelectionRef}>
+        <div className='journalistCardContainer'>
           {journalists.map((journalist) => (
             <JournalistCard
               key={journalist.id}
@@ -119,7 +119,9 @@ export const CountrySelection = ({ country }) => {
             />
           ))}
         </div>
+        
       )}
+      </div>
     </div>
     {holidayType && (
   <div className='itineraryHeadingContainer' ref={intineraryHeadingRef}>

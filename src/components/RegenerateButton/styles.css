@@ -1,0 +1,23 @@
+.regenerateContainer {
+  color: #000000;
+  margin-left: 40px;
+  background-color:#FAFAFA;
+  width: 100%;
+}
+
+.generateButton {
+  display: flex;
+  margin-bottom: -20px;
+}
+
+.saveButton {
+  display: flex;
+}
+
+.saveText, .generateText {
+  margin-left: 10px;
+  color: #166EC5;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+}
