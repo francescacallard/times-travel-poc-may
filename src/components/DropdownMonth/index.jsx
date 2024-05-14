@@ -39,7 +39,7 @@ export const DropdownMonth = () => {
     setIsLoading(true);
     const userMessage = {
       role: 'user',
-      content: `The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}. They are interested in the following: ${selectedItems.join(', ')}. Their budget is ${selectedBudget}. You have to give 5 examples of country and continent`,
+      content: `The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}. They are interested in the following: ${selectedItems.join(', ')}. Their budget is ${selectedBudget}. You have to give 5 examples of country and continent. You do not need to write anything else other than "1: Country, Continent 2: Country, Continent 3: Country, Continent 4: Country, Continent 5: Country, Continent"`,
     };
     try {
       const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
