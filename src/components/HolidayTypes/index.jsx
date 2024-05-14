@@ -1,8 +1,8 @@
 import React from 'react';
 import './styles.css';
-import holidayTypes from '../CountrySelection/constants'
+import image from '../../assets/rural.png'
 
-export const HolidayTypes = ({ country, holidayType, description, image, onSelect }) => {
+export const HolidayTypes = ({ country, holidayType, description, onSelect }) => {
   const handleSelect = () => {
     onSelect(holidayType);
     console.log("This is the holidayType", holidayType)
