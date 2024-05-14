@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import image from '../../assets/italy.png'
+import image from '../../assets/italy.png';
 
 export const DestinationCards = ({ continent, country, onSelect }) => {
   const handleSelect = () => {

@@ -5,12 +5,24 @@
 margin-top: 20px;
 }
 
+.itineraryHeadingContainerText {
+  display: flex;
+
+  width: 1183px;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFFFFF;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  }
+
 .itineraryHeadingText {
   color: #1D1D1B;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
   text-align: center;
+  margin-bottom: 0px;
 }
 
 .itineraryHeadingDescription {
@@ -19,6 +31,8 @@ margin-top: 20px;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
+  width: 1080px;
+
 }
 
 .itineraryRecommendationsSide {
