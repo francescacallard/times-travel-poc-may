@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.css';
 import { ItineraryRecommendations } from 'components/ItineraryRecommendations';
 import { HappyWithOptions } from 'components/HappyWithOptions';
+import { FinalItinerary } from 'components/FinalItinerary';
 
 export const ItineraryHeading = ({ selectedHolidayType }) => {
   return (
@@ -17,7 +18,7 @@ export const ItineraryHeading = ({ selectedHolidayType }) => {
      </div>
     </div>
     <HappyWithOptions />
-
+    <FinalItinerary />
     </>
     
 

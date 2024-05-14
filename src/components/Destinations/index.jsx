@@ -26,12 +26,14 @@ export const Destinations = ({ selectedMonth }) => {
   return (
     <>
       <div className='destinationContainer'>
+        <div className='destinationHeadingContainer'>
         <h2 className='destinationHeading'>
           {`Great! Here are some amazing destinations for a relaxing trip in ${selectedMonth}`}
         </h2>
         <h3 className='destinationSubHeading'>
           Select any of the below destinations that are of interest to you to refine your trip, you can save your progress for later!
         </h3>
+        </div>
         <div className='destinationSuggestionContainer'>
           {destinations.map((destination, index) => (
             <DestinationCards
@@ -49,7 +51,7 @@ export const Destinations = ({ selectedMonth }) => {
           src={timesFavicon}
           className='timesFavicon'
           alt='The Times Favicon'
-          style={{ width: '24px', height: '24px' }}
+          style={{ width: '16px', height: '16px' }}
         />
         <h3 className='suggestionHeading'>
           Suggestions created through sources from The Times and Sunday Times Journalists

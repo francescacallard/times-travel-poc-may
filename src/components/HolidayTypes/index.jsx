@@ -9,7 +9,7 @@ export const HolidayTypes = ({ country, holidayType, description, image, onSelec
   };
 
   return (
-    <div className='textImageContainer'>
+    <div className='textImageContainerCountry'>
       <img src={image} alt={holidayType} />
       <div className='holidayTypesTextContainer'>
         <h3 className='countryHeading'>{country}</h3>
