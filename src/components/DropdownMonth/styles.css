@@ -7,16 +7,20 @@
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap ;
-    margin: 8px;
-    margin-left: 32px;
+    margin: 26px;
+    width: 1214px;
+    flex-shrink: 0;
 }
 
 .textContainer {
     background-image: linear-gradient(to right, #317AAB 25%, transparent 50%),
     url('../../assets/timesTravel.png');
-background-size: 200% 100%, cover;
-background-position: left, right;
-background-repeat: no-repeat;
+  background-size: 200% 100%, cover;
+  background-position: left, right;
+  background-repeat: no-repeat;
+  border-radius: 10px 10px 0px 0px;
+  width: 1214px;
+  flex-shrink: 0;
 }
 
 .specifyTextBox,

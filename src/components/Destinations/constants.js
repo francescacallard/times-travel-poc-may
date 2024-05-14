@@ -17,3 +17,8 @@ export const journalists = [
   { name: 'Emma Johnson', title: 'Travel columnist for The Times', image: louise },
   { name: 'David Brown', title: 'Senior travel editor at The Times', image: louise },
 ];
+
+export const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ]

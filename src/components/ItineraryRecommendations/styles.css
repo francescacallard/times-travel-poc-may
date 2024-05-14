@@ -1,0 +1,46 @@
+.itineraryRecommendationContainer {
+  background-color: #317AAB;
+  width: 584px;
+  height: 1340px;
+  border-radius: 10.775px;
+}
+
+.itineraryRecommendationCountry, .itineraryRecommendationPlace, .itineraryRecommendationInformation {
+  margin-left: 16px;
+  color: #FFFFFF
+}
+
+.itineraryRecommendationCountry {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.itineraryRecommendationPlace {
+font-size: 32px;
+font-style: normal;
+font-weight: 700;
+margin-top: -8px;
+}
+
+.itineraryRecommendationInformationText  {
+  margin-top: -8px;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+}
+
+.itineraryRecommendationInformation {
+  background-color: #317AAB;
+  margin-bottom: 16px;
+  margin-top: -16px;
+}
+
+.amountSavedText {
+  padding: 16px;
+  background-color: #2A6495;
+  color: #FFF;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+}

@@ -2,17 +2,30 @@ import React, { useState} from 'react'
 import './styles.css'
 import aiSparkle from '../../assets/aiSparkle.svg'
 import more from '../../assets/more.svg'
+import { buttonTexts } from './constants'
 
-export const InspireButtons = () => {
+export const InspireButtons = ({ selectedItems, setSelectedItems, handleSubmit }) => {
+      
     const [activeButtons, setActiveButtons] = useState([])
 
     const handleButtonClick = (buttonIndex) => {
         if (activeButtons.includes(buttonIndex)) {
-            setActiveButtons(activeButtons.filter(index => index !== buttonIndex))
+          setActiveButtons(activeButtons.filter(index => index !== buttonIndex));
+          setSelectedItems(selectedItems.filter(item => item !== buttonTexts[buttonIndex]));
         } else {
-            setActiveButtons([...activeButtons, buttonIndex])
-        }       
-    }
+          setActiveButtons([...activeButtons, buttonIndex]);
+          setSelectedItems([...selectedItems, buttonTexts[buttonIndex]]);
+        }
+      };
+
+    const handleBuildTripClick = () => {
+        handleSubmit();
+      };
+
+      const randomItem = buttonTexts[Math.floor(Math.random() * buttonTexts.length)];
+      console.log(randomItem)
+
+     
     
   return (
     <div className='inspireContainer'>
@@ -59,11 +72,41 @@ export const InspireButtons = () => {
         >
           Relaxation
         </button>
+        <button
+          className={`middleButtons ${activeButtons.includes(6) ? 'active' : ''}`}
+          onClick={() => handleButtonClick(6)}
+        >
+          Hiking
+        </button>
+        <button
+          className={`middleButtons ${activeButtons.includes(7) ? 'active' : ''}`}
+          onClick={() => handleButtonClick(7)}
+        >
+          Sports and Activities
+        </button>
+        <button
+          className={`middleButtons ${activeButtons.includes(8) ? 'active' : ''}`}
+          onClick={() => handleButtonClick(8)}
+        >
+          Nature and sceneary
+        </button>
+        <button
+          className={`middleButtons ${activeButtons.includes(9) ? 'active' : ''}`}
+          onClick={() => handleButtonClick(9)}
+        >
+          History
+        </button>
+        <button
+          className={`middleButtons ${activeButtons.includes(10) ? 'active' : ''}`}
+          onClick={() => handleButtonClick(10)}
+        >
+          Culture
+        </button>
         </div>
         <img src={more} alt='more' className='more'/>
         <div className='rightSection'>
             <img src={aiSparkle} alt='aiSparkle' className='aiSparkle'/>   
-            <button className='rightButton'>Build trip</button>
+            <button onClick={handleBuildTripClick} className='rightButton'>Build trip</button>
         </div>
     </div>
 

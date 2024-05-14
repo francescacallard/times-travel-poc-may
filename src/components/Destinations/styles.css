@@ -12,7 +12,13 @@
     width: 100%;
     color: #000000;
     margin-top: 20px;
-    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.destinationHeadingContainer {
+  background-color: #FFFFFF;
+  width: 1214px; 
+  border-radius: 10px;
 }
 
 .destinationHeading {
@@ -21,7 +27,6 @@
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
-    padding-top: 16px;
 }
 
 .destinationSubHeading {
@@ -39,9 +44,10 @@
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     margin-bottom: 20px;
-    width:1200px;
+    width: 1214px;
     scrollbar-width: none; 
     -ms-overflow-style: none; 
+    margin-top: 20px;
   }
   
   .destinationCardContainer {
@@ -52,7 +58,7 @@
 
   .suggestionMessage {
     display: flex;
-    margin-left: 36px;
+    /* margin-left: 36px; */
     align-items: center;
     width: 100%;
   }
@@ -65,7 +71,7 @@
     font-weight: 400;
   }
 
-  .generateSaveContainer {
-    display: flex;
-    justify-content: center; 
-  }
+  /* .generateSaveContainer {
+
+  
+  } */

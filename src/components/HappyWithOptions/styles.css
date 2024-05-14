@@ -1,0 +1,33 @@
+.happyWithOptionsContainer {
+  display: flex;
+  height: 17px;
+  flex-direction: column;
+  justify-content: center; 
+  margin-top: 56px;
+  margin-bottom: 40px;
+  background-color: #FFFFFF;
+}
+
+.happyWithOptionsHeading {
+  color: #1D1D1B;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  text-align: center;
+  background-color: #FFFFFF;
+  padding-top: 16px;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.happyWithOptionsSubheading {
+  color: #1D1D1B;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  margin-top:-20px;
+  background-color: #FFFFFF;
+  padding-bottom: 16px;
+  padding-top: 8px;
+  border-radius: 0px 0px 10px 10px;
+}

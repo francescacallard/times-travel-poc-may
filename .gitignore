@@ -3,3 +3,4 @@ dist
 coverage
 newrelic_agent.log
 .idea
+.env
