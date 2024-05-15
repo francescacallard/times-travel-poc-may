@@ -66,7 +66,7 @@ export const HolidayTypes = ({
   const handleItineraryRecommendationsRequest = async () => {
     const userMessage = {
       role: 'user',
-      content: `The user has selected a ${holidayType} in ${country} for ${selectedDuration}. They want to go in the month of ${selectedMonth} with a budget of ${selectedBudget} and they are interested in the following: ${selectedItems.join(', ')}. Please provide two places in the selected country that follow the user requirements, stating how many nights, the accommodation star rating, price range per person for this holiday, and a day-by-day itinerary for each place based on the number of days the user has selected. For nights, put the number then "nights" after, for star rating put number then "star accommodation", and for price range, put "Between" priceRange "pp". The response should be in the JSON format provided in the system prompt.`,
+      content: `The user has selected a ${holidayType} in ${country} for ${selectedDuration}. They want to go in the month of ${selectedMonth} with a budget of ${selectedBudget} and they are interested in the following: ${selectedItems.join(', ')}. Please provide two places in the selected country that follow the user requirements, stating how many nights from the duration they have provided, the accommodation star rating, price range per person for this holiday from thier budget, and a day-by-day itinerary for each place based on the number of days the user has selected. For nights, put the number then "nights" after, for star rating put number then "star accommodation", and for price range, put "Between" priceRange "pp". The response should be in the JSON format provided in the system prompt.`,
     };
   
     try {
