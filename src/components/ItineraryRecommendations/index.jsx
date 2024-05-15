@@ -35,7 +35,7 @@ export const ItineraryRecommendations = ({
       </div>
       <div className='amountSavedText'>Save up to X amount of Money</div>
       <div className='itineraryText'>
-        <ItineraryDays />
+        <ItineraryDays country={country} place={place} nights={nights} accommodation={accommodation} priceRange={priceRange}  />
       </div>
     </div>
   );
