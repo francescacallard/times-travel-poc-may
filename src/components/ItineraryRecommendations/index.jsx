@@ -4,7 +4,6 @@ import lake from '../../assets/lake.png';
 import night from '../../assets/night.svg';
 import star from '../../assets/star.svg';
 import price from '../../assets/price.svg';
-import { ItineraryDays } from './ItineraryDays';
 
 export const ItineraryRecommendations = ({
   selectedHolidayType,
@@ -13,6 +12,7 @@ export const ItineraryRecommendations = ({
   nights,
   accommodation,
   priceRange,
+  itinerary,
 }) => {
   return (
     <div className='itineraryRecommendationContainer'>
@@ -34,9 +34,15 @@ export const ItineraryRecommendations = ({
         </div>
       </div>
       <div className='amountSavedText'>Save up to X amount of Money</div>
-      <div className='itineraryText'>
-        
-        <ItineraryDays country={country} place={place} nights={nights} accommodation={accommodation} priceRange={priceRange}  />
+      {itinerary && itinerary.map((day, index) => (
+        <div key={index} className='itineraryText'>
+          <h3 className='itineraryDayText'>{day.day}</h3>
+          <h2 className='itineraryTitleText'>{day.titleOfDay}</h2>
+          <p className='itineraryDescriptionText'>{day.descriptionOfDay}</p>
+        </div>
+      ))}
+      <div>
+        <button className='itinerarySelectButton'>Select</button>
       </div>
     </div>
   );

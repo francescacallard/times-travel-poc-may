@@ -3,6 +3,7 @@ import './styles.css';
 import image from '../../assets/rural.png';
 import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
 
+
 export const HolidayTypes = ({
   country,
   holidayType,
@@ -18,43 +19,56 @@ export const HolidayTypes = ({
 
   const systemPrompt = {
     role: 'system',
-    content: `You are a travel agent that takes information based on the users choices. You need to give two itinerary recommendations based on the user's country, place, duration, budget, interests, holiday type and month. Please provide the response in the following JSON format using double quotes for both property names and values, with no other text at all:
-    [
-      {
-        "place": "Place 1",
-        "nights": "Number of nights 1",
-        "accommodation": "Star rating of accommodation 1",
-        "priceRange": "Price range per person 1"
-      },
-      {
-        "place": "Place 2",
-        "nights": "Number of nights 2",
-        "accommodation": "Star rating of accommodation 2",
-        "priceRange": "Price range per person 2"
-      }
-    ]`,
+    content: `You are a travel agent that takes information based on the user's choices. You need to give two itinerary recommendations based on the user's country, place, duration, budget, interests, holiday type, and month. Please provide the response in the following JSON format using double quotes for both property names and values, with no other text at all:
+  
+  [
+    {
+      "place": "Place 1",
+      "nights": "Number of nights 1",
+      "accommodation": "Star rating of accommodation 1",
+      "priceRange": "Price range per person 1",
+      "itinerary": [
+        {
+          "day": "Day 1",
+          "titleOfDay": "Title of Day 1",
+          "descriptionOfDay": "Description of Day 1"
+        },
+        {
+          "day": "Day 2",
+          "titleOfDay": "Title of Day 2",
+          "descriptionOfDay": "Description of Day 2"
+        }
+      ]
+    },
+    {
+      "place": "Place 2",
+      "nights": "Number of nights 2",
+      "accommodation": "Star rating of accommodation 2",
+      "priceRange": "Price range per person 2",
+      "itinerary": [
+        {
+          "day": "Day 1",
+          "titleOfDay": "Title of Day 1",
+          "descriptionOfDay": "Description of Day 1"
+        },
+        {
+          "day": "Day 2",
+          "titleOfDay": "Title of Day 2",
+          "descriptionOfDay": "Description of Day 2"
+        }
+      ]
+    }
+  ]
+  
+  Please provide the itinerary for each place based on the number of days the user has selected.`,
   };
-
+  
   const handleItineraryRecommendationsRequest = async () => {
     const userMessage = {
       role: 'user',
-      content: `The user has selected a ${holidayType} in ${country} for ${selectedDuration}. They want to go in the month of ${selectedMonth} with a budget of ${selectedBudget} and they are interested in the following: ${selectedItems.join(', ')}. Please provide a place in the selected country that follows the user requirements, stating how many nights, the accommodation star rating, and price range per person for this holiday. For nights, put the number then "nights" after, for star rating put number then "star accommodation", and for price range, but "Between" priceRage "pp". The response should be in the following JSON format:
-      [
-        {
-          "place": "Place 1",
-          "nights": "Number of nights 1",
-          "accommodation": "Star rating of accommodation 1",
-          "priceRange": "Price range per person 1"
-        },
-        {
-          "place": "Place 2",
-          "nights": "Number of nights 2",
-          "accommodation": "Star rating of accommodation 2",
-          "priceRange": "Price range per person 2"
-        }
-      ]`,
+      content: `The user has selected a ${holidayType} in ${country} for ${selectedDuration}. They want to go in the month of ${selectedMonth} with a budget of ${selectedBudget} and they are interested in the following: ${selectedItems.join(', ')}. Please provide two places in the selected country that follow the user requirements, stating how many nights, the accommodation star rating, price range per person for this holiday, and a day-by-day itinerary for each place based on the number of days the user has selected. For nights, put the number then "nights" after, for star rating put number then "star accommodation", and for price range, put "Between" priceRange "pp". The response should be in the JSON format provided in the system prompt.`,
     };
-
+  
     try {
       const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
       const deploymentId = 'gpt4';
@@ -82,5 +96,6 @@ export const HolidayTypes = ({
         </button>
       </div>
     </div>
+   
   );
 };

@@ -101,7 +101,6 @@ export const CountrySelection = ({ country, selectedBudget, selectedDuration, se
   const handleHolidaySelection = (holidayType, recommendationData) => {
     setSelectedHolidayType(holidayType);
     setRecommendationData(recommendationData);
-    
   };
 
   const handleButtonClick = (buttonIndex) => {
