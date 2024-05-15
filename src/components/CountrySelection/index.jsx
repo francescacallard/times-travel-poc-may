@@ -17,6 +17,7 @@ export const CountrySelection = ({ country, selectedBudget, selectedDuration, se
   const [holidayTypesAiResponse, setHolidayTypesAiResponse] = useState('');
   const [holidayTypes, setHolidayTypes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [recommendationData, setRecommendationData] = useState([]);
 
   const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
   const azureApiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
@@ -97,8 +98,9 @@ export const CountrySelection = ({ country, selectedBudget, selectedDuration, se
     'Not sure',
   ];
 
-  const handleHolidaySelection = (holidayType) => {
+  const handleHolidaySelection = (holidayType, recommendationData) => {
     setSelectedHolidayType(holidayType);
+    setRecommendationData(recommendationData);
   };
 
   const handleButtonClick = (buttonIndex) => {
@@ -156,12 +158,16 @@ export const CountrySelection = ({ country, selectedBudget, selectedDuration, se
             showHolidayTypes &&
             holidayTypes.map((holidayType) => (
               <HolidayTypes
-                key={holidayType.id}
-                country={country}
-                holidayType={holidayType.holidayType}
-                description={holidayType.description}
-                onSelect={handleHolidaySelection}
-              />
+              key={holidayType.id}
+              country={country}
+              holidayType={holidayType.holidayType}
+              description={holidayType.description}
+              onSelect={handleHolidaySelection}
+              selectedBudget={selectedBudget}
+              selectedDuration={selectedDuration}
+              selectedItems={selectedItems}
+              selectedMonth={selectedMonth}
+            />
             ))
           )}
         </div>
@@ -185,11 +191,16 @@ export const CountrySelection = ({ country, selectedBudget, selectedDuration, se
       </div>
       {!isLoading && holidayType && (
         <div className='itineraryHeadingContainer' ref={intineraryHeadingRef}>
-          <ItineraryHeading selectedHolidayType={holidayType} country={country} selectedMonth={selectedMonth}
-            selectedDuration={selectedDuration}
-            selectedItems={selectedItems}
-            selectedBudget={selectedBudget}/>
-        </div>
+        <ItineraryHeading
+          selectedHolidayType={holidayType}
+          country={country}
+          selectedMonth={selectedMonth}
+          selectedDuration={selectedDuration}
+          selectedItems={selectedItems}
+          selectedBudget={selectedBudget}
+          recommendationData={recommendationData}
+        />
+      </div>
       )}
     </>
   );
