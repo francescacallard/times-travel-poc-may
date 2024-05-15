@@ -38,7 +38,7 @@ export const HolidayTypes = ({
   const handleItineraryRecommendationsRequest = async () => {
     const userMessage = {
       role: 'user',
-      content: `The user has selected a ${holidayType} in ${country} for ${selectedDuration}. They want to go in the month of ${selectedMonth} with a budget of ${selectedBudget} and they are interested in the following: ${selectedItems.join(', ')}. Please provide a place in the selected country that follows the user requirements, stating how many nights, the accommodation star rating, and price range per person for this holiday. The response should be in the following JSON format:
+      content: `The user has selected a ${holidayType} in ${country} for ${selectedDuration}. They want to go in the month of ${selectedMonth} with a budget of ${selectedBudget} and they are interested in the following: ${selectedItems.join(', ')}. Please provide a place in the selected country that follows the user requirements, stating how many nights, the accommodation star rating, and price range per person for this holiday. For nights, put the number then "nights" after, for star rating put number then "star accommodation", and for price range, but "Between" priceRage "pp". The response should be in the following JSON format:
       [
         {
           "place": "Place 1",

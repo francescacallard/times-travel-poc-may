@@ -23,8 +23,16 @@ font-weight: 700;
 margin-top: -8px;
 }
 
+.itineraryRecommendationInformationItem {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  gap:8px;
+  margin-top:-18px
+}
+
 .itineraryRecommendationInformationText  {
-  margin-top: -8px;
 font-size: 16px;
 font-style: normal;
 font-weight: 400;
@@ -32,8 +40,7 @@ font-weight: 400;
 
 .itineraryRecommendationInformation {
   background-color: #317AAB;
-  margin-bottom: 16px;
-  margin-top: -16px;
+  margin-bottom: 16px; 
 }
 
 .amountSavedText {
