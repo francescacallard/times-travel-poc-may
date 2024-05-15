@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './styles.css';
 import { HolidayTypes } from 'components/HolidayTypes';
-import { holidayTypes } from './constants';
 import { JournalistCard } from 'components/JournalistCard';
 import { journalists } from '../Destinations/constants'
 import { ItineraryHeading } from 'components/ItineraryHeading';
 import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
 import { Loading } from 'components/Loading'; 
 
-export const CountrySelection = ({ country, destinations }) => {
+
+export const CountrySelection = ({ country, selectedBudget, selectedDuration, selectedItems, selectedMonth }) => {
   const [activeButton, setActiveButton] = useState(null);
   const [showHolidayTypes, setShowHolidayTypes] = useState(false);
   const [holidayType, setSelectedHolidayType] = useState(null);
@@ -185,7 +185,10 @@ export const CountrySelection = ({ country, destinations }) => {
       </div>
       {!isLoading && holidayType && (
         <div className='itineraryHeadingContainer' ref={intineraryHeadingRef}>
-          <ItineraryHeading selectedHolidayType={holidayType} />
+          <ItineraryHeading selectedHolidayType={holidayType} country={country} selectedMonth={selectedMonth}
+            selectedDuration={selectedDuration}
+            selectedItems={selectedItems}
+            selectedBudget={selectedBudget}/>
         </div>
       )}
     </>

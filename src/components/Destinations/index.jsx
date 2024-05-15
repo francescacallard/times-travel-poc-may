@@ -7,7 +7,8 @@ import { journalists } from './constants';
 import { GenerateButton } from 'components/GenerateButton';
 import { CountrySelection } from 'components/CountrySelection';
 
-export const Destinations = ({ selectedMonth, aiResponse }) => {
+
+export const Destinations = ({ selectedMonth, aiResponse, selectedItems, selectedDuration, selectedBudget }) => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [destinations, setDestinations] = useState([]);
   const countrySelectionRef = useRef(null);
@@ -79,7 +80,11 @@ export const Destinations = ({ selectedMonth, aiResponse }) => {
         <GenerateButton />
       </div>
       <div className='selectedCountryHeadingContainer' ref={countrySelectionRef}>
-        {selectedCountry && <CountrySelection country={selectedCountry} />}
+        {selectedCountry && <CountrySelection country={selectedCountry} selectedMonth={selectedMonth}
+            selectedDuration={selectedDuration}
+            selectedItems={selectedItems}
+            selectedBudget={selectedBudget}
+            aiResponse={aiResponse} />}
       </div>
     </>
   );

@@ -4,7 +4,7 @@ import { ItineraryRecommendations } from 'components/ItineraryRecommendations';
 import { HappyWithOptions } from 'components/HappyWithOptions';
 import { FinalItinerary } from 'components/FinalItinerary';
 
-export const ItineraryHeading = ({ selectedHolidayType }) => {
+export const ItineraryHeading = ({ selectedHolidayType, country, selectedDuration, selectedMonth, selectedItems, selectedBudget }) => {
   return (
     <>
     <div className='itineraryHeadingContainer'>
@@ -15,8 +15,19 @@ export const ItineraryHeading = ({ selectedHolidayType }) => {
       </p>
       </div>
       <div className='itineraryRecommendationsSide'>
-      <ItineraryRecommendations />
-      <ItineraryRecommendations />
+      <ItineraryRecommendations 
+          selectedHolidayType={selectedHolidayType} 
+          country={country} 
+          selectedMonth={selectedMonth}
+          selectedDuration={selectedDuration}
+          selectedItems={selectedItems}
+          selectedBudget={selectedBudget}/>
+      <ItineraryRecommendations selectedHolidayType={selectedHolidayType} 
+          country={country} 
+          selectedMonth={selectedMonth}
+          selectedDuration={selectedDuration}
+          selectedItems={selectedItems}
+          selectedBudget={selectedBudget}/>
      </div>
     </div>
     <HappyWithOptions />
