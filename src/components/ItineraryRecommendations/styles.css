@@ -8,7 +8,8 @@
   width: 584px;
   height: 1340px;
   border-radius: 10.775px;
-  height: 1340px;
+  min-height: 1340px;
+  border: solid red 1px;
 }
 
 .itineraryRecommendationCountry, .itineraryRecommendationPlace, .itineraryRecommendationInformation {
@@ -65,8 +66,11 @@ font-weight: 400;
 }
 
 .itineraryDaysContainer {
-  height: 770px;
+  height: auto;
+  max-height: 780px;
   background-color: white;
+  border: solid green 1px;
+  overflow-y: auto;
 }
 
 /* .itineraryDaysContainer {
@@ -115,6 +119,9 @@ font-weight: 400;
 
 .itinerarySelectButton {
   background-color: #FFFFFF;
+  position: relative;
+  bottom: 10px;
+  left: 2px;
   color: #317AAB;
   font-size: 16px;
   font-style: normal;

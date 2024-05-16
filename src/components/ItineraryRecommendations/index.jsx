@@ -47,6 +47,7 @@ export const ItineraryRecommendations = ({
           <p className='itineraryDescriptionText'>{day.descriptionOfDay}</p>
         </div>
       ))}
+    
       </div>
       <button className='itinerarySelectButton' onClick={handleItinerarySelect}>Select</button>
     </div>
