@@ -1,8 +1,14 @@
 .itineraryRecommendationContainer {
-  background-color: #317AAB;
+  background: linear-gradient(
+    to top, 
+    #FFFFFF 50%,
+    #317AAB 50%, 
+    #317AAB 100%
+  );;
   width: 584px;
   height: 1340px;
   border-radius: 10.775px;
+  height: 1340px;
 }
 
 .itineraryRecommendationCountry, .itineraryRecommendationPlace, .itineraryRecommendationInformation {
@@ -52,7 +58,18 @@ font-weight: 400;
   font-weight: 700;
 }
 
+.itineraryText {
+  background-color: #FFFFFF;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .itineraryDaysContainer {
+  height: 770px;
+  background-color: white;
+}
+
+/* .itineraryDaysContainer {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -60,14 +77,14 @@ font-weight: 400;
   padding: 16px;
   border-radius: 0px 0px 10px 10px;
   margin: 0px;
-}
+} */
 
-.itineraryContentContainer {
+/* .itineraryContentContainer {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   margin: 0px;
-}
+} */
 
 .itineraryDayText {
   color: #1D1D1B;
@@ -104,4 +121,5 @@ font-weight: 400;
   border-radius: 100px;
   padding: 8px 16px;
   margin-top: 16px;
+  margin-left: 16px;
 }

@@ -64,9 +64,11 @@ export const HolidayTypes = ({
   };
   
   const handleItineraryRecommendationsRequest = async () => {
+    console.log('This is the duration the user has selected:', selectedDuration); 
     const userMessage = {
       role: 'user',
-      content: `The user has selected a ${holidayType} in ${country} for ${selectedDuration}. They want to go in the month of ${selectedMonth} with a budget of ${selectedBudget} and they are interested in the following: ${selectedItems.join(', ')}. Please provide two places in the selected country that follow the user requirements, stating how many nights from the duration they have provided, the accommodation star rating, price range per person for this holiday from thier budget, and a day-by-day itinerary for each place based on the number of days the user has selected. For nights, put the number then "nights" after, for star rating put number then "star accommodation", and for price range, put "Between" priceRange "pp". The response should be in the JSON format provided in the system prompt.`,
+      content: `The user has selected a ${holidayType} in ${country} for ${selectedDuration}. They want to go in the month of ${selectedMonth} with a budget of ${selectedBudget} and they are interested in the following: ${selectedItems.join(', ')}. Please provide two places in the selected country that follow the user requirements. If the user selects 14 days, the nights need to match this duration they have chosen. You need to provide the accommodation star rating and price range per person for this holiday from their chosen budget. A day-by-day itinerary for each place needs to be based on the number of days the user has selected. For nights, put the number then "nights" after, for star rating put number then "star accommodation", and for price range, put "Between" priceRange "pp". If the trip duration is 4-5 days or 7 days you need to provide an itinerary for each day. If the duration is 14 days or more, you need to provide a 7 day itinerary but by doing every other day. The response should be in the JSON format provided in the system prompt.`,
+
     };
   
     try {

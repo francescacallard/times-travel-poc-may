@@ -14,6 +14,11 @@ export const ItineraryRecommendations = ({
   priceRange,
   itinerary,
 }) => {
+
+  const handleItinerarySelect = () => { 
+    console.log('Itinerary Selected');
+  };
+
   return (
     <div className='itineraryRecommendationContainer'>
       <img src={lake} alt='Lake' />
@@ -34,6 +39,7 @@ export const ItineraryRecommendations = ({
         </div>
       </div>
       <div className='amountSavedText'>Save up to X amount of Money</div>
+      <div className='itineraryDaysContainer'>
       {itinerary && itinerary.map((day, index) => (
         <div key={index} className='itineraryText'>
           <h3 className='itineraryDayText'>{day.day}</h3>
@@ -41,9 +47,8 @@ export const ItineraryRecommendations = ({
           <p className='itineraryDescriptionText'>{day.descriptionOfDay}</p>
         </div>
       ))}
-      <div>
-        <button className='itinerarySelectButton'>Select</button>
       </div>
+      <button className='itinerarySelectButton' onClick={handleItinerarySelect}>Select</button>
     </div>
   );
 };
