@@ -4,10 +4,10 @@
 .itineraryRecommendationContainer {
   background: linear-gradient(to top, #ffffff 50%, #317aab 50%, #317aab 100%);
   width: 584px;
-  height: 1340px;
+  height: 140px;
   border-radius: 10.775px;
   min-height: 1340px;
-  border: solid red 1px;
+  /* border: solid red 1px; */
   position: relative; /* Add this line */
   z-index: 1; /* Add this line */
 }

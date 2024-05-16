@@ -6,17 +6,18 @@ import star from '../../assets/star.svg';
 import price from '../../assets/price.svg';
 
 export const ItineraryRecommendations = ({
-  selectedHolidayType,
   country,
   place,
   nights,
   accommodation,
   priceRange,
   itinerary,
+  onSelect
 }) => {
 
   const handleItinerarySelect = () => { 
     console.log('Itinerary Selected');
+    onSelect({ place, nights, accommodation, priceRange, itinerary });
   };
 
   return (
@@ -50,6 +51,6 @@ export const ItineraryRecommendations = ({
     
       </div>
       <button className='itinerarySelectButton' onClick={handleItinerarySelect}>Select</button>
-    </div>
+       </div>
   );
 };

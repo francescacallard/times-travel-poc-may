@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles.css';
 import { ItineraryRecommendations } from 'components/ItineraryRecommendations';
 import { HappyWithOptions } from 'components/HappyWithOptions';
 import { FinalItinerary } from 'components/FinalItinerary';
+import { SummaryOfReviews } from 'components/SummaryOfReviews';
 
 export const ItineraryHeading = ({
   selectedHolidayType,
   country,
   recommendationData,
 }) => {
+
+  const [selectedItinerary, setSelectedItinerary] = useState(null);
+
+  const handleItinerarySelect = (itinerary) => {
+    setSelectedItinerary(itinerary);
+  };
+
   return (
       <div className='itineraryHeadingContainer'>
         <div className='itineraryHeadingContainerText'>
@@ -30,12 +38,19 @@ export const ItineraryHeading = ({
               accommodation={recommendation.accommodation}
               priceRange={recommendation.priceRange}
               itinerary={recommendation.itinerary}
+              onSelect={handleItinerarySelect}
             />
           ))}
       
         </div>
-          <HappyWithOptions style={{ marginTop: '20px' }} />
-
+          <HappyWithOptions />
+          {selectedItinerary && (
+        <div className="finalChoiceAndSummary">
+          <FinalItinerary itinerary={selectedItinerary} />
+          <SummaryOfReviews />
+        </div>
+      )}
+          
       </div>
   
       
