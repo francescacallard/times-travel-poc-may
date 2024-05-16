@@ -43,7 +43,10 @@ export const ItineraryHeading = ({
           ))}
       
         </div>
-          <HappyWithOptions />
+          <HappyWithOptions style={{
+          marginTop: '20px',
+         
+        }}/>
           {selectedItinerary && (
         <div className="finalChoiceAndSummary">
           <FinalItinerary itinerary={selectedItinerary} />
