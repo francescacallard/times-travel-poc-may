@@ -1,0 +1,51 @@
+.callBackContainer {
+  display: flex;
+  width: 1181px;
+  height: 232px;
+  padding: 16px;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  background-color: #FFFFFF;
+  border-radius: 0px 0px 10px 10px  ;
+}
+
+.callBackHeading {
+  color: #1D1D1B;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.callBackSubheading {
+  color: #1D1D1B;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.callBackButton {
+  border-radius: 100px;
+border: 1px solid var(--Time-Travel-Link, #2A6495);
+background: #FFF;
+padding: 8px 16px;
+color: var(--Time-Travel-Link, #2A6495);
+text-align: center;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 8px;
+}
+
+.callBackButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}

@@ -7,9 +7,8 @@
   height: 140px;
   border-radius: 10.775px;
   min-height: 1340px;
-  /* border: solid red 1px; */
-  position: relative; /* Add this line */
-  z-index: 1; /* Add this line */
+  position: relative; 
+  z-index: 1;
 }
 .itineraryHeadingContainerText {
   display: flex;
@@ -19,6 +18,7 @@
   background-color: #FFFFFF;
   margin-bottom: 20px;
   border-radius: 10px;
+  margin-top: 20px;
 
   }
 

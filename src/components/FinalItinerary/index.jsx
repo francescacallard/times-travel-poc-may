@@ -18,7 +18,7 @@ export const FinalItinerary = ({ itinerary }) => {
         <p>Fees and free tickets</p>
         <p>Money saved booking through Times travel</p>
       </div>
-      <button className='finalItineraryButton' onClick={handleClick}>Book Now</button>
+      {/* <button className='finalItineraryButton' onClick={handleClick}>Book Now</button> */}
     </div>
   )
 }

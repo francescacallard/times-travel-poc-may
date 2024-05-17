@@ -4,6 +4,8 @@ import { ItineraryRecommendations } from 'components/ItineraryRecommendations';
 import { HappyWithOptions } from 'components/HappyWithOptions';
 import { FinalItinerary } from 'components/FinalItinerary';
 import { SummaryOfReviews } from 'components/SummaryOfReviews';
+import { GenerateButton } from 'components/GenerateButton';
+import { CallBack } from 'components/CallBack';
 
 export const ItineraryHeading = ({
   selectedHolidayType,
@@ -51,6 +53,8 @@ export const ItineraryHeading = ({
         <div className="finalChoiceAndSummary">
           <FinalItinerary itinerary={selectedItinerary} />
           <SummaryOfReviews />
+          <GenerateButton />
+          <CallBack />
         </div>
       )}
           
