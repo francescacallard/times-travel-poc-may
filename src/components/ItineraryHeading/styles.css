@@ -10,6 +10,12 @@
   position: relative; 
   z-index: 1;
 }
+
+/* .itineraryHeadingContainer {
+  width: 1183px;
+} */
+
+
 .itineraryHeadingContainerText {
   display: flex;
   width: 1183px;

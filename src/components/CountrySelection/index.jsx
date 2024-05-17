@@ -116,11 +116,6 @@ export const CountrySelection = ({ country, selectedBudget, selectedDuration, se
     }
   }, [showHolidayTypes, isLoading]);
 
-  // useEffect(() => {
-  //   if (holidayType && !isLoading) {
-  //     intineraryHeadingRef.current.scrollIntoView({ behavior: 'smooth' });
-  //   }
-  // }, [holidayType, isLoading]);
 
   useEffect(() => {
     if (holidayType) {

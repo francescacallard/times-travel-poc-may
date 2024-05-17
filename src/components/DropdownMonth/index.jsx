@@ -57,6 +57,28 @@ export const DropdownMonth = () => {
     }
   };
 
+  const handleRegenerate = async () => {
+    setIsLoading(true);
+    const userMessage = {
+      role: 'user',
+      content: `The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}. They are interested in the following: ${selectedItems.join(', ')}. Their budget is ${selectedBudget}. You have to give 5 examples of country and continent. You do not need to write anything else other than "1: Country, Continent 2: Country, Continent 3: Country, Continent 4: Country, Continent 5: Country, Continent"`,
+    };
+    try {
+      const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
+      const deploymentId = 'gpt4';
+      console.log('User selection sent to the AI');
+      const messages = [systemPrompt, userMessage];
+      const result = await client.getChatCompletions(deploymentId, messages);
+      const newAiResponse = result.choices[0].message.content;
+      console.log('New AI response:', newAiResponse);
+      setAiResponse(newAiResponse);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error:', error);
+      setIsLoading(false);
+    }
+  };
+
   const menu = (
     <Menu onClick={handleMonthChange}>
       {months.map(month => (
@@ -95,6 +117,7 @@ export const DropdownMonth = () => {
             selectedItems={selectedItems}
             selectedBudget={selectedBudget}
             aiResponse={aiResponse}
+            onRegenerate={handleRegenerate}
           />
         )
       )}

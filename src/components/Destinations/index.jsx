@@ -8,7 +8,7 @@ import { GenerateButton } from 'components/GenerateButton';
 import { CountrySelection } from 'components/CountrySelection';
 
 
-export const Destinations = ({ selectedMonth, aiResponse, selectedItems, selectedDuration, selectedBudget }) => {
+export const Destinations = ({ selectedMonth, aiResponse, selectedItems, selectedDuration, selectedBudget, onRegenerate }) => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [destinations, setDestinations] = useState([]);
   const countrySelectionRef = useRef(null);
@@ -42,6 +42,11 @@ export const Destinations = ({ selectedMonth, aiResponse, selectedItems, selecte
   const handleCountrySelect = (country) => {
     setSelectedCountry(country);
   };
+
+  const handleRegenerate = () => {
+    console.log("hit")
+    onRegenerate();
+  }
 
   return (
     <>
@@ -77,7 +82,7 @@ export const Destinations = ({ selectedMonth, aiResponse, selectedItems, selecte
         ))}
       </div>
       <div className='generateSaveContainer'>
-        <GenerateButton />
+        <GenerateButton onClick={handleRegenerate}/>
       </div>
       <div className='selectedCountryHeadingContainer' ref={countrySelectionRef}>
         {selectedCountry && <CountrySelection country={selectedCountry} selectedMonth={selectedMonth}
