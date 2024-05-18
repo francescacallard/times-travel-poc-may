@@ -1,7 +1,8 @@
 import React from 'react';
 import './styles.css';
+import image from '../../assets/italy.png';
 
-export const DestinationCards = ({ continent, country, image, onSelect }) => {
+export const DestinationCards = ({ continent, country, onSelect }) => {
   const handleSelect = () => {
     onSelect(country);
   };

@@ -3,10 +3,10 @@ import generate from '../../assets/generate.svg'
 import save from '../../assets/save.svg'
 import './styles.css'
 
-export const GenerateButton = () => {
+export const GenerateButton = ( {onClick}) => {
   return (
     <div className='generateContainer'>
-        <div className='generateButton'>
+         <div className='generateButton' onClick={onClick}>
             <img src={generate} alt='Generate' />
             <h3 className='generateText'>Generate more options</h3>
         </div>

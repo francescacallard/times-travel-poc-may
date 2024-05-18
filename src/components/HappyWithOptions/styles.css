@@ -6,6 +6,9 @@
   margin-top: 56px;
   margin-bottom: 40px;
   background-color: #FFFFFF;
+  margin-top: 50px;
+  width: 1183px;
+
 }
 
 .happyWithOptionsHeading {
@@ -31,3 +34,9 @@
   padding-top: 8px;
   border-radius: 0px 0px 10px 10px;
 }
+/* 
+.secondGenerateButton {
+  border: solid #2A6495 1px;
+  margin-left: 20px;
+  margin-top: 0px;
+} */

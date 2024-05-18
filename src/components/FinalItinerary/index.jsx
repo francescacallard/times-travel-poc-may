@@ -1,7 +1,11 @@
 import React from 'react'
 import './styles.css'
 
-export const FinalItinerary = () => {
+export const FinalItinerary = ({ itinerary }) => {
+  const handleClick = () => {
+    console.log('itinerary from the final itineray section: ', itinerary)
+  }
+
   return (
     <div className='finalItineraryContainer'>
       <h2 className='finalItineraryHeading'>Trip Includes:</h2>
@@ -14,6 +18,7 @@ export const FinalItinerary = () => {
         <p>Fees and free tickets</p>
         <p>Money saved booking through Times travel</p>
       </div>
+      {/* <button className='finalItineraryButton' onClick={handleClick}>Book Now</button> */}
     </div>
   )
 }

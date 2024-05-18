@@ -8,13 +8,14 @@
 flex-direction: column;
 align-items: flex-start;
 background-color: #FFFFFF;
-
+margin-top: 20px;
 border-radius: 10px 10px 0px 0px;
 }
 
 .holidayTypesTextContainer {
-  padding: 16px;
-  border-radius: 0px 0px 10px 10px;
+  padding-left: 16px;
+  padding-bottom: 16px;
+  
 }
 
 .countryHeading {
@@ -35,21 +36,22 @@ border-radius: 10px 10px 0px 0px;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
+  padding-bottom: 8px;
 }
 
 .holidayTypesButton {
   display: flex;
-  width: 101px;
-  padding: 8px 16px;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  border-radius: 100px;
-  border: 1px solid var(--Time-Travel-Link, #2A6495);
-  background: #FFF;
-  color:  var(--Time-Travel-Link, #2A6495);
-  margin-top: px;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
+width: 101px;
+padding: 8px 16px;
+justify-content: center;
+align-items: center;
+gap: 16px;
+border-radius: 100px;
+border: 1px solid var(--Time-Travel-Link, #2A6495);
+background: #FFF;
+color:  var(--Time-Travel-Link, #2A6495);
+margin-top: px;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
 }

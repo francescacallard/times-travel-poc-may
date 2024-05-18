@@ -1,8 +1,15 @@
 .itineraryRecommendationContainer {
-  background-color: #317AAB;
+  background: linear-gradient(
+    to top, 
+    #FFFFFF 50%,
+    #317AAB 50%, 
+    #317AAB 100%
+  );;
   width: 584px;
   height: 1340px;
   border-radius: 10.775px;
+  min-height: 1340px;
+  /* border: solid red 1px; */
 }
 
 .itineraryRecommendationCountry, .itineraryRecommendationPlace, .itineraryRecommendationInformation {
@@ -23,8 +30,16 @@ font-weight: 700;
 margin-top: -8px;
 }
 
+.itineraryRecommendationInformationItem {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  gap:8px;
+  margin-top:-26px
+}
+
 .itineraryRecommendationInformationText  {
-  margin-top: -8px;
 font-size: 16px;
 font-style: normal;
 font-weight: 400;
@@ -32,8 +47,7 @@ font-weight: 400;
 
 .itineraryRecommendationInformation {
   background-color: #317AAB;
-  margin-bottom: 16px;
-  margin-top: -16px;
+  margin-top: -36px;
 }
 
 .amountSavedText {
@@ -43,4 +57,60 @@ font-weight: 400;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
+}
+
+.itineraryText {
+  background-color: #FFFFFF;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.itineraryDaysContainer {
+  height: auto;
+  max-height: 780px;
+  background-color: white;
+  /* border: solid green 1px; */
+  overflow-y: auto;
+}
+
+
+.itineraryDayText {
+  color: #1D1D1B;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  margin:0px;
+  padding: 16px 0px 0px 0px;
+}
+
+.itineraryTitleText {
+  color: #1D1D1B;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  margin: 0px;
+  padding: 8px 0px 4px 0px;
+}
+
+.itineraryDescriptionText {
+  color: #1D1D1B;
+  font-size: 17.84px;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0px;
+  padding: 8px 0px 8px 0px;
+}
+
+.itinerarySelectButton {
+  background-color: #FFFFFF;
+  position: relative;
+  bottom: 10px;
+  left: 2px;
+  color: #317AAB;
+  font-size: 16px;
+  font-style: normal;
+  border-radius: 100px;
+  padding: 8px 16px;
+  margin-top: 16px;
+  margin-left: 16px;
 }
