@@ -1,7 +1,6 @@
 import React from 'react'
 import { useIntl } from 'react-intl'
-import { DropdownMonth } from 'components/DropdownMonth' 
-import { Layout } from 'components/Layout' 
+import { ParentComponent } from 'components/ParentComponent'
 import 'App.css'
 
 const Index: React.FC = () => {
@@ -9,7 +8,7 @@ const Index: React.FC = () => {
 
   return (
     <div className="App">
-     <Layout />
+      <ParentComponent />
     </div>
   );
 }

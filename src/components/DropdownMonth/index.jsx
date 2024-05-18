@@ -6,17 +6,21 @@ import InspireButtons from 'components/InspireButtons';
 import './styles.css';
 import { months } from '../Destinations/constants';
 import { Budget } from 'components/Budget';
-import { Destinations } from 'components/Destinations';
 import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
 import { Loading } from 'components/Loading';
 
-export const DropdownMonth = () => {
-  const [aiResponse, setAiResponse] = useState('');
-  const [selectedMonth, setSelectedMonth] = useState('May');
-  const [selectedDuration, setSelectedDuration] = useState('7 days');
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [selectedBudget, setSelectedBudget] = useState('');
-  const [showDestinations, setShowDestinations] = useState(false);
+export const DropdownMonth = ({
+  selectedMonth,
+  setSelectedMonth,
+  selectedBudget,
+  setSelectedBudget,
+  selectedDuration,
+  setSelectedDuration,
+  selectedItems,
+  setSelectedItems,
+  setAiResponse,
+  setShowDestinations,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleMonthChange = ({ key }) => {
@@ -48,7 +52,7 @@ export const DropdownMonth = () => {
       const messages = [systemPrompt, userMessage];
       const result = await client.getChatCompletions(deploymentId, messages);
       const aiResponse = result.choices[0].message.content;
-      console.log('AI response:', aiResponse)
+      console.log('AI response:', aiResponse);
       setAiResponse(aiResponse);
       setShowDestinations(true);
       setIsLoading(false);
@@ -57,31 +61,9 @@ export const DropdownMonth = () => {
     }
   };
 
-  const handleRegenerate = async () => {
-    setIsLoading(true);
-    const userMessage = {
-      role: 'user',
-      content: `The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}. They are interested in the following: ${selectedItems.join(', ')}. Their budget is ${selectedBudget}. You have to give 5 examples of country and continent. You do not need to write anything else other than "1: Country, Continent 2: Country, Continent 3: Country, Continent 4: Country, Continent 5: Country, Continent"`,
-    };
-    try {
-      const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-      const deploymentId = 'gpt4';
-      console.log('User selection sent to the AI');
-      const messages = [systemPrompt, userMessage];
-      const result = await client.getChatCompletions(deploymentId, messages);
-      const newAiResponse = result.choices[0].message.content;
-      console.log('New AI response:', newAiResponse);
-      setAiResponse(newAiResponse);
-      setIsLoading(false);
-    } catch (error) {
-      console.error('Error:', error);
-      setIsLoading(false);
-    }
-  };
-
   const menu = (
     <Menu onClick={handleMonthChange}>
-      {months.map(month => (
+      {months.map((month) => (
         <Menu.Item key={month}>{month}</Menu.Item>
       ))}
     </Menu>
@@ -107,20 +89,7 @@ export const DropdownMonth = () => {
         <InspireButtons selectedItems={selectedItems} setSelectedItems={setSelectedItems} handleSubmit={handleSubmit} />
       </div>
       <Budget selectedMonth={selectedMonth} selectedBudget={selectedBudget} setSelectedBudget={setSelectedBudget} />
-      {isLoading ? (
-        <Loading />
-      ) : (
-        showDestinations && (
-          <Destinations
-            selectedMonth={selectedMonth}
-            selectedDuration={selectedDuration}
-            selectedItems={selectedItems}
-            selectedBudget={selectedBudget}
-            aiResponse={aiResponse}
-            onRegenerate={handleRegenerate}
-          />
-        )
-      )}
+      {isLoading ? <Loading /> : null}
     </>
   );
 };
