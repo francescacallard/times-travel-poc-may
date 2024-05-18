@@ -86,6 +86,10 @@ export const HolidayTypes = ({
     }
   };
 
+  const handleRegenerate = () => {
+    handleItineraryRecommendationsRequest();
+  }
+
   return (
     <div className='textImageContainerCountry'>
       <img src={image} alt={holidayType} />

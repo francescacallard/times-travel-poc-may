@@ -7,6 +7,8 @@ import { SummaryOfReviews } from 'components/SummaryOfReviews';
 import { GenerateButton } from 'components/GenerateButton';
 import { CallBack } from 'components/CallBack';
 
+
+
 export const ItineraryHeading = ({
   selectedHolidayType,
   country,
