@@ -1,18 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles.css';
 import image from '../../assets/rural.png';
 import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
-
 
 export const HolidayTypes = ({
   country,
   holidayType,
   description,
   onSelect,
-  selectedBudget,
-  selectedDuration,
-  selectedItems = [],
-  selectedMonth,
 }) => {
   const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
   const azureApiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
@@ -63,7 +58,14 @@ export const HolidayTypes = ({
   Please provide the itinerary for each place based on the number of days the user has selected.`,
   };
   
-  const handleItineraryRecommendationsRequest = async () => {
+  const handleItineraryRecommendationsRequest = async ( holidayType,
+    country,
+    selectedDuration,
+    selectedMonth,
+    selectedBudget,
+    selectedItems,
+    setRecommendationData) => {
+
     console.log('This is the duration the user has selected:', selectedDuration); 
     const userMessage = {
       role: 'user',
@@ -81,14 +83,11 @@ export const HolidayTypes = ({
       console.log('Itinerary Recommendations:', itineraryRecommendations);
       const parsedRecommendations = JSON.parse(itineraryRecommendations);
       onSelect(holidayType, parsedRecommendations);
+      setRecommendationData(parsedRecommendations);
     } catch (error) {
       console.error('Error:', error);
     }
   };
-
-  const handleRegenerate = () => {
-    handleItineraryRecommendationsRequest();
-  }
 
   return (
     <div className='textImageContainerCountry'>
@@ -102,6 +101,5 @@ export const HolidayTypes = ({
         </button>
       </div>
     </div>
-   
   );
 };

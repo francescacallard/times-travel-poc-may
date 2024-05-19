@@ -58,14 +58,7 @@ export const ItineraryHeading = ({
           <GenerateButton />
           <CallBack />
         </div>
-      )}
-          
+      )}    
       </div>
-  
-      
-    
-  
-    
- 
   );
 };

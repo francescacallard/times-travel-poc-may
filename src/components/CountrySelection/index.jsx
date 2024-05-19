@@ -3,11 +3,7 @@ import './styles.css';
 import { JournalistCard } from 'components/JournalistCard';
 import { journalists } from '../Destinations/constants';
 
-export const CountrySelection = ({
-  country,
-  onHolidayTypesRequest,
-  isLoading,
-}) => {
+export const CountrySelection = ({ country, onHolidayTypesRequest, isLoading }) => {
   const [activeButton, setActiveButton] = useState(null);
   const [showHolidayTypes, setShowHolidayTypes] = useState(false);
   const holidaySelectionRef = useRef(null);
@@ -57,23 +53,7 @@ export const CountrySelection = ({
           </button>
         ))}
       </div>
-      {!isLoading && (
-        <div>
-          {showHolidayTypes && (
-            <div className='journalistCardContainer' ref={holidaySelectionRef}>
-              {journalists.map((journalist) => (
-                <JournalistCard
-                  key={journalist.id}
-                  country={country}
-                  name={journalist.name}
-                  title={journalist.title}
-                  image={journalist.image}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      )}
+  
     </div>
   );
 };
