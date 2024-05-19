@@ -8,7 +8,12 @@ export const HolidayTypes = ({
   holidayType,
   description,
   onSelect,
+  selectedItems = [],
+  selectedBudget,
+  selectedDuration,
+  selectedMonth
 }) => {
+  const [recommendationData, setRecommendationData] = useState([]);
   const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
   const azureApiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
 
@@ -58,13 +63,15 @@ export const HolidayTypes = ({
   Please provide the itinerary for each place based on the number of days the user has selected.`,
   };
   
-  const handleItineraryRecommendationsRequest = async ( holidayType,
+  const handleItineraryRecommendationsRequest = async (
+    holidayType,
     country,
     selectedDuration,
     selectedMonth,
     selectedBudget,
     selectedItems,
-    setRecommendationData) => {
+    recommendationData
+  ) => {
 
     console.log('This is the duration the user has selected:', selectedDuration); 
     const userMessage = {
@@ -96,7 +103,17 @@ export const HolidayTypes = ({
         <h3 className='countryHeading'>{country}</h3>
         <h2 className='holidayTypesHeading'>{holidayType}</h2>
         <p className='holidayTypesDescription'>{description}</p>
-        <button className='holidayTypesButton' onClick={handleItineraryRecommendationsRequest}>
+        <button className='holidayTypesButton'
+  onClick={() =>
+    handleItineraryRecommendationsRequest(
+      holidayType,
+      country,
+      selectedDuration,
+      selectedMonth,
+      selectedBudget,
+      selectedItems
+    )
+  }>
           Select
         </button>
       </div>
