@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './styles.css';
 import { DestinationCards } from 'components/DestinationCards';
 import { JournalistCard } from 'components/JournalistCard';
@@ -12,8 +12,11 @@ export const Destinations = ({
   onContinentSelect,
   destinations,
 }) => {
+
+  const [selectedCountry, setSelectedCountry] = useState('');
   const handleCountrySelect = (country) => {
     onCountrySelect(country);
+    setSelectedCountry(country);
   };
 
   const handleContinentSelect = (continent) => {
@@ -55,12 +58,13 @@ export const Destinations = ({
         </h3>
       </div>
       <div className='journalistCardContainer'>
-        {journalists.map((journalist, index) => (
+        {destinations.slice(0, 4).map((destination, index) => (
           <JournalistCard
             key={index}
-            name={journalist.name}
-            title={journalist.title}
-            image={journalist.image}
+            country={destination.country}
+            name={journalists[index]?.name || ''}
+            title={journalists[index]?.title || ''}
+            image={journalists[index]?.image || ''}
           />
         ))}
       </div>
