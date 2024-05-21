@@ -12,6 +12,7 @@ export const ItineraryHeading = ({
   selectedHolidayType,
   country,
   recommendationData,
+  setIsItineraryLoading
 }) => {
   const [selectedItinerary, setSelectedItinerary] = useState(null);
 
@@ -42,6 +43,7 @@ export const ItineraryHeading = ({
               priceRange={recommendation.priceRange}
               itinerary={recommendation.itinerary}
               onSelect={handleItinerarySelect}
+              setIsItineraryLoading={setIsItineraryLoading}
             />
           ))}
       

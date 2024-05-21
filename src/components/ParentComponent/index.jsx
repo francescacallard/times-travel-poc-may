@@ -26,6 +26,7 @@ export const ParentComponent = () => {
   const [selectedItinerary, setSelectedItinerary] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isHolidayTypesLoading, setIsHolidayTypesLoading] = useState(false);
+  const [isItineraryLoading, setIsItineraryLoading] = useState(false);
 
   const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
   const azureApiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
@@ -204,8 +205,10 @@ export const ParentComponent = () => {
           recommendationData={recommendationData}
           onItinerarySelect={handleItinerarySelect}
           selectedItinerary={selectedItinerary}
+          setIsItineraryLoading={setIsItineraryLoading}
           />
       )}
+      {isItineraryLoading && <Loading />}
     </div>
   );
 };

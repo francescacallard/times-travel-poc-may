@@ -15,6 +15,7 @@ export const ItineraryRecommendations = ({
   priceRange,
   itinerary,
   onSelect,
+  setIsItineraryLoading
 }) => {
   const [recommendationData, setRecommendationData] = useState([]);
 
@@ -40,6 +41,7 @@ export const ItineraryRecommendations = ({
 
   const handleItinerarySelect = async () => {
     console.log('Itinerary Selected');
+    setIsItineraryLoading(true);
 
     const userMessage = {
       role: 'user',
@@ -57,6 +59,7 @@ export const ItineraryRecommendations = ({
       const parsedRecommendations = JSON.parse(itinerarySummary);
       setRecommendationData(parsedRecommendations);
       onSelect({ place, nights, accommodation, priceRange, itinerary, recommendationData: parsedRecommendations });
+      setIsItineraryLoading(false);
     } catch (error) {
       console.error('Error:', error);
     }
