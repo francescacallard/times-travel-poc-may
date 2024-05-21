@@ -17,8 +17,8 @@ export const ItineraryHeading = ({
 
   const [selectedItinerary, setSelectedItinerary] = useState(null);
 
-  const handleItinerarySelect = (itinerary) => {
-    setSelectedItinerary(itinerary);
+  const handleItinerarySelect = (itinerary, recommendationData) => {
+    setSelectedItinerary(itinerary, recommendationData);
   };
 
   return (
@@ -56,7 +56,7 @@ export const ItineraryHeading = ({
           <FinalItinerary itinerary={selectedItinerary} />
           <SummaryOfReviews />
           <GenerateButton />
-          <CallBack />
+          <CallBack itinerary={selectedItinerary}/>
         </div>
       )}    
       </div>

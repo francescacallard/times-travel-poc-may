@@ -5,7 +5,10 @@ import callA from '../../assets/callA.svg'
 import send from '../../assets/send.svg'
 
 
-export const CallBack = () => {
+export const CallBack = ({itinerary}) => {
+  const handleClick = () => {
+    console.log('Call Back Requested:', itinerary);
+  }
   return (
     <div className='callBackContainer'>
       <h2 className='callBackHeading'>It’s much easier to tailor your trip to your needs over the phone, from flights, to hotels to experiences, we can ensure you have the perfect trip</h2>
@@ -14,7 +17,7 @@ export const CallBack = () => {
         <button className='callBackButton'>
           <img src={callA}></img> Request a Call Back
         </button>
-        <button className='callBackButton'>
+        <button className='callBackButton' onClick={handleClick}>
           <img src={send}></img>Recieve Offer</button>
         <button className='callBackButton'>
           <img src={call} alt='call arrow'></img>Call 0800 12245

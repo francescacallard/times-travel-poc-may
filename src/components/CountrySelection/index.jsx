@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './styles.css';
-import { JournalistCard } from 'components/JournalistCard';
-import { journalists } from '../Destinations/constants';
 
 export const CountrySelection = ({ country, onHolidayTypesRequest, isLoading }) => {
   const [activeButton, setActiveButton] = useState(null);
@@ -23,13 +21,13 @@ export const CountrySelection = ({ country, onHolidayTypesRequest, isLoading }) 
     onHolidayTypesRequest();
   };
 
-  useEffect(() => {
-    if (showHolidayTypes && !isLoading) {
-      setTimeout(() => {
-        holidaySelectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
-      }, 0);
-    }
-  }, [showHolidayTypes, isLoading]);
+  // useEffect(() => {
+  //   if (showHolidayTypes && !isLoading) {
+  //     setTimeout(() => {
+  //       holidaySelectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  //     }, 0);
+  //   }
+  // }, [showHolidayTypes, isLoading]);
 
   return (
     <div className='selectedCountryHeadingContainer'>
