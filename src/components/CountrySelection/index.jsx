@@ -1,10 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Loading } from 'components/Loading'; 
 import './styles.css';
 
 export const CountrySelection = ({ country, onHolidayTypesRequest, isLoading }) => {
   const [activeButton, setActiveButton] = useState(null);
   const [showHolidayTypes, setShowHolidayTypes] = useState(false);
   const holidaySelectionRef = useRef(null);
+
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const transportOptions = [
     'Rental car',

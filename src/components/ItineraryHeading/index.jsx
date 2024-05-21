@@ -8,18 +8,17 @@ import { GenerateButton } from 'components/GenerateButton';
 import { CallBack } from 'components/CallBack';
 
 
-
 export const ItineraryHeading = ({
   selectedHolidayType,
   country,
   recommendationData,
 }) => {
-
   const [selectedItinerary, setSelectedItinerary] = useState(null);
 
   const handleItinerarySelect = (itinerary, recommendationData) => {
     setSelectedItinerary(itinerary, recommendationData);
   };
+
 
   return (
       <div className='itineraryHeadingContainer'>

@@ -11,9 +11,11 @@ export const HolidayTypes = ({
   selectedItems = [],
   selectedBudget,
   selectedDuration,
-  selectedMonth
+  selectedMonth,
+  setIsHolidayTypesLoading,
 }) => {
   const [recommendationData, setRecommendationData] = useState([]);
+
   const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
   const azureApiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
 
@@ -70,8 +72,9 @@ export const HolidayTypes = ({
     selectedMonth,
     selectedBudget,
     selectedItems,
-    recommendationData
   ) => {
+    setIsHolidayTypesLoading(true);
+
 
     console.log('This is the duration the user has selected:', selectedDuration); 
     const userMessage = {
@@ -91,12 +94,14 @@ export const HolidayTypes = ({
       const parsedRecommendations = JSON.parse(itineraryRecommendations);
       onSelect(holidayType, parsedRecommendations);
       setRecommendationData(parsedRecommendations);
+      setIsHolidayTypesLoading(false);
     } catch (error) {
       console.error('Error:', error);
     }
   };
 
   return (
+
     <div className='textImageContainerCountry'>
       <img src={image} alt={holidayType} />
       <div className='holidayTypesTextContainer'>
@@ -111,12 +116,14 @@ export const HolidayTypes = ({
       selectedDuration,
       selectedMonth,
       selectedBudget,
-      selectedItems
+      selectedItems,
     )
   }>
           Select
         </button>
       </div>
     </div>
+
+    
   );
 };

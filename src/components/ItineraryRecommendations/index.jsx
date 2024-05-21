@@ -5,6 +5,7 @@ import night from '../../assets/night.svg';
 import star from '../../assets/star.svg';
 import price from '../../assets/price.svg';
 import { OpenAIClient, AzureKeyCredential } from '@azure/openai';
+import { Loading } from 'components/Loading';
 
 export const ItineraryRecommendations = ({
   country,
@@ -89,9 +90,9 @@ export const ItineraryRecommendations = ({
           <p className='itineraryDescriptionText'>{day.descriptionOfDay}</p>
         </div>
       ))}
-    
       </div>
       <button className='itinerarySelectButton' onClick={handleItinerarySelect}>Select</button>
        </div>
+       
   );
 };

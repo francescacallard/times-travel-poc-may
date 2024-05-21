@@ -5,14 +5,15 @@ import { JournalistCard } from 'components/JournalistCard';
 import timesFavicon from '../../assets/timesFavicon.svg';
 import { journalists } from './constants';
 import { GenerateButton } from 'components/GenerateButton';
+import { Loading } from 'components/Loading'; 
 
 export const Destinations = ({
   selectedMonth,
   onCountrySelect,
   onContinentSelect,
   destinations,
+  isLoading
 }) => {
-
   const [selectedCountry, setSelectedCountry] = useState('');
   const handleCountrySelect = (country) => {
     onCountrySelect(country);
@@ -22,6 +23,10 @@ export const Destinations = ({
   const handleContinentSelect = (continent) => {
     onContinentSelect(continent);
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
