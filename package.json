@@ -14,7 +14,7 @@
     "@types/react-dom": "^18.0.6",
     "@types/url-parse": "^1.4.8",
     "antd": "^5.17.0",
-    "axios": "^0.27.2",
+    "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

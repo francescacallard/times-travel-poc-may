@@ -1,12 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Loading } from 'components/Loading'; 
 import './styles.css';
 
 export const CountrySelection = ({ country, onHolidayTypesRequest, isLoading }) => {
   const [activeButton, setActiveButton] = useState(null);
   const [showHolidayTypes, setShowHolidayTypes] = useState(false);
-  const holidaySelectionRef = useRef(null);
-
 
   if (isLoading) {
     return <Loading />;
@@ -26,14 +24,6 @@ export const CountrySelection = ({ country, onHolidayTypesRequest, isLoading }) 
     setShowHolidayTypes(true);
     onHolidayTypesRequest();
   };
-
-  // useEffect(() => {
-  //   if (showHolidayTypes && !isLoading) {
-  //     setTimeout(() => {
-  //       holidaySelectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
-  //     }, 0);
-  //   }
-  // }, [showHolidayTypes, isLoading]);
 
   return (
     <div className='selectedCountryHeadingContainer'>

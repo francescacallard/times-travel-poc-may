@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './styles.css';
 import { DropdownMonth } from 'components/DropdownMonth';
 import { Destinations } from 'components/Destinations';
 import { CountrySelection } from 'components/CountrySelection';
 import { HolidayTypes } from 'components/HolidayTypes';
 import { ItineraryHeading } from 'components/ItineraryHeading';
-import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
 import { JournalistCard } from 'components/JournalistCard';
 import { journalists } from 'components/Destinations/constants';  
 import { Loading } from 'components/Loading'; 
+import { OpenAIComponent } from 'components/OpenAIComponent';
+import axios from 'axios';
 
 export const ParentComponent = () => {
   const [selectedMonth, setSelectedMonth] = useState('May');
@@ -27,14 +28,13 @@ export const ParentComponent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isHolidayTypesLoading, setIsHolidayTypesLoading] = useState(false);
   const [isItineraryLoading, setIsItineraryLoading] = useState(false);
+  const countryHeadingRef = useRef(null);
 
-  const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
-  const azureApiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
+  // const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
+  // const azureApiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
 
-  const systemPrompt = {
-    role: 'system',
-    content: `You are a travel agent that takes information based on the users choices. You need to suggest 5 different types of holidays that would be suitable for ${selectedCountry}, along with a brief description of each holiday type in 15 words.`,
-  };
+
+
 
   useEffect(() => {
     // Parse the aiResponse and update the destinations array
@@ -58,6 +58,7 @@ export const ParentComponent = () => {
       setIsLoading(false);
     }
   }, [aiResponse]);
+  
 
   const handleCountrySelect = (country) => {
     setSelectedCountry(country);
@@ -69,6 +70,11 @@ export const ParentComponent = () => {
 
   const handleHolidayTypesAiRequest = async () => {
     setIsLoading(true);
+    const systemPrompt = {
+      role: 'system',
+      content: `You are a travel agent that takes information based on the users choices. You need to suggest 5 different types of holidays that would be suitable for ${selectedCountry}, along with a brief description of each holiday type in 15 words.`,
+    };
+
     const userMessage = {
       role: 'user',
       content: `The user has selected ${selectedCountry} as their destination. Please suggest 5 different types of holidays that would be suitable for this country, along with a brief description of each holiday type in 15 words. Please provide the response in the following JSON format:
@@ -98,11 +104,9 @@ export const ParentComponent = () => {
     };
 
     try {
-      const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-      const deploymentId = 'gpt4';
       const messages = [systemPrompt, userMessage];
-      const result = await client.getChatCompletions(deploymentId, messages);
-      const aiResponse = result.choices[0].message.content;
+      const response = await axios.post('http://localhost:5000/api/chat', { messages });
+      const aiResponse = response.data.aiResponse;
       const holidayTypes = JSON.parse(aiResponse);
       const formattedHolidayTypes = holidayTypes.map((holidayType, index) => ({
         id: index + 1,
@@ -127,6 +131,7 @@ export const ParentComponent = () => {
 
   return (
     <div className='wholePageContainer'>
+      <OpenAIComponent />
       <DropdownMonth
         selectedMonth={selectedMonth}
         setSelectedMonth={setSelectedMonth}

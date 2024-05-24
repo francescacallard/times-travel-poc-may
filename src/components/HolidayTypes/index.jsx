@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './styles.css';
 import image from '../../assets/rural.png';
-import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
+import axios from 'axios';
 
 export const HolidayTypes = ({
   country,
@@ -15,55 +15,6 @@ export const HolidayTypes = ({
   setIsHolidayTypesLoading,
 }) => {
   const [recommendationData, setRecommendationData] = useState([]);
-
-  const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
-  const azureApiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
-
-  const systemPrompt = {
-    role: 'system',
-    content: `You are a travel agent that takes information based on the user's choices. You need to give two itinerary recommendations based on the user's country, place, duration, budget, interests, holiday type, and month. Please provide the response in the following JSON format using double quotes for both property names and values, with no other text at all:
-  
-  [
-    {
-      "place": "Place 1",
-      "nights": "Number of nights 1",
-      "accommodation": "Star rating of accommodation 1",
-      "priceRange": "Price range per person 1",
-      "itinerary": [
-        {
-          "day": "Day 1",
-          "titleOfDay": "Title of Day 1",
-          "descriptionOfDay": "Description of Day 1"
-        },
-        {
-          "day": "Day 2",
-          "titleOfDay": "Title of Day 2",
-          "descriptionOfDay": "Description of Day 2"
-        }
-      ]
-    },
-    {
-      "place": "Place 2",
-      "nights": "Number of nights 2",
-      "accommodation": "Star rating of accommodation 2",
-      "priceRange": "Price range per person 2",
-      "itinerary": [
-        {
-          "day": "Day 1",
-          "titleOfDay": "Title of Day 1",
-          "descriptionOfDay": "Description of Day 1"
-        },
-        {
-          "day": "Day 2",
-          "titleOfDay": "Title of Day 2",
-          "descriptionOfDay": "Description of Day 2"
-        }
-      ]
-    }
-  ]
-  
-  Please provide the itinerary for each place based on the number of days the user has selected.`,
-  };
   
   const handleItineraryRecommendationsRequest = async (
     holidayType,
@@ -74,6 +25,51 @@ export const HolidayTypes = ({
     selectedItems,
   ) => {
     setIsHolidayTypesLoading(true);
+    const systemPrompt = {
+      role: 'system',
+      content: `You are a travel agent that takes information based on the user's choices. You need to give two itinerary recommendations based on the user's country, place, duration, budget, interests, holiday type, and month. Please provide the response in the following JSON format using double quotes for both property names and values, with no other text at all:
+    
+    [
+      {
+        "place": "Place 1",
+        "nights": "Number of nights 1",
+        "accommodation": "Star rating of accommodation 1",
+        "priceRange": "Price range per person 1",
+        "itinerary": [
+          {
+            "day": "Day 1",
+            "titleOfDay": "Title of Day 1",
+            "descriptionOfDay": "Description of Day 1"
+          },
+          {
+            "day": "Day 2",
+            "titleOfDay": "Title of Day 2",
+            "descriptionOfDay": "Description of Day 2"
+          }
+        ]
+      },
+      {
+        "place": "Place 2",
+        "nights": "Number of nights 2",
+        "accommodation": "Star rating of accommodation 2",
+        "priceRange": "Price range per person 2",
+        "itinerary": [
+          {
+            "day": "Day 1",
+            "titleOfDay": "Title of Day 1",
+            "descriptionOfDay": "Description of Day 1"
+          },
+          {
+            "day": "Day 2",
+            "titleOfDay": "Title of Day 2",
+            "descriptionOfDay": "Description of Day 2"
+          }
+        ]
+      }
+    ]
+    
+    Please provide the itinerary for each place based on the number of days the user has selected.`,
+    };
 
 
     console.log('This is the duration the user has selected:', selectedDuration); 
@@ -84,14 +80,10 @@ export const HolidayTypes = ({
     };
   
     try {
-      const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-      const deploymentId = 'gpt4';
-      console.log('User selection sent to the AI');
       const messages = [systemPrompt, userMessage];
-      const result = await client.getChatCompletions(deploymentId, messages);
-      const itineraryRecommendations = result.choices[0].message.content;
-      console.log('Itinerary Recommendations:', itineraryRecommendations);
-      const parsedRecommendations = JSON.parse(itineraryRecommendations);
+      const response = await axios.post('http://localhost:5000/api/chat', { messages });
+      const aiResponse = response.data.aiResponse;
+      const parsedRecommendations = JSON.parse(aiResponse);
       onSelect(holidayType, parsedRecommendations);
       setRecommendationData(parsedRecommendations);
       setIsHolidayTypesLoading(false);

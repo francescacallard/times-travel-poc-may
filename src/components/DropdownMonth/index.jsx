@@ -6,8 +6,9 @@ import InspireButtons from 'components/InspireButtons';
 import './styles.css';
 import { months } from '../Destinations/constants';
 import { Budget } from 'components/Budget';
-import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
+// import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
 import { Loading } from 'components/Loading';
+import axios from 'axios';
 
 export const DropdownMonth = ({
   selectedMonth,
@@ -31,35 +32,29 @@ export const DropdownMonth = ({
     setSelectedDuration(duration);
   };
 
-  const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
-  const azureApiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
-
-  const systemPrompt = {
-    role: 'system',
-    content: `You are a travel agent that takes information based on the users choices. You need to write back what month they chose and for how long before you recommend them an itinerary`,
-  };
-
   const handleSubmit = async (event) => {
     setIsLoading(true);
+    const systemPrompt = {
+      role: 'system',
+      content: `You are a travel agent that takes information based on the users choices. You need to write back what month they chose and for how long before you recommend them an itinerary`,
+    };
+
     const userMessage = {
       role: 'user',
       content: `The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}. They are interested in the following: ${selectedItems.join(', ')}. Their budget is ${selectedBudget}. You have to give 5 examples of country and continent. You do not need to write anything else other than "1: Country, Continent 2: Country, Continent 3: Country, Continent 4: Country, Continent 5: Country, Continent"`,
     };
     try {
-      const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-      const deploymentId = 'gpt4';
-      console.log('User selection sent to the AI');
-      const messages = [systemPrompt, userMessage];
-      const result = await client.getChatCompletions(deploymentId, messages);
-      const aiResponse = result.choices[0].message.content;
-      console.log('AI response:', aiResponse);
-      setAiResponse(aiResponse);
-      setShowDestinations(true);
-      setIsLoading(false);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+    const messages = [systemPrompt, userMessage];
+    const response = await axios.post('http://localhost:5000/api/chat', { messages });
+    const aiResponse = response.data.aiResponse;
+    console.log('AI response:', aiResponse);
+    setAiResponse(aiResponse);
+    setShowDestinations(true);
+    setIsLoading(false);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
 
   const menu = (
     <Menu onClick={handleMonthChange}>

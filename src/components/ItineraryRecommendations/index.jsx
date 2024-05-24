@@ -4,8 +4,7 @@ import lake from '../../assets/lake.png';
 import night from '../../assets/night.svg';
 import star from '../../assets/star.svg';
 import price from '../../assets/price.svg';
-import { OpenAIClient, AzureKeyCredential } from '@azure/openai';
-import { Loading } from 'components/Loading';
+import axios from 'axios';
 
 export const ItineraryRecommendations = ({
   country,
@@ -19,28 +18,24 @@ export const ItineraryRecommendations = ({
 }) => {
   const [recommendationData, setRecommendationData] = useState([]);
 
-  const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
-  const azureApiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
-
-  const systemPrompt = {
-    role: 'system',
-    content: `You are a travel agent that takes information based on the user's choices. You need to give to summarise the itinerary a user has chosen based on the user's country, place, duration, budget, interests, holiday type, and month. Please provide the response in the following JSON format using double quotes for both property names and values, with no other text at all:
-
-    [
-      {
-        "flights": "flight information 1",
-        "transfers": "transfer information 1",
-        "accommodation": "hotel/accommodation information 1",
-        "inclusive": "accommodation is inclusive information 1 or accommodation is not inclusive information 1",
-        "activities": "activities information 1",
-        "fees": "fees information 1",
-        "savings": "savings information 1"
-      }
-    ]`
-  };
 
   const handleItinerarySelect = async () => {
-    console.log('Itinerary Selected');
+    const systemPrompt = {
+      role: 'system',
+      content: `You are a travel agent that takes information based on the user's choices. You need to give to summarise the itinerary a user has chosen based on the user's country, place, duration, budget, interests, holiday type, and month. Please provide the response in the following JSON format using double quotes for both property names and values, with no other text at all:
+  
+      [
+        {
+          "flights": "flight information 1",
+          "transfers": "transfer information 1",
+          "accommodation": "hotel/accommodation information 1",
+          "inclusive": "accommodation is inclusive information 1 or accommodation is not inclusive information 1",
+          "activities": "activities information 1",
+          "fees": "fees information 1",
+          "savings": "savings information 1"
+        }
+      ]`
+    };
     setIsItineraryLoading(true);
 
     const userMessage = {
@@ -49,16 +44,12 @@ export const ItineraryRecommendations = ({
     };
 
     try {
-      const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-      const deploymentId = 'gpt4';
-      console.log('User selection sent to the AI');
       const messages = [systemPrompt, userMessage];
-      const result = await client.getChatCompletions(deploymentId, messages);
-      const itinerarySummary = result.choices[0].message.content;
-      console.log('This is the itinerary Summary', itinerarySummary);
-      const parsedRecommendations = JSON.parse(itinerarySummary);
-      setRecommendationData(parsedRecommendations);
-      onSelect({ place, nights, accommodation, priceRange, itinerary, recommendationData: parsedRecommendations });
+      const response = await axios.post('http://localhost:5000/api/chat/destinations', { messages });
+      const aiResponse = response.data.recommendations;
+      console.log('This is the itinerary Summary', aiResponse);
+      setRecommendationData(aiResponse);
+      onSelect({ place, nights, accommodation, priceRange, itinerary, recommendationData: aiResponse });
       setIsItineraryLoading(false);
     } catch (error) {
       console.error('Error:', error);

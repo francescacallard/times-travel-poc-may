@@ -40,15 +40,23 @@
   }
   
   .container .ant-btn {
+    display: flex;
+    align-items: center;
     font-size: 16px;
     border-radius: 10px;
     justify-content: center;
     height: 56px;
-    width: 220px;
+    width: 200px;
+    /* justify-content: flex-start; */
+  }
+
+  .container .ant-btn .ant-space {
+    justify-content: flex-start;
   }
 
   .container .ant-btn .month-text {
     padding-right: 40px;
+    margin-left: 0px;
     color: #5F5F5F;
     font-weight: 500;
   }

@@ -24,7 +24,7 @@ export const AiResponse = ({ selectedMonth, selectedDuration }) => {
 
     try {
       const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-      const deploymentId = 'gpt4';
+      const deploymentId = 'gpt-4';
       console.log('Hit3');
 
       const messages = [systemPrompt, userMessage];
