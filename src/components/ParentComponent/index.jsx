@@ -8,7 +8,7 @@ import { ItineraryHeading } from 'components/ItineraryHeading';
 import { JournalistCard } from 'components/JournalistCard';
 import { journalists } from 'components/Destinations/constants';  
 import { Loading } from 'components/Loading'; 
-import { OpenAIComponent } from 'components/OpenAIComponent';
+// import { OpenAIComponent } from 'components/OpenAIComponent';
 import axios from 'axios';
 
 export const ParentComponent = () => {
@@ -29,12 +29,6 @@ export const ParentComponent = () => {
   const [isHolidayTypesLoading, setIsHolidayTypesLoading] = useState(false);
   const [isItineraryLoading, setIsItineraryLoading] = useState(false);
   const countryHeadingRef = useRef(null);
-
-  // const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
-  // const azureApiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
-
-
-
 
   useEffect(() => {
     // Parse the aiResponse and update the destinations array
@@ -131,7 +125,7 @@ export const ParentComponent = () => {
 
   return (
     <div className='wholePageContainer'>
-      <OpenAIComponent />
+      {/* <OpenAIComponent /> */}
       <DropdownMonth
         selectedMonth={selectedMonth}
         setSelectedMonth={setSelectedMonth}
