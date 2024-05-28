@@ -187,7 +187,9 @@ export const ParentComponent = () => {
           ))}
         </div>
       )}
+
       {holidayTypes.length > 0 && (
+        <div className='chatContainer'>
         <div className='journalistCardContainer'>
           {journalists.map((journalist) => (
             <JournalistCard
@@ -199,6 +201,11 @@ export const ParentComponent = () => {
             />
           ))}
         </div>
+        <div className='chatContainerInput'>
+        <Chat />
+        </div>
+        </div>
+    
       )}
       {isHolidayTypesLoading && <Loading />}
       {selectedHolidayType && (

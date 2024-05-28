@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './styles.css';
 import image from '../../assets/rural.png';
 import axios from 'axios';
+import { Chat } from 'components/Chat';
 
 export const HolidayTypes = ({
   country,

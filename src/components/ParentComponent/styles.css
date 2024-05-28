@@ -6,3 +6,11 @@
   display: flex; 
   flex-direction: column;
 }
+
+.chatContainerInput {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+  align-items: flex-end;
+}
