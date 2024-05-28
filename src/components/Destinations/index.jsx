@@ -6,6 +6,10 @@ import timesFavicon from '../../assets/timesFavicon.svg';
 import { journalists } from './constants';
 import { GenerateButton } from 'components/GenerateButton';
 import { Loading } from 'components/Loading'; 
+import { TimesChat } from 'components/TimesChat';
+import copy from '../../assets/copy.svg';
+import saveIcon from '../../assets/saveIcon.svg';
+import timeTick from '../../assets/timeTick.svg';
 
 export const Destinations = ({
   selectedMonth,
@@ -33,11 +37,15 @@ export const Destinations = ({
       <div className='destinationContainer'>
         <div className='destinationHeadingContainer'>
           <h2 className='destinationHeading'>
-            {`Great! Here are some amazing destinations for a relaxing trip in ${selectedMonth}`}
+            <TimesChat />
           </h2>
-          <h3 className='destinationSubHeading'>
-            Select any of the below destinations that are of interest to you to refine your trip, you can save your progress for later!
-          </h3>
+          <div className='messageContainer'>
+          {`Great! Here are some amazing destinations for a relaxing trip in ${selectedMonth}. Choose any of the below destinations that are of interest to you or generate more options if these aren’t suitable. Remember you can save your progress for later!`}
+          <div className='iconContainer'>
+          <img src={saveIcon} className='saveIcon' alt='Save Icon' />
+          <img src={copy} className='copyIcon' alt='Copy Icon' />
+          </div>
+        </div>
         </div>
         <div className='destinationSuggestionContainer'>
           {destinations.map((destination, index) => (
@@ -52,15 +60,19 @@ export const Destinations = ({
         </div>
       </div>
       <div className='suggestionMessage'>
-        <img
-          src={timesFavicon}
+
+        <div className='suggestionHeading'>
+          <TimesChat />
+          <div className='iconContainerSuggestion'>
+          <img
+          src={timeTick}
           className='timesFavicon'
           alt='The Times Favicon'
           style={{ width: '16px', height: '16px' }}
         />
-        <h3 className='suggestionHeading'>
           Suggestions created through sources from The Times and Sunday Times Journalists
-        </h3>
+        </div>
+        </div>
       </div>
       <div className='journalistCardContainer'>
         {destinations.slice(0, 4).map((destination, index) => (

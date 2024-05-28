@@ -12,9 +12,7 @@ export const Chat = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Update the displayMessage state with the user's message
     setDisplayMessage(userMessage);
-    // Clear the input field after submission
     setUserMessage('');
   };
 
