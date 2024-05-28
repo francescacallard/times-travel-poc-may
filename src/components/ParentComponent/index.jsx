@@ -71,7 +71,7 @@ export const ParentComponent = () => {
 
     const userMessage = {
       role: 'user',
-      content: `The user has selected ${selectedCountry} as their destination. Please suggest 5 different types of holidays that would be suitable for this country, along with a brief description of each holiday type in 15 words. Please provide the response in the following JSON format:
+      content: `The user has selected ${selectedCountry} as their destination in the month of ${selectedMonth} with a budget of ${selectedBudget} and they are interested in the following: ${selectedItems.join(', ')}. Please suggest 5 different types of holidays that would be suitable for this country, along with a brief description of each holiday type in 15 words. Please provide the response in the following JSON format:
 
     [
       {
