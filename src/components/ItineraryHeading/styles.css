@@ -20,31 +20,24 @@
   display: flex;
   width: 1183px;
   flex-direction: column;
-  align-items: center;
-  background-color: #FFFFFF;
+  align-items: flex-start;
+  background-color: #F8F9F9;
   margin-bottom: 20px;
   border-radius: 10px;
-  margin-top: 20px;
+  margin-top: 24px;
 
   }
 
-.itineraryHeadingText {
-  color: #1D1D1B;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 0px;
-}
+
 
 .itineraryHeadingDescription {
   color: #1D1D1B;
-  text-align: center;
+  text-align: left;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   width: 1080px;
-
+  padding: 0px 16px;
 }
 
 .itineraryRecommendationsSide {
@@ -52,6 +45,5 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
-  /* height: 1340px; */
-}
 
+}

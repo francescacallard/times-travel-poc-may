@@ -128,8 +128,6 @@ export const ParentComponent = () => {
   return (
     <div className='wholePageContainer'>
       {/* <OpenAIComponent /> */}
-      <TimesChat />
-      <Chat />
       <DropdownMonth
         selectedMonth={selectedMonth}
         setSelectedMonth={setSelectedMonth}

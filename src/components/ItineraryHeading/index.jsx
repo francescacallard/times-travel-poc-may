@@ -6,6 +6,8 @@ import { FinalItinerary } from 'components/FinalItinerary';
 import { SummaryOfReviews } from 'components/SummaryOfReviews';
 import { GenerateButton } from 'components/GenerateButton';
 import { CallBack } from 'components/CallBack';
+import { TimesChat } from 'components/TimesChat';
+import timeTick from '../../assets/timeTick.svg';
 
 
 export const ItineraryHeading = ({
@@ -24,12 +26,18 @@ export const ItineraryHeading = ({
   return (
       <div className='itineraryHeadingContainer'>
         <div className='itineraryHeadingContainerText'>
-          <h3 className='itineraryHeadingText'>
-            {`A ${selectedHolidayType} is the perfect trip to cater to all your needs!`}
-          </h3>
+            <TimesChat />
           <p className='itineraryHeadingDescription'>
-            Take some time to browse the itineraries, if these aren't quite right you can speak to one of our expert travel advisors to tailor your trip. If you'd like more information, please select one of the below or save your progress. By booking a tour through one of our trusted partners, you gain the advantage of a fully curated experience with all essentials included, from transportation to accommodation and guided tours. Additionally, our package offers peace of mind and convenience, ensuring a seamless travel experience without the hassle of planning and coordinating individual components.
-          </p>
+          Take some time to browse the itineraries below, you can get a further breakdown of the trip by selecting one of the below. If these aren’t quite right you can tailor your trip further via the chat field or speak to one of our expert travel advisors.</p>
+          <div className='iconContainerSuggestion'>
+          <img
+          src={timeTick}
+          className='timesFavicon'
+          alt='The Times Favicon'
+          style={{ width: '16px', height: '16px' }}
+        />
+          Suggestions created through sources from The Times and Sunday Times Journalists
+        </div>
         </div>
         <div className='itineraryRecommendationsSide'>
           {recommendationData && recommendationData.map((recommendation, index) => (
