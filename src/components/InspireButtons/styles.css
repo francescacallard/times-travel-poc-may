@@ -2,19 +2,26 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 16px;
   }
+
+  .inspireContainerWhole {
+    background-color: #FFFFFF;
+  }
   
   .inspireContainer {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
     gap: 30px;
-    background-color: #317AAB;
+    background-color: #FFFFFF;
     padding: 16px;
-    margin-left: 16px;
+    margin-top:-16px
   }
 
   .leftSection {
     display: flex;
+    border: 1px solid #DEDEDE;
+    padding: 8px 16px;
+    border-radius: 100px;
   }
   
   .middleSection {
@@ -23,7 +30,7 @@
     white-space: nowrap;
     scrollbar-width: none; 
     -ms-overflow-style: none; 
-    height: 52px;
+    height: px;
     width: 777px; 
   }
   
@@ -32,19 +39,20 @@
   }
   
   .middleButtons {
-    background-color: #317AAB;
-    color: #FFFFFF;
+    background-color: #FFFFFF;
+    border: 1px solid #DEDEDE;
+    color: #000000;
     margin-right: 10px; 
-    padding: 16px;
-    border-radius: 100px;   
-    border: none;
+    padding: 8px 16px;
+    border-radius: 100px;  
   }
 
   .leftButton {
-    background-color: #317AAB;
-    color: #FFFFFF;
+    color: #317AAB;
+    background-color: #FFFFFF;
     border-radius: 100px;   
     border: none;
+    width:88px;
   }
 
   .rightButton {
@@ -52,11 +60,11 @@
     color: #FFFFFF;
     border-radius: 100px;   
     border: none;
-    padding: 8px 16px;
+
   }
 
   .whiteLine {
-    border-left: 1px solid #FFFFFF;
+    border-left: 1px solid #DEDEDE;
     height: 51px;
   }
 
@@ -73,5 +81,12 @@
     color: #317AAB;
   }
 
-
+.inspireTitle {
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  margin-left: 16px;
+  padding-top: 16px;
+}
 

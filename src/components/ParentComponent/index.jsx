@@ -8,7 +8,6 @@ import { ItineraryHeading } from 'components/ItineraryHeading';
 import { JournalistCard } from 'components/JournalistCard';
 import { journalists } from 'components/Destinations/constants';  
 import { Loading } from 'components/Loading'; 
-// import { OpenAIComponent } from 'components/OpenAIComponent';
 import axios from 'axios';
 import { TimesChat } from 'components/TimesChat';
 import { Chat } from 'components/Chat';
@@ -127,7 +126,6 @@ export const ParentComponent = () => {
 
   return (
     <div className='wholePageContainer'>
-      {/* <OpenAIComponent /> */}
       <DropdownMonth
         selectedMonth={selectedMonth}
         setSelectedMonth={setSelectedMonth}

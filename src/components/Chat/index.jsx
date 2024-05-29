@@ -3,6 +3,8 @@ import pen from '../../assets/pen.svg';
 import './styles.css';
 import axios from 'axios';
 
+//need to be able to take the itinerary it has created and turn then add the user preference to it.
+
 export const Chat = () => {
   const [userMessage, setUserMessage] = useState('');
   const [displayMessage, setDisplayMessage] = useState('');
@@ -20,7 +22,7 @@ export const Chat = () => {
 
     const systemPrompt = {
       role: 'system',
-      content: 'You just need to write what the user asked and the word "Hello" back.',
+      content: 'You just need to repeat what the user has said',
     };
 
     try {

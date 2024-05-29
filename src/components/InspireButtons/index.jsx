@@ -2,6 +2,8 @@ import React, { useState} from 'react'
 import './styles.css'
 import aiSparkle from '../../assets/aiSparkle.svg'
 import more from '../../assets/more.svg'
+import moreArrow from '../../assets/moreArrow.svg'
+import whiteAiSparkle from '../../assets/whiteAiSparkle.svg'
 import { buttonTexts } from './constants'
 
 export const InspireButtons = ({ selectedItems, setSelectedItems, handleSubmit }) => {
@@ -28,6 +30,8 @@ export const InspireButtons = ({ selectedItems, setSelectedItems, handleSubmit }
      
     
   return (
+    <div className='inspireContainerWhole'>
+      <h2 className='inspireTitle'>How do you want to spend your time?</h2>
     <div className='inspireContainer'>
         <div className='leftSection'>
             <img src={aiSparkle} alt='aiSparkle' className='aiSparkle'/>
@@ -103,11 +107,12 @@ export const InspireButtons = ({ selectedItems, setSelectedItems, handleSubmit }
           Culture
         </button>
         </div>
-        <img src={more} alt='more' className='more'/>
+        <img src={moreArrow} alt='more' className='more'/>
         <div className='rightSection'>
-            <img src={aiSparkle} alt='aiSparkle' className='aiSparkle'/>   
+            <img src={whiteAiSparkle} alt='aiSparkle' className='aiSparkle'/>   
             <button onClick={handleBuildTripClick} className='rightButton'>Build trip</button>
         </div>
+    </div>
     </div>
 
   )

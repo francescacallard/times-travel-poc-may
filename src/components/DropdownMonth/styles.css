@@ -4,23 +4,31 @@
 }
 
 .container {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap ;
+  display: flex;
+  text-align: center;
+  justify-content: center;
     margin: 26px;
-    width: 1214px;
-    flex-shrink: 0;
+    width: 820px;
+    padding: 16px;
+    border-radius: 100px;
+    background-color: white;
+    margin-top: 16px;
 }
 
 .textContainer {
-    background-image: linear-gradient(to right, #317AAB 25%, transparent 50%),
+    background-image:
     url('../../assets/timesTravel.png');
-  background-size: 200% 100%, cover;
-  background-position: left, right;
+  background-size: cover;
   background-repeat: no-repeat;
   border-radius: 10px 10px 0px 0px;
   width: 1214px;
+  height:600px;
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 40px;
 }
 
 .specifyTextBox,
@@ -32,7 +40,14 @@
 }
 
 .inspireTextBox {
-    margin-top: 61px;
+  display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: 0px;
+    color: #FFF;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
 }
 
   .container .ant-dropdown-trigger {
@@ -43,7 +58,7 @@
     display: flex;
     align-items: center;
     font-size: 16px;
-    border-radius: 10px;
+    border-radius: 100px;
     justify-content: center;
     height: 56px;
     width: 200px;
@@ -75,4 +90,68 @@
 .container .ant-btn .anticon-down:hover,
 .container .ant-btn .anticon-down {
     color: #2A6495;
+}
+
+.pin {
+  margin-top: 8px;
+}
+
+.container .ant-btn .country-text {
+  padding-right: 4px;
+  margin-left: 0px;
+  color: #5F5F5F;
+  font-weight: 500;
+}
+
+.container .ant-btn .country-text + .anticon-down {
+  margin-left: auto;
+}
+
+
+.sundayTimesContainer {
+  width: 815px;
+  margin-bottom: 60px;
+  margin-top: 50px;
+}
+
+.sundayTimesTitle {
+  color: #FFF;
+font-size: 40px;
+font-style: normal;
+font-weight: 400;
+line-height: 100%; /* 40px */
+margin-top: 16px;
+}
+
+.sundayTimesIntroduction {
+  color: #FFF;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+margin-top: 32px;
+}
+
+.joannaBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px
+}
+
+.joanna {
+  border-radius: 100px;
+  width: 59px;
+  height: 59px;
+  margin-top: 16px;
+}
+
+.joannaText {
+  color: #FFF;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0px;
+}
+
+.whereChoice {
+  margin-top: 30px;
 }

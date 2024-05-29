@@ -1,21 +1,20 @@
-import React, { useState } from "react"
-import { OpenAIClient, AzureKeyCredential } from "@azure/openai"
+import React, { useState } from "react";
+import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
 export const OpenAIComponent = () => {
-  const [generatedText, setGeneratedText] = useState("")
-
-  const deploymentId = "gpt-4-with-vision";
-  const endpoint = `${process.env.REACT_APP_AZURE_OPENAI_ENDPOINT}${deploymentId}`
-  const apiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY
+  const [generatedText, setGeneratedText] = useState("");
+  const deploymentId = "GPT4o";
+  const endpoint = "https://nuk-gpt-4-with-vision.openai.azure.com/";
+  const apiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
 
   const sendChatCompletion = async (messages) => {
     try {
-      const apiVersion = "2024-02-01";
-
-    const client = new OpenAIClient(endpoint, new AzureKeyCredential(apiKey), {
-    apiVersion: apiVersion,
-  });
-      const response = await client.getChatCompletions(deploymentId, messages, { maxTokens: 4000 });
+      const client = new OpenAIClient(endpoint, new AzureKeyCredential(apiKey), {
+        apiVersion: "2023-05-15",
+      });
+      const response = await client.getChatCompletions(deploymentId, messages, {
+        maxTokens: 4000,
+      });
       const generatedText = response.choices[0].message.content;
       console.log("Generated Text:", generatedText);
       setGeneratedText(generatedText);
