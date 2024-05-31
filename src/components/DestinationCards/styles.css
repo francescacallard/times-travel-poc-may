@@ -43,7 +43,7 @@
   .destinationImageContainer img {
     display: block;
     width: 264px;
-    object-fit: fill;
+    object-fit: cover;
     height: 212px;
     border-radius: 10px 10px 0px 0px;
   }
