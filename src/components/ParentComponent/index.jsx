@@ -125,6 +125,7 @@ export const ParentComponent = () => {
       const messages = [systemPrompt, userMessage];
       const response = await axios.post('http://localhost:5000/api/chat/holiday', { messages });
       const aiResponse = response.data.aiResponse;
+      console.log('AI Response CHECKING WHERE ITS GOING WRONG:', aiResponse);
       let holidayTypes = [];
     
       try {

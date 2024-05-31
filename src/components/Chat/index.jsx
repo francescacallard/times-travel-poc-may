@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import pen from '../../assets/pen.svg';
 import './styles.css';
 import axios from 'axios';
@@ -24,6 +24,7 @@ export const Chat = ({
     const [userMessage, setUserMessage] = useState('');
     const [displayMessage, setDisplayMessage] = useState('');
     const [question, setQuestion] = useState('');
+    const inputRef = useRef(null);
 
   // const handleInputChange = (event) => {
   //   setUserMessage(event.target.value);
@@ -38,7 +39,7 @@ export const Chat = ({
   
     const systemPrompt = {
       role: 'system',
-      content: `You are a travel agent for the Sunday Times. Your job is to curate two itineraries for the user based on their preferences. On the website, the users can click through a series of options to choose the month, the country, the duration, their interests and the type of holiday they are interested in. They are now able to type in an input field if they want to refine their trip. You need to curate these itineraries based on the user input. For example if the user chose "May", "France" "Solo, Hiking, Nature and Scenery", "Rural Retreat", but then refined their trip to say they want to go to Italy instead, you need to curate the itineraries based on Italy and all the other user preferences. Please provide the response in the following JSON format using double quotes for both property names and values, with no other text at all:
+      content: `You are a travel agent for the Sunday Times. Your job is to curate two itineraries for the user based on their preferences. On the website, the users can click through a series of options to choose the month, the country, the duration, their interests (items) and the type of holiday they are interested in. They are now able to type in an input field if they want to refine their trip. You need to curate two itineraries based on the user input. For example if the user chose "May", "14 days", "France" "Solo, Hiking, Nature and Scenery", "Rural Retreat", but then refined their trip to say they want to go to Italy instead, you need to curate the itineraries based on Italy and all the other user preferences such as "May", "14 days", "Solo, Hiking, Nature and Scenery", "Rural Retreat", "Italy". The place you recommend needs to be the place in the country, such as "London" or "Lake Como" etc. The nights needs to be the duration the user has selected plus the word "nights" after. The accommodation needs to be a star rating for accommodation with the words "star accommodation" after, and the priceRange needs to be in '£' with pp after the number.  Please provide the response in the following JSON format using double quotes for both property names and values, with no other text at all:
       
         [
           {
@@ -97,6 +98,7 @@ export const Chat = ({
       const updatedRecommendationData = JSON.parse(aiResponse);
       onChatCompletion(updatedRecommendationData);
       console.log('updated', updatedRecommendationData);
+      inputRef.current.value = '';
     } catch (error) {
       console.error('Error:', error);
     }
