@@ -1,7 +1,10 @@
 import React, { useState, useRef } from 'react';
 import pen from '../../assets/pen.svg';
+import sendButton from '../../assets/sendButton.svg';
 import './styles.css';
 import axios from 'axios';
+import { IoArrowUpCircle } from "react-icons/io5";
+
 
 // I need to be able to take the itinerary it has created and turn then add the user preference to it.
 
@@ -13,6 +16,8 @@ export const Chat = ({
   selectedHolidayType,
   onChatCompletion,
   onSelect,
+  isItineraryLoading,
+  setIsItineraryLoading,
 }) => {
   //these console.logs only come through when the user has pressed select and the data has been passed through
     console.log('selectedDurationFROM CHAT', selectedDuration);
@@ -32,7 +37,7 @@ export const Chat = ({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const message = event.target.elements.userMessage.value;
+    const message = event.target.elements.userMessage?.value || '';
     setUserMessage(message);
     setDisplayMessage(message);
     setQuestion(message);
@@ -88,19 +93,27 @@ export const Chat = ({
         role: 'user',
         content: `The user has selected ${selectedHolidayType} in ${selectedCountry} for ${selectedDuration} in ${selectedMonth}. They are interested in ${
           selectedItems?.join(', ') || ''
-        }. The user has refined their trip with the following input: ${message}. Please provide the updated itineraries based on the user's preferences and the refined input.`,
+        }. The user has refined their trip with the following input: ${message || 'No additional input provided'}. Please provide the updated itineraries based on the user's preferences and the refined input.`,
       };
-
+  
       const messages = [systemPrompt, userMessageContent];
       console.log('hittttt', messages);
+  
+      if (inputRef.current) {
+        inputRef.current.value = '';
+      }
+
+      setIsItineraryLoading(true); 
+  
       const response = await axios.post('http://localhost:5000/api/chat', { messages });
       const aiResponse = response.data.aiResponse;
       const updatedRecommendationData = JSON.parse(aiResponse);
       onChatCompletion(updatedRecommendationData);
+      setIsItineraryLoading(false);
       console.log('updated', updatedRecommendationData);
-      inputRef.current.value = '';
     } catch (error) {
       console.error('Error:', error);
+      setIsItineraryLoading(false);
     }
   };
 
@@ -120,8 +133,8 @@ export const Chat = ({
             name="userMessage"
             placeholder="Refine your trip"
           />
-          <button className="userSendButton" type="submit">
-            Send
+          <button  className="userSendButton" type='submit'>
+          <IoArrowUpCircle size={48} color="#7D7D7D"/>
           </button>
         </form>
       </div>

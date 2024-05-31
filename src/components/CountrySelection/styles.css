@@ -7,27 +7,16 @@
   flex-wrap: nowrap;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   margin: 0 auto;
   width: 100%;
   color: #000000;
   margin-top: 20px;
+  margin-bottom: 8px;
 }
 
 .selectedCountryHeading {
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-}
-
-.selectedCountrySubheading {
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  margin-top: -8px;
-}
-
-.transportText {
+  color: #000;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -38,23 +27,6 @@
   flex-wrap: nowrap;
 }
 
-.transportButtons {
-  display: flex;
-  flex-direction: row;
-  margin: 8px;
-  padding: 16px;
-  font-size: 16px;
-  border-radius: 100px;
-  color: #2A6495;
-  border: solid #2A6495 1px;
-  font-weight: 500;
-  background-color: #FFFFFF;
-}
-
-.transportButtons.active {
-  background-color: #317AAB;
-  color: #FFFFFF;
-}
 
 .holidayTypesContainer {
   display: flex;
@@ -79,4 +51,7 @@
   align-items: flex-start;
   background-color: #FFFFFF;
   border-radius: 10px 10px 10px 10px;
+}
+.suggestionsContainerCountry {
+  margin-left: -16px;
 }
