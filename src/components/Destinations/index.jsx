@@ -47,10 +47,10 @@ export const Destinations = ({
           </h2>
           <div className='messageContainer'>
           {`Great! Here are some amazing destinations for a relaxing trip in ${selectedMonth}. Choose any of the below destinations that are of interest to you or generate more options if these aren’t suitable. Remember you can save your progress for later!`}
-          <div className='iconContainer'>
+          {/* <div className='iconContainer'>
           <img src={saveIcon} className='saveIcon' alt='Save Icon' />
           <img src={copy} className='copyIcon' alt='Copy Icon' />
-          </div>
+          </div> */}
         </div>
         </div>
         <div className='destinationSuggestionContainer'>

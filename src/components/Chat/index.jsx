@@ -6,8 +6,6 @@ import axios from 'axios';
 import { IoArrowUpCircle } from "react-icons/io5";
 
 
-// I need to be able to take the itinerary it has created and turn then add the user preference to it.
-
 export const Chat = ({
   selectedDuration,
   selectedCountry,

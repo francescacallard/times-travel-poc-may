@@ -1,20 +1,30 @@
 .generateContainer {
     color: #000000;
-}
-
-.generateButton {
+    margin-top: 16px;
     display: flex;
-    margin-bottom: -20px;
-}
+    align-items: center;
+    text-align: center;
+    gap:8px
+  }
 
-.saveButton {
+  
+  .generateButton {
     display: flex;
-}
-
-.saveText, .generateText {
-    margin-left: 10px;
-    color: #166EC5;
+    /* margin-bottom: -20px; */
+    background-color: #F2F2F2;
+    align-items: center;
+    text-align: center;
+    padding: 0px 8px;
+    border-radius: 10px;
+  }
+  
+  
+  .generateText {
+    color: #7D7D7D;
     font-size: 16px;
     font-style: normal;
-    font-weight: 700;
-}
+    font-weight: 400;
+    margin-left: 10px;
+    align-items: center;
+    text-align: center;
+  }

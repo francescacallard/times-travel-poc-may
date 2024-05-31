@@ -1,12 +1,12 @@
 import React from 'react';
-import tickIcon from '../../assets/tickIcon.svg';
+import timesChat from '../../assets/timesChat.svg';
 import './styles.css';
 
 export const JournalistCard = ({ name, title, image, country }) => {
   return (
     <div className='journalistCard'>
       <div className='journalistIconContainer'>
-        <img className='journalistTickIcon' src={tickIcon} alt='Tick Icon' />
+        <img className='journalistTickIcon' src={timesChat} alt='Tick Icon' />
         <h3 className='travelGuideText'>{`${country} travel guide`}</h3>
       </div>
       <div className='journalistHeadshotContainer'>
