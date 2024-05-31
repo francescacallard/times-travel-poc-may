@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useContext } from 'react';
 import './styles.css';
 import { DestinationCards } from 'components/DestinationCards';
 import { JournalistCard } from 'components/JournalistCard';
@@ -10,14 +10,20 @@ import { TimesChat } from 'components/TimesChat';
 import copy from '../../assets/copy.svg';
 import saveIcon from '../../assets/saveIcon.svg';
 import timeTick from '../../assets/timeTick.svg';
+import { useAppState } from 'useAppState';
+import AppContext from 'AppContext'
 
 export const Destinations = ({
-  selectedMonth,
+  isLoading,
   onCountrySelect,
-  onContinentSelect,
-  destinations,
-  isLoading
+  onContinentSelect
 }) => {
+
+  const {
+    destinations,
+    selectedMonth
+  } = useContext(AppContext);
+
   const [selectedCountry, setSelectedCountry] = useState('');
   const handleCountrySelect = (country) => {
     onCountrySelect(country);

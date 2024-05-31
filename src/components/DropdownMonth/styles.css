@@ -105,13 +105,14 @@
 
 .container .ant-btn .country-text + .anticon-down {
   margin-left: auto;
+  
 }
 
 
 .sundayTimesContainer {
   width: 815px;
-  margin-bottom: 60px;
-  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-top: 40px;
 }
 
 .sundayTimesTitle {

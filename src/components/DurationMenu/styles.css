@@ -7,10 +7,11 @@
     align-items: center;
     display: flex;
     height: 40px;
-    width: auto;
+    width: 390px;
     background-color: #FFFFFF;
     padding: 8px 16px;
-    border-radius: 10px;
+    border-radius: 100px;
+    border: solid 1px #DDDDDD;
   }
   
   .button {
@@ -19,7 +20,7 @@
     font-size: 16px;
     background-color: #FFFFFF;
     border: none;
-    border-radius: 10px;
+    border-radius: 100px;
     cursor: pointer;
     font-weight: 600;
     color:#5F5F5F
@@ -34,4 +35,6 @@
   .button.active {
     background-color: #317AAB;
     color: white;
+    border: solid #5F5F5F 1px;
+    padding: 8px 16px;
   }

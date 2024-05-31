@@ -15,7 +15,7 @@ export const DurationMenu = ({ onDurationChange }) => {
         className={`button ${selectedDuration === '4 - 5 days' ? 'active' : ''}`}
         onClick={() => handleDurationClick('4 - 5 days')}
       >
-        4 - 5 days
+        4 days
       </button>
       <button
         className={`button ${selectedDuration === '7 days' ? 'active' : ''}`}

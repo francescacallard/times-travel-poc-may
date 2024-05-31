@@ -17,7 +17,7 @@ export const ItineraryHeading = ({
   setIsItineraryLoading
 }) => {
   const [selectedItinerary, setSelectedItinerary] = useState(null);
-
+console.log('selectedHolidayType', selectedHolidayType)
   const handleItinerarySelect = (itinerary, recommendationData) => {
     setSelectedItinerary(itinerary, recommendationData);
   };

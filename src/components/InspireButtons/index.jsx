@@ -24,8 +24,8 @@ export const InspireButtons = ({ selectedItems, setSelectedItems, handleSubmit }
         handleSubmit();
       };
 
-      const randomItem = buttonTexts[Math.floor(Math.random() * buttonTexts.length)];
-      console.log(randomItem)
+      // const randomItem = buttonTexts[Math.floor(Math.random() * buttonTexts.length)];
+      // console.log(randomItem)
 
      
     

@@ -1,31 +1,32 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Dropdown, Button, Space, Menu } from 'antd';
 import { DownOutlined, CalendarOutlined } from '@ant-design/icons';
 import { DurationMenu } from 'components/DurationMenu';
 import InspireButtons from 'components/InspireButtons';
 import './styles.css';
 import { months, countries } from '../Destinations/constants';
-import { Budget } from 'components/Budget';
-// import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
 import { Loading } from 'components/Loading';
 import axios from 'axios';
 import pin from '../../assets/pin.svg';
 import sundayTimesLogo from '../../assets/sundayTimesLogo.svg';
 import joanna from '../../assets/joanna.png';
 import signature from '../../assets/signature.svg';
+import { useAppState } from 'useAppState';
+import AppContext from 'AppContext'
 
 export const DropdownMonth = ({
-  selectedMonth,
-  setSelectedMonth,
-  selectedBudget,
-  setSelectedBudget,
-  selectedDuration,
-  setSelectedDuration,
-  selectedItems,
-  setSelectedItems,
-  setAiResponse,
-  setShowDestinations,
 }) => {
+  const {
+    selectedMonth,
+    setSelectedMonth,
+    selectedDuration,
+    setSelectedDuration,
+    selectedItems,
+    setSelectedItems,
+    setAiResponse,
+    setShowDestinations,
+  } = useContext(AppContext);
+  
   const [isLoading, setIsLoading] = useState(false);
   const [selectedDestination, setSelectedDestination] = useState('');
 
@@ -46,7 +47,7 @@ export const DropdownMonth = ({
 
     const userMessage = {
       role: 'user',
-      content: `The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}. They are interested in the following: ${selectedItems.join(', ')}. Their budget is ${selectedBudget}. You have to give 5 examples of country and continent. You do not need to write anything else other than "1: Country, Continent 2: Country, Continent 3: Country, Continent 4: Country, Continent 5: Country, Continent"`,
+      content: `The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}. They are interested in the following: ${selectedItems.join(', ')}. You have to give 5 examples of country and continent. You do not need to write anything else other than "1: Country, Continent 2: Country, Continent 3: Country, Continent 4: Country, Continent 5: Country, Continent"`,
     };
     try {
     const messages = [systemPrompt, userMessage];
@@ -119,7 +120,7 @@ export const DropdownMonth = ({
         </div>
         </div>
         <InspireButtons selectedItems={selectedItems} setSelectedItems={setSelectedItems} handleSubmit={handleSubmit} />
-      <Budget selectedMonth={selectedMonth} selectedBudget={selectedBudget} setSelectedBudget={setSelectedBudget} />
+      {/* <Budget selectedMonth={selectedMonth} selectedBudget={selectedBudget} setSelectedBudget={setSelectedBudget} /> */}
       {isLoading ? <Loading /> : null}
     </>
   );

@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useAppState } from 'useAppState';
+import AppContext from 'AppContext'
 import './styles.css';
 import { DropdownMonth } from 'components/DropdownMonth';
 import { Destinations } from 'components/Destinations';
@@ -13,24 +15,45 @@ import { TimesChat } from 'components/TimesChat';
 import { Chat } from 'components/Chat';
 
 export const ParentComponent = () => {
-  const [selectedMonth, setSelectedMonth] = useState('May');
-  const [selectedBudget, setSelectedBudget] = useState('');
-  const [selectedDuration, setSelectedDuration] = useState('');
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [aiResponse, setAiResponse] = useState('');
-  const [showDestinations, setShowDestinations] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState('');
-  const [selectedContinent, setSelectedContinent] = useState('');
-  const [destinations, setDestinations] = useState([]);
-  const [holidayTypes, setHolidayTypes] = useState([]);
-  const [selectedHolidayType, setSelectedHolidayType] = useState(null);
-  const [recommendationData, setRecommendationData] = useState([]);
-  const [selectedItinerary, setSelectedItinerary] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isHolidayTypesLoading, setIsHolidayTypesLoading] = useState(false);
-  const [isItineraryLoading, setIsItineraryLoading] = useState(false);
+  const {
+    selectedMonth,
+    setSelectedMonth,
+    selectedDuration,
+    setSelectedDuration,
+    selectedItems,
+    setSelectedItems,
+    aiResponse,
+    setAiResponse,
+    showDestinations,
+    setShowDestinations,
+    selectedCountry,
+    setSelectedCountry,
+    selectedContinent,
+    setSelectedContinent,
+    destinations,
+    setDestinations,
+    holidayTypes,
+    setHolidayTypes,
+    selectedHolidayType,
+    setSelectedHolidayType,
+    recommendationData,
+    setRecommendationData,
+    selectedItinerary,
+    setSelectedItinerary,
+    isLoading,
+    setIsLoading,
+    isHolidayTypesLoading,
+    setIsHolidayTypesLoading,
+    isItineraryLoading,
+    setIsItineraryLoading,
+    showChat,
+    setShowChat,
+  } = useAppState();
+
   const countryHeadingRef = useRef(null);
 
+  console.log("app context", AppContext)
+  console.log("use app state", useAppState)
   useEffect(() => {
     // Parse the aiResponse and update the destinations array
     if (aiResponse) {
@@ -72,7 +95,7 @@ export const ParentComponent = () => {
 
     const userMessage = {
       role: 'user',
-      content: `The user has selected ${selectedCountry} as their destination in the month of ${selectedMonth} with a budget of ${selectedBudget} and they are interested in the following: ${selectedItems.join(', ')}. Please suggest 5 different types of holidays that would be suitable for this country, along with a brief description of each holiday type in 15 words. Please provide the response in the following JSON format:
+      content: `The user has selected ${selectedCountry} as their destination in the month of ${selectedMonth} and they are interested in the following: ${selectedItems.join(', ')}. Please suggest 5 different types of holidays that would be suitable for this country, along with a brief description of each holiday type in 15 words. Please provide the response in the following JSON format:
 
     [
       {
@@ -100,9 +123,18 @@ export const ParentComponent = () => {
 
     try {
       const messages = [systemPrompt, userMessage];
-      const response = await axios.post('http://localhost:5000/api/chat', { messages });
+      const response = await axios.post('http://localhost:5000/api/chat/holiday', { messages });
       const aiResponse = response.data.aiResponse;
-      const holidayTypes = JSON.parse(aiResponse);
+      let holidayTypes = [];
+    
+      try {
+        holidayTypes = JSON.parse(aiResponse);
+      } catch (parseError) {
+        console.error('Error parsing AI response:', parseError);
+       //here i am making the holiday Types empty but should be error message
+        holidayTypes = []; //set a default empty array or handle the error as needed
+      }
+    
       const formattedHolidayTypes = holidayTypes.map((holidayType, index) => ({
         id: index + 1,
         holidayType: holidayType.holidayType,
@@ -115,37 +147,65 @@ export const ParentComponent = () => {
     }
   };
 
-  const handleHolidaySelection = (holidayType, recommendationData) => {
+  const handleHolidaySelection = (holidayType, country, selectedDuration, selectedMonth, selectedItems) => {
     setSelectedHolidayType(holidayType);
-    setRecommendationData(recommendationData);
+    setSelectedCountry(country);
+    setSelectedDuration(selectedDuration);
+    setSelectedMonth(selectedMonth);
+    setSelectedItems(selectedItems);
+    setShowChat(true);
   };
 
   const handleItinerarySelect = (itinerary) => {
     setSelectedItinerary(itinerary);
   };
 
+  const handleChatCompletion = (updatedRecommendationData) => {
+    setRecommendationData(updatedRecommendationData); // Update the recommendation data
+    // Trigger the display of the itinerary heading or perform any other necessary actions
+  };
+
   return (
+    <AppContext.Provider value={{
+      selectedMonth,
+      setSelectedMonth,
+      selectedDuration,
+      setSelectedDuration,
+      selectedItems,
+      setSelectedItems,
+      aiResponse,
+      setAiResponse,
+      showDestinations,
+      setShowDestinations,
+      selectedCountry,
+      setSelectedCountry,
+      selectedContinent,
+      setSelectedContinent,
+      destinations,
+      setDestinations,
+      holidayTypes,
+      setHolidayTypes,
+      selectedHolidayType,
+      setSelectedHolidayType,
+      recommendationData,
+      setRecommendationData,
+      selectedItinerary,
+      setSelectedItinerary,
+      isLoading,
+      setIsLoading,
+      isHolidayTypesLoading,
+      setIsHolidayTypesLoading,
+      isItineraryLoading,
+      setIsItineraryLoading,
+      showChat,
+      setShowChat,
+    }}>
     <div className='wholePageContainer'>
       <DropdownMonth
-        selectedMonth={selectedMonth}
-        setSelectedMonth={setSelectedMonth}
-        selectedBudget={selectedBudget}
-        setSelectedBudget={setSelectedBudget}
-        selectedDuration={selectedDuration}
-        setSelectedDuration={setSelectedDuration}
-        selectedItems={selectedItems}
-        setSelectedItems={setSelectedItems}
-        aiResponse={aiResponse}
-        setAiResponse={setAiResponse}
         setShowDestinations={setShowDestinations}
       />
       {showDestinations && (
         <Destinations
-          selectedMonth={selectedMonth}
-          selectedBudget={selectedBudget}
-          selectedDuration={selectedDuration}
-          selectedItems={selectedItems}
-          aiResponse={aiResponse}
           onCountrySelect={handleCountrySelect}
           onContinentSelect={handleContinentSelect}
           destinations={destinations}
@@ -158,7 +218,7 @@ export const ParentComponent = () => {
           selectedMonth={selectedMonth}
           selectedDuration={selectedDuration}
           selectedItems={selectedItems}
-          selectedBudget={selectedBudget}
+          // selectedBudget={selectedBudget}
           onHolidayTypesRequest={handleHolidayTypesAiRequest}
         />
         {isLoading && <Loading />}
@@ -174,7 +234,6 @@ export const ParentComponent = () => {
               holidayType={holidayType.holidayType}
               description={holidayType.description}
               onSelect={handleHolidaySelection}
-              selectedBudget={selectedBudget}
               selectedDuration={selectedDuration}
               selectedItems={selectedItems}
               selectedMonth={selectedMonth}
@@ -198,12 +257,20 @@ export const ParentComponent = () => {
           ))}
         </div>
         <div className='chatContainerInput'>
-        <Chat />
+          {showChat && (
+         <Chat
+         selectedDuration={selectedDuration}
+         selectedCountry={selectedCountry}
+         selectedItems={selectedItems}
+         selectedMonth={selectedMonth}
+         selectedHolidayType={selectedHolidayType}
+         onChatCompletion={handleChatCompletion}
+       />
+      )}
         </div>
         </div>
     
       )}
-      {isHolidayTypesLoading && <Loading />}
       {selectedHolidayType && (
         <ItineraryHeading
           selectedHolidayType={selectedHolidayType}
@@ -216,5 +283,6 @@ export const ParentComponent = () => {
       )}
       {isItineraryLoading && <Loading />}
     </div>
+    </AppContext.Provider>
   );
 };

@@ -22,7 +22,7 @@ export const ItineraryRecommendations = ({
   const handleItinerarySelect = async () => {
     const systemPrompt = {
       role: 'system',
-      content: `You are a travel agent that takes information based on the user's choices. You need to give to summarise the itinerary a user has chosen based on the user's country, place, duration, budget, interests, holiday type, and month. Please provide the response in the following JSON format using double quotes for both property names and values, with no other text at all:
+      content: `You are a travel agent that takes information based on the user's choices. You need to give to summarise the itinerary a user has chosen based on the user's country, place, duration, interests, holiday type, and month. Please provide the response in the following JSON format using double quotes for both property names and values, with no other text at all:
   
       [
         {
