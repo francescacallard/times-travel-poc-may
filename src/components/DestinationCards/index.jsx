@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles.css';
-import image from '../../assets/italy.png';
 
-export const DestinationCards = ({ continent, country, onSelect }) => {
+export const DestinationCards = ({ continent, country, onSelect, image }) => {
+  const [isClicked, setIsClicked] = useState(false);
+
   const handleSelect = () => {
     onSelect(country);
+    setIsClicked(true);
   };
 
   return (
@@ -14,7 +16,10 @@ export const DestinationCards = ({ continent, country, onSelect }) => {
       <div className='destinationImageContainer'>
         <img src={image} alt={country} />
       </div>
-      <button className='destinationSelectButton' onClick={handleSelect}>
+      <button
+        className={`destinationSelectButton ${isClicked ? 'clicked' : ''}`}
+        onClick={handleSelect}
+      >
         Select
       </button>
     </div>

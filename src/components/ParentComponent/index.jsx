@@ -88,27 +88,27 @@ export const ParentComponent = () => {
     setIsLoading(true);
     const systemPrompt = {
       role: 'system',
-      content: `You are a travel agent that takes information based on the users choices. You need to suggest 5 different types of holidays that would be suitable for ${country}, along with a brief description of each holiday type in 15 words. Please provide the response in the following JSON format with no other text at all:
+      content: `You are a travel agent that takes information based on the users choices. You need to suggest 5 different types of holidays that would be suitable for ${country}, along with a brief description of each holiday type in 15 words. The holiday type has to be the hardcoded value in the prompt, but you need to write the description. Please provide the response in the following JSON format with no other text at all:
 
       [
         {
-          "holidayType": "Holiday Type 1",
+          "holidayType": "Beach break",
           "description": "Description of Holiday Type 1"
         },
         {
-          "holidayType": "Holiday Type 2",
+          "holidayType": "Yoga retreat",
           "description": "Description of Holiday Type 2"
         },
         {
-          "holidayType": "Holiday Type 3",
+          "holidayType": "Spa resort",
           "description": "Description of Holiday Type 3"
         },
         {
-          "holidayType": "Holiday Type 4",
+          "holidayType": "Cultural immersion",
           "description": "Description of Holiday Type 4"
         },
         {
-          "holidayType": "Holiday Type 5",
+          "holidayType": "Foodie tour",
           "description": "Description of Holiday Type 5"
         }
       ]`,
@@ -235,6 +235,8 @@ export const ParentComponent = () => {
               selectedItems={selectedItems}
               selectedMonth={selectedMonth}
               setIsHolidayTypesLoading={setIsHolidayTypesLoading}
+              selectedHolidayType={selectedHolidayType}
+              setSelectedHolidayType={setSelectedHolidayType}
             />
           ))}
         </div>

@@ -71,3 +71,9 @@
     border-radius: 10px 10px 0px 0px;
   } */
 
+  .destinationSelectButton.clicked {
+    border-radius: 100px;
+border: 1px solid var(--STROKE, #E7E7E7);
+background: var(--Buttons, #317AAB);
+color: #FFFFFF;
+  }

@@ -9,7 +9,7 @@
   height: 1340px;
   border-radius: 10.775px;
   min-height: 1340px;
-  /* border: solid red 1px; */
+  border: 1px solid var(--STROKE, #E7E7E7);
 }
 
 .itineraryRecommendationCountry, .itineraryRecommendationPlace, .itineraryRecommendationInformation {

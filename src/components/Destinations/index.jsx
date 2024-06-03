@@ -2,25 +2,22 @@ import React, { useState, useContext } from 'react';
 import './styles.css';
 import { DestinationCards } from 'components/DestinationCards';
 import { JournalistCard } from 'components/JournalistCard';
-import timesFavicon from '../../assets/timesFavicon.svg';
 import { journalists } from './constants';
 import { GenerateButton } from 'components/GenerateButton';
 import { Loading } from 'components/Loading'; 
 import { TimesChat } from 'components/TimesChat';
-import copy from '../../assets/copy.svg';
-import saveIcon from '../../assets/saveIcon.svg';
 import timeTick from '../../assets/timeTick.svg';
-import { useAppState } from 'useAppState';
 import AppContext from 'AppContext'
+import { destinationCardImages } from '../DestinationCards/constants';
+import { destinations } from './constants';
 
 export const Destinations = ({
   isLoading,
   onCountrySelect,
-  onContinentSelect
+  onContinentSelect,
 }) => {
 
   const {
-    destinations,
     selectedMonth
   } = useContext(AppContext);
 
@@ -54,16 +51,17 @@ export const Destinations = ({
         </div>
         </div>
         <div className='destinationSuggestionContainer'>
-          {destinations.map((destination, index) => (
-            <DestinationCards
-              key={index}
-              continent={destination.continent}
-              country={destination.country}
-              onSelect={handleCountrySelect}
-              onContinentSelect={handleContinentSelect}
-            />
-          ))}
-        </div>
+        {destinations.map((destination, index) => (
+          <DestinationCards
+            key={index}
+            continent={destination.continent}
+            country={destination.country}
+            onSelect={handleCountrySelect}
+            onContinentSelect={handleContinentSelect}
+            image={destinationCardImages[index]?.src || ''}
+          />
+        ))}
+      </div>
       </div>
       <div className='suggestionMessage'>
 

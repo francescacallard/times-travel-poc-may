@@ -29,7 +29,6 @@ const AiChat = ({ selectedMonth, selectedDuration }) => {
       const aiResponse = result.choices[0].message.content;
       setAiResponse(aiResponse);
 
-      // Extract country, month, and activity from the AI response
       const countryRegex = /\b(France|Germany|Spain|Italy|Greece|Portugal|United Kingdom|Ireland|Netherlands|Belgium|Switzerland|Austria|Denmark|Sweden|Norway|Finland|Poland|Czech Republic|Hungary|Croatia|Romania|Bulgaria|Turkey|Egypt|Morocco|South Africa|United States|Canada|Mexico|Brazil|Argentina|Chile|Peru|Colombia|Australia|New Zealand|Japan|China|India|Thailand|Indonesia|Malaysia|Singapore|Philippines|Vietnam)\b/gi;
       const monthRegex = /\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/gi;
       const activityRegex = /\b(hiking|swimming|fishing|sailing|surfing|skiing|snowboarding|camping|sightseeing|shopping|dining|nightlife|museums|art galleries|theater|concerts|festivals|sports|adventure|relaxation|spa|wellness|beach|mountains|lakes|rivers|forests|deserts|islands|cities|towns|villages|countryside|wildlife|nature|history|culture|food|wine|beer|coffee|tea|chocolate|cheese|bread|pastries|ice cream|gelato|pizza|pasta|seafood|meat|vegetarian|vegan)\b/gi;

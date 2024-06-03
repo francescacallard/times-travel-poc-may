@@ -10,7 +10,7 @@ export const JournalistCard = ({ name, title, image, country }) => {
         <h3 className='travelGuideText'>{`${country} travel guide`}</h3>
       </div>
       <div className='journalistHeadshotContainer'>
-        <img src={image} alt={name} style={{ width: '44px', height: '44px' }} />
+        <img src={image} alt={name} style={{ width: '44px', height: '44px', marginLeft: '8px' }} />
         <h3 className='journalistName'>
           {name}, {title}
         </h3>
