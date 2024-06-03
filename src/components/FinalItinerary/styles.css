@@ -6,6 +6,7 @@
   background-color: #FFFFFF;
   border-radius: 10px;
   padding: 0px 16px 16px;
+  margin-top: 8px;
   }
 
 .finalItineraryHeading {
@@ -38,3 +39,13 @@
   font-weight: 400;
   }
 
+
+  .whiteBox {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px; 
+    background-color: #FFFFFF;
+    z-index: 998;
+  }

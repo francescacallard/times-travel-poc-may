@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import './styles.css';
 import image from '../../assets/rural.png';
+import greeceOne from '../../assets/greeceOne.jpeg';
+import greeceTwo from '../../assets/greeceTwo.jpeg';
+import greeceThree from '../../assets/greeceThree.jpeg';
+import greeceFour from '../../assets/greeceFour.jpeg';
+import greeceFive from '../../assets/greeceFive.jpeg';
+
+const images = [greeceOne, greeceTwo, greeceThree, greeceFour, greeceFive];
 
 export const HolidayTypes = ({
   country,
@@ -12,6 +19,7 @@ export const HolidayTypes = ({
   selectedMonth,
   selectedHolidayType,
   setSelectedHolidayType,
+  index
 }) => {
   const handleSelect = () => {
     onSelect(holidayType, country, selectedDuration, selectedMonth, selectedItems);
@@ -22,7 +30,7 @@ export const HolidayTypes = ({
 
   return (
     <div className='textImageContainerCountry'>
-      <img src={image} alt={holidayType} />
+      <img className="greeceImages" src={images[index]} alt={holidayType} />
       <div className='holidayTypesTextContainer'>
         <h3 className='countryHeading'>{country}</h3>
         <h2 className='holidayTypesHeading'>{holidayType}</h2>

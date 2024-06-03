@@ -14,7 +14,6 @@ export const Chat = ({
   selectedHolidayType,
   onChatCompletion,
   onSelect,
-  isItineraryLoading,
   setIsItineraryLoading,
 }) => {
   //these console.logs only come through when the user has pressed select and the data has been passed through
@@ -389,6 +388,7 @@ export const Chat = ({
 
   return (
     <>
+    
       <div className="userChatContainer">
         <div className="userMessageShowContainer">
           <p>{displayMessage}</p>
@@ -408,6 +408,7 @@ export const Chat = ({
           </button>
         </form>
       </div>
+      <div className="whiteBox"></div>
     </>
   );
 };

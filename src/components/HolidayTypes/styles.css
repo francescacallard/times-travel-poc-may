@@ -15,6 +15,8 @@
   padding-left: 16px;
   padding-bottom: 16px;
   padding-right: 16px;
+  border: 1px solid #E0E0E0;
+  border-radius: 0px 0px 10px 10px;
 }
 
 .countryHeading {
@@ -66,3 +68,10 @@
   background: var(--Buttons, #317AAB);
   color: #FFFFFF
 }
+
+.greeceImages {
+  width: 264px;
+  height: 150px;
+  border-radius: 10px 10px 0px 0px;
+}
+
