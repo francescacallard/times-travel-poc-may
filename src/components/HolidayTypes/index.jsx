@@ -32,7 +32,7 @@ export const HolidayTypes = ({
     <div className='textImageContainerCountry'>
       <img className="greeceImages" src={images[index]} alt={holidayType} />
       <div className='holidayTypesTextContainer'>
-        <h3 className='countryHeading'>{country}</h3>
+        <h3 className='countryHeading'>{country.toUpperCase()}</h3>
         <h2 className='holidayTypesHeading'>{holidayType}</h2>
         <p className='holidayTypesDescription'>{description}</p>
         <button

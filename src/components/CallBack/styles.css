@@ -9,6 +9,7 @@
   flex-shrink: 0;
   background-color: #FFFFFF;
   border-radius: 0px 0px 10px 10px  ;
+
 }
 
 .callBackHeading {
@@ -29,10 +30,9 @@
 
 .callBackButton {
   border-radius: 100px;
-border: 1px solid var(--Time-Travel-Link, #2A6495);
-background: #FFF;
+  border: 1px solid #E7E7E7;background: #FFF;
 padding: 8px 16px;
-color: var(--Time-Travel-Link, #2A6495);
+color: #000000;
 text-align: center;
 font-size: 16px;
 font-style: normal;
@@ -41,6 +41,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 gap: 8px;
+width:315px;
 }
 
 .callBackButtonContainer {
@@ -48,4 +49,11 @@ gap: 8px;
   justify-content: center;
   align-items: center;
   gap: 8px;
+}
+
+.callBackButton.clicked {
+  border-radius: 100px;
+  border: 1px solid var(--STROKE, #E7E7E7);
+  background: var(--Buttons, #317AAB);
+  color: #FFFFFF;
 }

@@ -5,11 +5,11 @@ import louise from '../../assets/louise.png';
 import lake from '../../assets/lake.png';
 
 export const destinations = [
-  { continent: 'Europe', country: 'Italy', image: italy },
-  { continent: 'Europe', country: 'Greece', image: greece },
-  { continent: 'Europe', country: 'France', image: lake },
-  { continent: 'South America', country: 'Brazil', image: brazil },
-  { continent: 'Africa', country: 'South Africa', image: greece },
+  { continent: 'EUROPE', country: 'Italy', image: italy },
+  { continent: 'EUROPE', country: 'Greece', image: greece },
+  { continent: 'EUROPE', country: 'France', image: lake },
+  { continent: 'SOUTH AMERICA', country: 'Brazil', image: brazil },
+  { continent: 'AFRICA', country: 'South Africa', image: greece },
 ];
 
 export const journalists = [

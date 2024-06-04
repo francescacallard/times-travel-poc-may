@@ -1,5 +1,11 @@
+ @font-face {
+  font-family: "timesModern";
+  src: url('./fonts/timesModern.otf') format('opentype');
+ }
+ 
  .App {
  background-color: #FFFFFF;
+ /* font-family: "Times Modern" ; */
 }
 /*
 .App-logo {

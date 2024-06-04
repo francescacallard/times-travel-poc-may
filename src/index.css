@@ -12,12 +12,20 @@ code {
     monospace;
 } */
 
-@import url(https://db.onlinewebfonts.com/c/88105ce90edee73aa757acfd167e4b90?family=Times+Modern+Regular);
+/* @import url(https://db.onlinewebfonts.com/c/88105ce90edee73aa757acfd167e4b90?family=Times+Modern+Regular); */
 
-/* * {
-  font-family: "Times Modern Regular";
-} */
+
 
 body {
   background-color: #F7F7F8;
 }
+
+
+@font-face {
+  font-family: "timesModern";
+  src: url('./fonts/timesModern.otf') format('opentype');
+ }
+
+ /* * {
+  font-family: "timesModern";
+} */

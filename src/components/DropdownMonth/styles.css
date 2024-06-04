@@ -1,7 +1,6 @@
-* {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    
-}
+/* * {
+    font-family: "Times Modern"
+} */
 
 .container {
   display: flex;
@@ -48,10 +47,13 @@
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
   .container .ant-dropdown-trigger {
     margin-right: 16px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
   }
   
   .container .ant-btn {
@@ -62,11 +64,13 @@
     justify-content: center;
     height: 56px;
     width: 200px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     /* justify-content: flex-start; */
   }
 
   .container .ant-btn .ant-space {
     justify-content: flex-start;
+    
   }
 
   .container .ant-btn .month-text {
@@ -74,15 +78,20 @@
     margin-left: 0px;
     color: #5F5F5F;
     font-weight: 500;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
   }
 
   .container .ant-dropdown-menu-item:hover {
-    background-color: red;
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
   }
 
   .container .ant-btn .month-text, 
   .container .ant-btn .month-text:hover {
     color: #5F5F5F;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
 .container .ant-btn .anticon-calendar,
@@ -90,6 +99,8 @@
 .container .ant-btn .anticon-down:hover,
 .container .ant-btn .anticon-down {
     color: #2A6495;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
 
 .pin {
@@ -101,10 +112,13 @@
   margin-left: 0px;
   color: #5F5F5F;
   font-weight: 500;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .container .ant-btn .country-text + .anticon-down {
   margin-left: auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
   
 }
 
@@ -122,6 +136,7 @@ font-style: normal;
 font-weight: 400;
 line-height: 100%; /* 40px */
 margin-top: 16px;
+font-family: "timesModern";
 }
 
 .sundayTimesIntroduction {
@@ -130,12 +145,14 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 margin-top: 32px;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .joannaBox {
   display: flex;
   align-items: flex-start;
-  gap: 8px
+  gap: 8px;
+  font-family: "timesModern";
 }
 
 .joanna {
@@ -151,6 +168,7 @@ margin-top: 32px;
   font-style: normal;
   font-weight: 400;
   margin: 0px;
+  font-family: "timesModern";
 }
 
 .whereChoice {

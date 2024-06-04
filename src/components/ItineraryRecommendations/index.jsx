@@ -4,7 +4,11 @@ import lake from '../../assets/lake.png';
 import night from '../../assets/night.svg';
 import star from '../../assets/star.svg';
 import price from '../../assets/price.svg';
+import greeceTrip from '../../assets/greeceTrip.jpeg';
+import greeceTripTwo from '../../assets/greeceTripTwo.jpeg';
 import axios from 'axios';
+
+const images = [greeceTrip, greeceTripTwo];
 
 export const ItineraryRecommendations = ({
   country,
@@ -14,12 +18,15 @@ export const ItineraryRecommendations = ({
   priceRange,
   itinerary,
   onSelect,
-  setIsItineraryLoading
+  setIsItineraryLoading,
+  index
 }) => {
   const [recommendationData, setRecommendationData] = useState([]);
+  const [isClicked, setIsClicked] = useState(false);
 
 
   const handleItinerarySelect = async () => {
+    setIsClicked(true);
     const systemPrompt = {
       role: 'system',
       content: `You are a travel agent that takes information based on the user's choices. You need to give to summarise the itinerary a user has chosen based on the user's country, place, duration, interests, holiday type, and month. Please provide the response in the following JSON format using double quotes for both property names and values, with no other text at all:
@@ -58,7 +65,7 @@ export const ItineraryRecommendations = ({
 
   return (
     <div className='itineraryRecommendationContainer'>
-      <img src={lake} alt='Lake' />
+      <img className='itineraryImages' src={images[index]} alt='Lake' />
       <h2 className='itineraryRecommendationCountry'>{country}</h2>
       <h2 className='itineraryRecommendationPlace'>{place}</h2>
       <div className='itineraryRecommendationInformation'>
@@ -85,7 +92,8 @@ export const ItineraryRecommendations = ({
         </div>
       ))}
       </div>
-      <button className='itinerarySelectButton' onClick={handleItinerarySelect}>Select</button>
+      <button         className={`itinerarySelectButton ${isClicked ? 'clicked' : ''}`}
+ onClick={handleItinerarySelect}>Select</button>
        </div>
        
   );

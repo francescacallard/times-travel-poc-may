@@ -354,7 +354,7 @@ export const Chat = ({
           }
         ]
         
-        Please provide the itinerary for each place based on the number of days the user has selected. If the user has selected 14 days, the itinerary needs to be made for every other day.`,
+        Please provide the itinerary for each place based on the number of days the user has selected. If the user has selected "14 days", the itinerary needs to be made for every other day, for example it would be "Day 1", "Day 3", "Day 5", "Day7", "Day 9", "Day 11", "Day 13".`,
     };
   
     try {

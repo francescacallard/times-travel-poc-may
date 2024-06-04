@@ -88,7 +88,7 @@ export const ParentComponent = () => {
     setIsLoading(true);
     const systemPrompt = {
       role: 'system',
-      content: `You are a travel agent that takes information based on the users choices. You need to suggest 5 different types of holidays that would be suitable for ${country}, along with a brief description of each holiday type in 15 words. The description has to come from these three articles and can be no longer than 20 words: "Article one:
+      content: `You are a travel agent that takes information based on the users choices. You need to suggest 5 different types of holidays that would be suitable for ${country}, along with a brief description of each holiday type in 15 words. The description has to come from these three articles and has to be between 10 and 15 words long: "Article one:
 
       GREECE
       

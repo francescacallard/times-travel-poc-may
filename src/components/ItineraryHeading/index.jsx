@@ -52,6 +52,7 @@ console.log('selectedHolidayType', selectedHolidayType)
               itinerary={recommendation.itinerary}
               onSelect={handleItinerarySelect}
               setIsItineraryLoading={setIsItineraryLoading}
+              index={index}
             />
           ))}
       
