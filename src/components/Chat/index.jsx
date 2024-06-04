@@ -38,8 +38,6 @@ export const Chat = ({
     setUserMessage(message);
     setDisplayMessage(message);
     setQuestion(message);
-
-    //here is 3 articles you have to search for the user "is it three articles I put in or saing look here at these three articles"
   
     const systemPrompt = {
       role: 'system',
@@ -402,6 +400,7 @@ export const Chat = ({
             type="text"
             name="userMessage"
             placeholder="Refine your trip"
+            ref={inputRef}
           />
           <button  className="userSendButton" type='submit'>
           <IoArrowUpCircle size={48} color="#7D7D7D"/>
