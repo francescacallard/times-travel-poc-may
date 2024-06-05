@@ -88,7 +88,7 @@ export const ParentComponent = () => {
     setIsLoading(true);
     const systemPrompt = {
       role: 'system',
-      content: `You are a travel agent that takes information based on the users choices. You need to suggest 5 different types of holidays that would be suitable for ${country}, along with a brief description of each holiday type in 15 words. The description has to come from these three articles and has to be between 10 and 15 words long: "Article one:
+      content: `You are a travel agent that takes information based on the users choices. You need to suggest 5 different types of holidays that would be suitable for ${country}, along with a brief description of each holiday type in 15 words. The first holiday type tile has to be beach break, but the other four need to be generated from the three articles I am going to provide. The description has to come from these three articles and has to be between 10 and 15 words long: "Article one:
 
       GREECE
       
@@ -366,19 +366,19 @@ export const ParentComponent = () => {
           "description": "Description of Holiday Type 1"
         },
         {
-          "holidayType": "Yoga retreat",
+          "holidayType": "holiday type 2",
           "description": "Description of Holiday Type 2"
         },
         {
-          "holidayType": "Spa resort",
+          "holidayType": "holiday type 3",
           "description": "Description of Holiday Type 3"
         },
         {
-          "holidayType": "Cultural immersion",
+          "holidayType": "holiday type 4",
           "description": "Description of Holiday Type 4"
         },
         {
-          "holidayType": "Foodie tour",
+          "holidayType": "holiday type 5",
           "description": "Description of Holiday Type 5"
         }
       ]`,
