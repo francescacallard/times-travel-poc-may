@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import pen from '../../assets/pen.svg';
-import sendButton from '../../assets/sendButton.svg';
+import { SetPrompts } from 'components/SetPrompts';
 import './styles.css';
 import axios from 'axios';
 import { IoArrowUpCircle } from "react-icons/io5";
@@ -16,12 +16,6 @@ export const Chat = ({
   onSelect,
   setIsItineraryLoading,
 }) => {
-  //these console.logs only come through when the user has pressed select and the data has been passed through
-    console.log('selectedDurationFROM CHAT', selectedDuration);
-    console.log('selectedItemsFROM CHAT', selectedItems);
-    console.log('selectedMonthFROM CHAT', selectedMonth);
-    console.log('selectedHolidayTypeFROM CHAT', selectedHolidayType);
-    console.log('onSelectFROM CHAT', onSelect);
 
     const [userMessage, setUserMessage] = useState('');
     const [displayMessage, setDisplayMessage] = useState('');
@@ -393,6 +387,7 @@ export const Chat = ({
           <img className="penIcon" src={pen} alt="Pen Icon" />
         </div>
       </div>
+      <SetPrompts />
       <div className="userInputContainer">
         <form className="userChatForm" onSubmit={handleSubmit}>
           <input
