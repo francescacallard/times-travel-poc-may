@@ -7,11 +7,10 @@ import { Destinations } from 'components/Destinations';
 import { CountrySelection } from 'components/CountrySelection';
 import { HolidayTypes } from 'components/HolidayTypes';
 import { ItineraryHeading } from 'components/ItineraryHeading';
-import { JournalistCard } from 'components/JournalistCard';
+import { HolidayTypesJournalist} from 'components/HolidayTypesJournalist';
 import { journalists } from 'components/Destinations/constants';  
 import { Loading } from 'components/Loading'; 
 import axios from 'axios';
-import { TimesChat } from 'components/TimesChat';
 import { Chat } from 'components/Chat';
 
 export const ParentComponent = () => {
@@ -93,6 +92,8 @@ export const ParentComponent = () => {
       GREECE
       
       Extend your summer: ten great Greek islands
+
+      Rachel Howard: Friday September 23 2022, 5.00pm, The Times
       
       ## Don’t put the swim suit away just yet. Autumn is a great time to experience the country’s beaches, villages and tavernas
       
@@ -259,6 +260,8 @@ export const ParentComponent = () => {
       GREECE
       
       # An underrated Greek island holiday for just over £400 — here’s how
+
+      Katie Bowman: Sunday April 21 2024, 12.01am, The Sunday Times
       
       ## Corfu is beginning to warm up for the summer and this apartment, on the lesser-visited west coast, has coastal views and a pool
       
@@ -317,6 +320,8 @@ export const ParentComponent = () => {
       GREECE
       
       # A week in a lesser-trodden Greek island for £435 — here’s how
+
+      Lucy Thackray: Sunday April 07 2024, 12.01am, The Sunday Times
       
       ## Kos is warming up for peak season, but right now holidays are more affordable. This deal will deliver beach time, Greek towns and a side order of ancient history
       
@@ -358,28 +363,43 @@ export const ParentComponent = () => {
       
       **Details**
       
-      Seven nights’ B&B from £895pp, including flights and transfers, departing on April 23 (sovereign.com)" The holiday type has to be the hardcoded value in the prompt, but you need to write the description. Please provide the response in the following JSON format with no other text at all:
+      Seven nights’ B&B from £895pp, including flights and transfers, departing on April 23 (sovereign.com)" The holiday type has to be the hardcoded value in the prompt, but you need to write the description. You also need to give the name of the journalist (author of article) and article title where the information has come from. It needs to be only be the author name in the journalist section and article title with no other text at all. Please provide the response in the following JSON format with no other text at all:
 
       [
         {
           "holidayType": "Beach break",
-          "description": "Description of Holiday Type 1"
+          "description": "Description of Holiday Type 1",
+          "journalist": "Name of Author",
+          "articleTitle": "Title of Article",
+          "country": "Country Name"
         },
         {
           "holidayType": "holiday type 2",
           "description": "Description of Holiday Type 2"
+          "journalist": "Name of Author",
+          "articleTitle": "Title of Article",
+          "country": "Country Name"
         },
         {
           "holidayType": "holiday type 3",
-          "description": "Description of Holiday Type 3"
+          "description": "Description of Holiday Type 3",
+          "journalist": "Name of Author",
+          "articleTitle": "Title of Article",
+          "country": "Country Name"
         },
         {
           "holidayType": "holiday type 4",
-          "description": "Description of Holiday Type 4"
+          "description": "Description of Holiday Type 4",
+          "journalist": "Name of Author",
+          "articleTitle": "Title of Article",
+          "country": "Country Name"
         },
         {
           "holidayType": "holiday type 5",
-          "description": "Description of Holiday Type 5"
+          "description": "Description of Holiday Type 5",
+          "journalist": "Name of Author",
+          "articleTitle": "Title of Article",
+          "country": "Country Name"
         }
       ]`,
     };
@@ -408,6 +428,9 @@ export const ParentComponent = () => {
         id: index + 1,
         holidayType: holidayType.holidayType,
         description: holidayType.description,
+        journalist: holidayType.journalist,
+        articleTitle: holidayType.articleTitle,
+        country: holidayType.country,
       }));
       setHolidayTypes(formattedHolidayTypes);
       setIsLoading(false);
@@ -495,6 +518,7 @@ export const ParentComponent = () => {
         
         <div className='holidayTypesContainer'>
           {holidayTypes.map((holidayType, index) => (
+            
             <HolidayTypes
               key={holidayType.id}
               country={selectedCountry}
@@ -516,15 +540,17 @@ export const ParentComponent = () => {
       {holidayTypes.length > 0 && (
         <div className='chatContainer'>
         <div className='journalistCardContainer'>
-          {journalists.map((journalist) => (
-            <JournalistCard
-              key={journalist.id}
-              country={selectedCountry}
-              name={journalist.name}
-              title={journalist.title}
-              image={journalist.image}
-            />
-          ))}
+        {holidayTypes.slice(1).map((holidayType, index) => (
+        <HolidayTypesJournalist
+          // key={journalist.id}
+          country={holidayType.country}
+          // name={journalist.name}
+          // title={journalist.title}
+          // image={journalist.image}
+          journalist={holidayType.journalist}
+          articleTitle={holidayType.articleTitle}
+        />
+))}
         </div>
         <div className='chatContainerInput'>
           {showChat && (

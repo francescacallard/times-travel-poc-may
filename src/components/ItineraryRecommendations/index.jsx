@@ -92,8 +92,8 @@ export const ItineraryRecommendations = ({
         </div>
       ))}
       </div>
-      <button         className={`itinerarySelectButton ${isClicked ? 'clicked' : ''}`}
- onClick={handleItinerarySelect}>Select</button>
+      <button className={`itinerarySelectButton ${isClicked ? 'clicked' : ''}`}
+        onClick={handleItinerarySelect}>Select</button>
        </div>
        
   );
