@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useAppState } from 'useAppState';
-import AppContext from 'AppContext'
+import { useApp } from 'AppContext';
 import './styles.css';
 import { DropdownMonth } from 'components/DropdownMonth';
 import { Destinations } from 'components/Destinations';
@@ -47,7 +46,7 @@ export const ParentComponent = () => {
     setIsItineraryLoading,
     showChat,
     setShowChat,
-  } = useAppState();
+  } = useApp();
 
   const [aiResponseReceived, setAiResponseReceived] = useState(false);
 
@@ -458,40 +457,6 @@ export const ParentComponent = () => {
   };
 
   return (
-    <AppContext.Provider value={{
-      selectedMonth,
-      setSelectedMonth,
-      selectedDuration,
-      setSelectedDuration,
-      selectedItems,
-      setSelectedItems,
-      aiResponse,
-      setAiResponse,
-      showDestinations,
-      setShowDestinations,
-      selectedCountry,
-      setSelectedCountry,
-      selectedContinent,
-      setSelectedContinent,
-      destinations,
-      setDestinations,
-      holidayTypes,
-      setHolidayTypes,
-      selectedHolidayType,
-      setSelectedHolidayType,
-      recommendationData,
-      setRecommendationData,
-      selectedItinerary,
-      setSelectedItinerary,
-      isLoading,
-      setIsLoading,
-      isHolidayTypesLoading,
-      setIsHolidayTypesLoading,
-      isItineraryLoading,
-      setIsItineraryLoading,
-      showChat,
-      setShowChat,
-    }}>
     <div className='wholePageContainer'>
       <DropdownMonth
         setShowDestinations={setShowDestinations}
@@ -583,6 +548,5 @@ export const ParentComponent = () => {
       </>
       {isItineraryLoading && <Loading />}
     </div>
-    </AppContext.Provider>
   );
 };

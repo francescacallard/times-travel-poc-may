@@ -5,14 +5,21 @@ import {
   Route
 } from 'react-router-dom'
 import { Routes } from 'routes/constants'
+import { AppProvider } from 'AppContext'
+import { DurationProvider } from 'context/Duration'
+
 import Index from 'routes/Index'
 import 'App.css'
 
 const App: React.FC = () => (
   <BrowserRouter>
-    <ReactRoutes>
-      <Route path={Routes.Index} element={<Index />}/>
-    </ReactRoutes>
+    <AppProvider>
+    <DurationProvider>
+      <ReactRoutes>
+        <Route path={Routes.Index} element={<Index />}/>
+      </ReactRoutes>
+      </DurationProvider>
+    </AppProvider>
   </BrowserRouter>
 )
 

@@ -53,6 +53,8 @@
 }
 
 .journalistName {
+display: flex;
+flex-direction: row;
   margin-left: 10px;
   color: #166EC5;
   font-size: 16px;

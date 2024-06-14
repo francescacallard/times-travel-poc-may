@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Dropdown, Button, Space, Menu } from 'antd';
 import { DownOutlined, CalendarOutlined } from '@ant-design/icons';
 import { DurationMenu } from 'components/DurationMenu';
@@ -11,8 +11,7 @@ import pin from '../../assets/pin.svg';
 import sundayTimesLogo from '../../assets/sundayTimesLogo.svg';
 import joanna from '../../assets/joanna.png';
 import signature from '../../assets/signature.svg';
-import { useAppState } from 'useAppState';
-import AppContext from 'AppContext'
+import { useApp } from 'AppContext';
 
 export const DropdownMonth = ({
 }) => {
@@ -25,7 +24,7 @@ export const DropdownMonth = ({
     setSelectedItems,
     setAiResponse,
     setShowDestinations,
-  } = useContext(AppContext);
+  } = useApp();
   
   const [isLoading, setIsLoading] = useState(false);
   const [selectedDestination, setSelectedDestination] = useState('');
