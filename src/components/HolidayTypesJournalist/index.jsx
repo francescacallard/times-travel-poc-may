@@ -4,16 +4,15 @@ import './styles.css';
 
 export const HolidayTypesJournalist = ({ name, title, image, country, journalist, articleTitle }) => {
   return (
-    <div className='journalistCard'>
-      <div className='journalistIconContainer'>
-        <img className='journalistTickIcon' src={timesChat} alt='Tick Icon' />
-        <h3 className='travelGuideText'>{`${country} travel guide`}</h3>
+    <div className='journalistCardTwo'>
+      <div className='journalistIconContainerTwo'>
+        <img className='journalistTickIconTwo' src={timesChat} alt='Tick Icon' />
+        <h3 className='travelGuideTextTwo'>{`${articleTitle} `}</h3>
       </div>
-      <div className='journalistHeadshotContainer'>
-      <h3 className='journalistName'>
-          {journalist},
-        </h3>
-        <h3 className='journalistArticleTitle'>{articleTitle}</h3>
+      <div className='journalistHeadshotContainerTwo'>
+      <h3 className='journalistNameTwo'>
+  {`${journalist}, travel writer for the Times.`}
+  </h3>
       </div>
     </div>
   );
