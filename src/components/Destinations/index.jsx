@@ -9,7 +9,6 @@ import { TimesChat } from 'components/TimesChat';
 import timeTick from '../../assets/timeTick.svg';
 import { useApp } from 'AppContext'
 import { destinationCardImages } from '../DestinationCards/constants';
-import { destinations } from './constants';
 
 export const Destinations = ({
   isLoading,
@@ -18,7 +17,8 @@ export const Destinations = ({
 }) => {
 
   const {
-    selectedMonth
+    selectedMonth,
+    aiResponse,
   } = useApp();
 
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -31,6 +31,14 @@ export const Destinations = ({
     onContinentSelect(continent);
   };
 
+  const destinations = aiResponse
+    .split('\n')
+    .map((destination) => {
+      const [_, countryContinent] = destination.split(':').map((item) => item.trim());
+      const [country, continent] = countryContinent.split(',').map((item) => item.trim());
+      return { country, continent };
+    });
+  
   if (isLoading) {
     return <Loading />;
   }
