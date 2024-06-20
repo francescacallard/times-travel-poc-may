@@ -7,10 +7,10 @@ import { CountrySelection } from 'components/CountrySelection';
 import { HolidayTypes } from 'components/HolidayTypes';
 import { ItineraryHeading } from 'components/ItineraryHeading';
 import { HolidayTypesJournalist} from 'components/HolidayTypesJournalist';
-import { journalists } from 'components/Destinations/constants';  
 import { Loading } from 'components/Loading'; 
 import axios from 'axios';
 import { Chat } from 'components/Chat';
+import { IconGenerateButton } from 'components/IconGenerateButton';
 
 export const ParentComponent = () => {
   const {
@@ -240,7 +240,9 @@ export const ParentComponent = () => {
           articleTitle={holidayType.articleTitle}
         />
 ))}
+
         </div>
+        <IconGenerateButton />
         <div className='chatContainerInput'>
           {showChat && (
          <Chat

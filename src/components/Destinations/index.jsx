@@ -9,6 +9,8 @@ import { TimesChat } from 'components/TimesChat';
 import timeTick from '../../assets/timeTick.svg';
 import { useApp } from 'AppContext'
 import { destinationCardImages } from '../DestinationCards/constants';
+import { Save } from 'components/Save';
+import { SaveGenerate } from 'components/SaveGenerate';
 
 export const Destinations = ({
   isLoading,
@@ -98,7 +100,7 @@ export const Destinations = ({
         ))}
       </div>
       <div className='generateSaveContainer'>
-        <GenerateButton />
+        <SaveGenerate />
       </div>
     </>
   );

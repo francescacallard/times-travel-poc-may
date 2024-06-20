@@ -28,7 +28,7 @@
   font-weight: 400;
 }
 
-.callBackButton {
+.callBackButton, .emailButton, .callButton {
   border-radius: 100px;
   border: 1px solid #E7E7E7;background: #FFF;
 padding: 8px 16px;
@@ -42,6 +42,7 @@ justify-content: center;
 align-items: center;
 gap: 8px;
 width:315px;
+cursor: pointer;
 }
 
 .callBackButtonContainer {
@@ -52,6 +53,20 @@ width:315px;
 }
 
 .callBackButton.clicked {
+  border-radius: 100px;
+  border: 1px solid var(--STROKE, #E7E7E7);
+  background: var(--Buttons, #317AAB);
+  color: #FFFFFF;
+}
+
+.emailButton.clicked {
+  border-radius: 100px;
+  border: 1px solid var(--STROKE, #E7E7E7);
+  background: var(--Buttons, #317AAB);
+  color: #FFFFFF;
+}
+
+.callButton.clicked {
   border-radius: 100px;
   border: 1px solid var(--STROKE, #E7E7E7);
   background: var(--Buttons, #317AAB);
