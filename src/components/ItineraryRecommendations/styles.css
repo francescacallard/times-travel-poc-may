@@ -109,6 +109,7 @@
   border: 1px solid var(--STROKE, #E7E7E7);
   color: #000000;
   align-self: center;
+  cursor: pointer;
 }
 
 .itineraryImages {
