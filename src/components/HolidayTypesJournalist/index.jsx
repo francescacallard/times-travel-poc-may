@@ -2,7 +2,7 @@ import React from 'react'
 import timesChat from '../../assets/timesChat.svg';
 import './styles.css';
 
-export const HolidayTypesJournalist = ({ name, title, image, country, journalist, articleTitle }) => {
+export const HolidayTypesJournalist = ({journalist, articleTitle }) => {
   return (
     <div className='journalistCardTwo'>
       <div className='journalistIconContainerTwo'>

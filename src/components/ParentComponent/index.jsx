@@ -49,6 +49,10 @@ export const ParentComponent = () => {
   } = useApp();
 
   const [aiResponseReceived, setAiResponseReceived] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const chatContainerRef = useRef(null);
+  const aboveChatRef = useRef(null);
+
 
   useEffect(() => {
     if (aiResponse) {
@@ -143,8 +147,10 @@ export const ParentComponent = () => {
         holidayTypes = JSON.parse(aiResponse);
       } catch (parseError) {
         console.error('Error parsing AI response:', parseError);
-       //here i am making the holiday Types empty but should be error message
-        holidayTypes = []; //set a default empty array or handle the error as needed
+        setErrorMessage('Sorry, we encountered an error processing the response. Please try again.');
+        setHolidayTypes([]); // Set empty array as before
+        setIsLoading(false);
+        return;  //set a default empty array or handle the error as needed
       }
     
       const formattedHolidayTypes = holidayTypes.map((holidayType, index) => ({
@@ -157,6 +163,7 @@ export const ParentComponent = () => {
       }));
       setHolidayTypes(formattedHolidayTypes);
       setIsLoading(false);
+      setErrorMessage('');
     } catch (error) {
       console.error('Error:', error);
     }
@@ -169,6 +176,7 @@ export const ParentComponent = () => {
     setSelectedMonth(selectedMonth);
     setSelectedItems(selectedItems);
     setShowChat(true);
+    scrollToChatContainer();
   };
 
   const handleItinerarySelect = (itinerary) => {
@@ -178,6 +186,20 @@ export const ParentComponent = () => {
   const handleChatCompletion = (updatedRecommendationData) => {
     setRecommendationData(updatedRecommendationData);
     setAiResponseReceived(true);
+  };
+
+  // const scrollToChatContainer = () => {
+  //   if (chatContainerRef.current) {
+  //     chatContainerRef.current.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // };
+
+  const scrollToChatContainer = () => {
+    if (chatContainerRef.current) {
+      const yOffset = -260; // Adjust this value to control the gap size
+      const y = chatContainerRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({top: y, behavior: 'smooth'});
+    }
   };
 
   return (
@@ -203,9 +225,15 @@ export const ParentComponent = () => {
         {isLoading && <Loading />}
         </>
       )}
+      {errorMessage && (
+  <div className="error-message">
+    <p>{errorMessage}</p>
+    <button className="errorMessageButton" onClick={() => setErrorMessage('')}>Close</button>
+  </div>
+)}
       {holidayTypes.length > 0 && (
         
-        <div className='holidayTypesContainer'>
+        <div className='holidayTypesContainer' >
           {holidayTypes.map((holidayType, index) => (
             
             <HolidayTypes
@@ -227,7 +255,8 @@ export const ParentComponent = () => {
       )}
 
       {holidayTypes.length > 0 && (
-        <div className='chatContainer'>
+        
+        <div className='chatContainer' ref={chatContainerRef}>
         <div className='journalistCardContainer'>
         {holidayTypes.slice(1).map((holidayType, index) => (
         <HolidayTypesJournalist
