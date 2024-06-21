@@ -24,10 +24,24 @@ export const InspireButtons = ({ selectedItems, setSelectedItems, handleSubmit }
         handleSubmit();
       };
 
-      // const randomItem = buttonTexts[Math.floor(Math.random() * buttonTexts.length)];
-      // console.log(randomItem)
 
-     
+    const handleRandomTripClick = () => {
+      const availableItems = [...buttonTexts]
+      const randomItems = []
+      const randomIndices = []
+
+      for (let i = 0; i < 3 && availableItems.length > 0; i++) {
+        const randomIndex = Math.floor(Math.random() * availableItems.length)
+        randomItems.push(availableItems[randomIndex])
+        randomIndices.push(buttonTexts.indexOf(availableItems[randomIndex]))
+        availableItems.splice(randomIndex, 1)
+      }
+      setSelectedItems(randomItems);
+      setActiveButtons(randomIndices);
+
+      handleSubmit();
+    }
+
     
   return (
     <div className='inspireContainerWhole'>
@@ -35,7 +49,7 @@ export const InspireButtons = ({ selectedItems, setSelectedItems, handleSubmit }
     <div className='inspireContainer'>
         <div className='leftSection'>
             <img src={aiSparkle} alt='aiSparkle' className='aiSparkle'/>
-            <button className='leftButton'>Inspire me</button>
+            <button onClick={handleRandomTripClick} className='leftButton'>Inspire me</button>
         </div>
 
         <div className='whiteLine'></div>
