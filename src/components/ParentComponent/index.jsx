@@ -51,7 +51,8 @@ export const ParentComponent = () => {
   const [aiResponseReceived, setAiResponseReceived] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const chatContainerRef = useRef(null);
-  const aboveChatRef = useRef(null);
+  const buildTripRef = useRef(null);
+  const itineraryRef = useRef(null);
 
 
   useEffect(() => {
@@ -80,6 +81,7 @@ export const ParentComponent = () => {
   const handleCountrySelect = (country) => {
     setSelectedCountry(country);
     handleHolidayTypesAiRequest(country);
+   
   };
 
   const handleContinentSelect = (continent) => {
@@ -148,9 +150,9 @@ export const ParentComponent = () => {
       } catch (parseError) {
         console.error('Error parsing AI response:', parseError);
         setErrorMessage('Sorry, we encountered an error processing the response. Please try again.');
-        setHolidayTypes([]); // Set empty array as before
+        setHolidayTypes([]);
         setIsLoading(false);
-        return;  //set a default empty array or handle the error as needed
+        return;
       }
     
       const formattedHolidayTypes = holidayTypes.map((holidayType, index) => ({
@@ -164,6 +166,9 @@ export const ParentComponent = () => {
       setHolidayTypes(formattedHolidayTypes);
       setIsLoading(false);
       setErrorMessage('');
+      setTimeout(() => {
+        scrollToCountryContainer();
+      }, 0);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -181,22 +186,32 @@ export const ParentComponent = () => {
 
   const handleItinerarySelect = (itinerary) => {
     setSelectedItinerary(itinerary);
+   
   };
 
   const handleChatCompletion = (updatedRecommendationData) => {
     setRecommendationData(updatedRecommendationData);
     setAiResponseReceived(true);
+    setTimeout(() => {
+      scrollToItineraryContainer();
+    }, 0);
   };
 
-  // const scrollToChatContainer = () => {
-  //   if (chatContainerRef.current) {
-  //     chatContainerRef.current.scrollIntoView({ behavior: 'smooth' });
-  //   }
-  // };
+  const scrollToCountryContainer = () => {
+    if (buildTripRef.current) {
+      buildTripRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToItineraryContainer = () => {  
+    if (itineraryRef.current) {
+      itineraryRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   const scrollToChatContainer = () => {
     if (chatContainerRef.current) {
-      const yOffset = -260; // Adjust this value to control the gap size
+      const yOffset = -260; 
       const y = chatContainerRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({top: y, behavior: 'smooth'});
     }
@@ -216,7 +231,7 @@ export const ParentComponent = () => {
       )}
       {selectedCountry && (
         <>
-        <CountrySelection
+        <CountrySelection useRef={buildTripRef}
           country={selectedCountry}
           selectedMonth={selectedMonth}
           selectedDuration={selectedDuration}
@@ -233,7 +248,7 @@ export const ParentComponent = () => {
 )}
       {holidayTypes.length > 0 && (
         
-        <div className='holidayTypesContainer' >
+        <div className='holidayTypesContainer' ref={buildTripRef} >
           {holidayTypes.map((holidayType, index) => (
             
             <HolidayTypes
@@ -290,8 +305,10 @@ export const ParentComponent = () => {
       )}
       {/* {isItineraryLoading && <Loading />} */}
       <>
+      <div ref={itineraryRef}>
       {aiResponseReceived && (
         <ItineraryHeading
+          useRef={itineraryRef}
           selectedHolidayType={selectedHolidayType}
           country={selectedCountry}
           recommendationData={recommendationData}
@@ -300,6 +317,7 @@ export const ParentComponent = () => {
           setIsItineraryLoading={setIsItineraryLoading}
           />
       )}
+      </div>
       </>
       {isItineraryLoading && <Loading />}
     </div>
