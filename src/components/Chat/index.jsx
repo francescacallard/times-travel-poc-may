@@ -13,7 +13,6 @@ export const Chat = ({
   selectedMonth,
   selectedHolidayType,
   onChatCompletion,
-  onSelect,
   setIsItineraryLoading,
 }) => {
 
@@ -22,11 +21,8 @@ export const Chat = ({
     const [question, setQuestion] = useState('');
     const inputRef = useRef(null);
 
-  // const handleInputChange = (event) => {
-  //   setUserMessage(event.target.value);
-  // };
 
-  const handleSubmit = async (event) => {
+  const handleSubmitChat = async (event) => {
     event.preventDefault();
     const message = event.target.elements.userMessage?.value || '';
     setUserMessage(message);
@@ -101,7 +97,7 @@ export const Chat = ({
       const updatedRecommendationData = JSON.parse(aiResponse);
       onChatCompletion(updatedRecommendationData);
       setIsItineraryLoading(false);
-      console.log('updated', updatedRecommendationData);
+
     } catch (error) {
       console.error('Error:', error);
       setIsItineraryLoading(false);
@@ -119,7 +115,7 @@ export const Chat = ({
       </div>
       <SetPrompts />
       <div className="userInputContainer">
-        <form className="userChatForm" onSubmit={handleSubmit}>
+        <form className="userChatForm" onSubmit={handleSubmitChat}>
           <input
             className="userChatInput"
             type="text"

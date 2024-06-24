@@ -273,13 +273,9 @@ export const ParentComponent = () => {
         
         <div className='chatContainer' ref={chatContainerRef}>
         <div className='journalistCardContainer'>
-        {holidayTypes.slice(1).map((holidayType, index) => (
+        {holidayTypes.slice(1).map((holidayType) => (
         <HolidayTypesJournalist
-          // key={journalist.id}
           country={holidayType.country}
-          // name={journalist.name}
-          // title={journalist.title}
-          // image={journalist.image}
           journalist={holidayType.journalist}
           articleTitle={holidayType.articleTitle}
         />

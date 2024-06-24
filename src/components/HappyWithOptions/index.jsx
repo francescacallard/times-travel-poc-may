@@ -1,7 +1,6 @@
 import React from 'react'
 import './styles.css'
-import { GenerateButton } from 'components/GenerateButton';
-
+import { GenerateItinerary} from 'components/GenerateItinerary'
 export const HappyWithOptions = () => {
   return (
   <>
@@ -10,7 +9,7 @@ export const HappyWithOptions = () => {
       <p className='happyWithOptionsSubheading'> Select "Generate more options" to discover more</p>
     </div>
     <div className='secondGenerateButton'>
-    <GenerateButton />
+    <GenerateItinerary />
     </div>
     </>
   )

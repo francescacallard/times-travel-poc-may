@@ -1,0 +1,33 @@
+.generateContainer {
+  color: #000000;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap:8px;
+}
+
+
+.generateButton {
+  display: flex;
+  /* margin-bottom: -20px; */
+  background-color: #F8F9F9;
+  align-items: center;
+  text-align: center;
+  padding: 0px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+.generateText {
+  color: #7D7D7D;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  margin-left: 10px;
+  align-items: center;
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
