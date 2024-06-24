@@ -43,6 +43,7 @@ export const ParentComponent = () => {
     setIsItineraryLoading,
     showChat,
     setShowChat,
+    handleSubmitCountry
   } = useApp();
 
   const [aiResponseReceived, setAiResponseReceived] = useState(false);
@@ -218,12 +219,14 @@ export const ParentComponent = () => {
     <div className='wholePageContainer'>
       <DropdownMonth
         setShowDestinations={setShowDestinations}
+        handleSubmitCountry={handleSubmitCountry}
       />
       {showDestinations && (
         <Destinations
           onCountrySelect={handleCountrySelect}
           onContinentSelect={handleContinentSelect}
           destinations={destinations}
+          onRegenerate={handleSubmitCountry}
         />
       )}
       {selectedCountry && (

@@ -1,7 +1,5 @@
-import React from 'react'
-import generate from '../../assets/generate.svg'    
+import React from 'react'   
 import saveIcon from '../../assets/saveIcon.svg'
-import copy from '../../assets/copy.svg'
 import './styles.css'
 
 export const Save = () => {

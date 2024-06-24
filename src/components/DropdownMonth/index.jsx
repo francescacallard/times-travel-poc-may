@@ -24,6 +24,7 @@ export const DropdownMonth = ({
     setSelectedItems,
     setAiResponse,
     setShowDestinations,
+    handleSubmitCountry,
   } = useApp();
   
   const [isLoading, setIsLoading] = useState(false);
@@ -37,29 +38,10 @@ export const DropdownMonth = ({
     setSelectedDuration(duration);
   };
 
-  const handleSubmit = async (event) => {
-    setIsLoading(true);
-    const systemPrompt = {
-      role: 'system',
-      content: `You are a travel agent that takes information based on the users choices. You have to give 5 examples of country and continent the user could go to based on the information the user provides. You do not need to write anything else other than "1: Country, Continent 2: Country, Continent 3: Country, Continent 4: Country, Continent 5: Country, Continent"`,
-    };
 
-    const userMessage = {
-      role: 'user',
-      content: `The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}. They are interested in the following: ${selectedItems.join(', ')}. `,
-    };
-    try {
-    const messages = [systemPrompt, userMessage];
-    const response = await axios.post('http://localhost:5000/api/chat', { messages });
-    const aiResponse = response.data.aiResponse;
-    console.log('AI response:', aiResponse);
-    setAiResponse(aiResponse);
-    setShowDestinations(true);
-    setIsLoading(false);
-  } catch (error) {
-    console.error('Error:', error);
-  }
-};
+const handleRegenerateCountries = () => {
+  handleSubmitCountry();
+}
 
   const menu = (
     <Menu onClick={handleMonthChange}>
@@ -118,7 +100,7 @@ export const DropdownMonth = ({
           <DurationMenu onDurationChange={handleDurationChange} />
         </div>
         </div>
-        <InspireButtons selectedItems={selectedItems} setSelectedItems={setSelectedItems} handleSubmit={handleSubmit} />
+        <InspireButtons selectedItems={selectedItems} setSelectedItems={setSelectedItems} handleSubmitCountry={handleSubmitCountry} />
       {/* <Budget selectedMonth={selectedMonth} selectedBudget={selectedBudget} setSelectedBudget={setSelectedBudget} /> */}
       {isLoading ? <Loading /> : null}
     </>

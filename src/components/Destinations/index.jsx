@@ -3,19 +3,18 @@ import './styles.css';
 import { DestinationCards } from 'components/DestinationCards';
 import { JournalistCard } from 'components/JournalistCard';
 import { journalists } from './constants';
-import { GenerateButton } from 'components/GenerateButton';
 import { Loading } from 'components/Loading'; 
 import { TimesChat } from 'components/TimesChat';
 import timeTick from '../../assets/timeTick.svg';
 import { useApp } from 'AppContext'
 import { destinationCardImages } from '../DestinationCards/constants';
-import { Save } from 'components/Save';
 import { SaveGenerate } from 'components/SaveGenerate';
 
 export const Destinations = ({
   isLoading,
   onCountrySelect,
   onContinentSelect,
+  handleSubmitCountry
 }) => {
 
   const {
@@ -54,10 +53,6 @@ export const Destinations = ({
           </h2>
           <div className='messageContainer'>
           {`Great! Here are some amazing destinations for a relaxing trip in ${selectedMonth}. Choose any of the below destinations that are of interest to you or generate more options if these aren’t suitable. Remember you can save your progress for later!`}
-          {/* <div className='iconContainer'>
-          <img src={saveIcon} className='saveIcon' alt='Save Icon' />
-          <img src={copy} className='copyIcon' alt='Copy Icon' />
-          </div> */}
         </div>
         </div>
         <div className='destinationSuggestionContainer'>
@@ -100,7 +95,7 @@ export const Destinations = ({
         ))}
       </div>
       <div className='generateSaveContainer'>
-        <SaveGenerate />
+        <SaveGenerate handleSubmitCountry={handleSubmitCountry}/>
       </div>
     </>
   );

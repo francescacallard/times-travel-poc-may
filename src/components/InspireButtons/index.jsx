@@ -6,7 +6,8 @@ import moreArrow from '../../assets/moreArrow.svg'
 import whiteAiSparkle from '../../assets/whiteAiSparkle.svg'
 import { buttonTexts } from './constants'
 
-export const InspireButtons = ({ selectedItems, setSelectedItems, handleSubmit }) => {
+export const InspireButtons = ({ selectedItems, setSelectedItems, handleSubmitCountry }) => {
+  
       
     const [activeButtons, setActiveButtons] = useState([])
 
@@ -20,8 +21,12 @@ export const InspireButtons = ({ selectedItems, setSelectedItems, handleSubmit }
         }
       };
 
-    const handleBuildTripClick = () => {
-        handleSubmit();
+      const handleBuildTripClick = () => {
+        if (typeof handleSubmitCountry === 'function') {
+          handleSubmitCountry();
+        } else {
+          console.error('handleSubmit is not a function:', handleSubmitCountry);
+        }
       };
 
 
@@ -39,7 +44,7 @@ export const InspireButtons = ({ selectedItems, setSelectedItems, handleSubmit }
       setSelectedItems(randomItems);
       setActiveButtons(randomIndices);
 
-      handleSubmit();
+      handleSubmitCountry();
     }
 
     

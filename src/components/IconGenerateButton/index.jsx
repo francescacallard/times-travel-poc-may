@@ -2,16 +2,22 @@ import React from 'react'
 import generate from '../../assets/generate.svg'    
 import saveIcon from '../../assets/saveIcon.svg'
 import copy from '../../assets/copy.svg'
+import { useApp } from 'AppContext';
 import './styles.css'
 
-export const IconGenerateButton = ( {onClick}) => {
+export const IconGenerateButton = () => {
+  const {
+    handleHolidayTypesAiRequest,
+  } = useApp();
+
+  
   return (
     <div className='generateContainer'>
     <div className='iconContainer'>
         <img src={saveIcon} className='saveIcon' alt='Save Icon' />
         <img src={copy} className='copyIcon' alt='Copy Icon' />
         </div>
-       <div className='generateButton' onClick={onClick}>
+       <div className='generateButton' onClick={handleHolidayTypesAiRequest}>
           <img src={generate} alt='Generate' />
           <h3 className='generateText'>Generate more options</h3>
       </div>
