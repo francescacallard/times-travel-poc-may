@@ -41,12 +41,12 @@ export const DropdownMonth = ({
     setIsLoading(true);
     const systemPrompt = {
       role: 'system',
-      content: `You are a travel agent that takes information based on the users choices. You need to write back what month they chose and for how long before you recommend them an itinerary`,
+      content: `You are a travel agent that takes information based on the users choices. You have to give 5 examples of country and continent the user could go to based on the information the user provides. You do not need to write anything else other than "1: Country, Continent 2: Country, Continent 3: Country, Continent 4: Country, Continent 5: Country, Continent"`,
     };
 
     const userMessage = {
       role: 'user',
-      content: `The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}. They are interested in the following: ${selectedItems.join(', ')}. You have to give 5 examples of country and continent. You do not need to write anything else other than "1: Country, Continent 2: Country, Continent 3: Country, Continent 4: Country, Continent 5: Country, Continent"`,
+      content: `The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}. They are interested in the following: ${selectedItems.join(', ')}. `,
     };
     try {
     const messages = [systemPrompt, userMessage];

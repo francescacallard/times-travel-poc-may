@@ -1,43 +1,43 @@
-import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
-import React, { useState } from 'react';
-import './styles.css';
+// import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
+// import React, { useState } from 'react';
+// import './styles.css';
 
-export const AiResponse = ({ selectedMonth, selectedDuration }) => {
-  const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
-  const azureApiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
-  const [aiResponse, setAiResponse] = useState('');
+// export const AiResponse = ({ selectedMonth, selectedDuration }) => {
+//   const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
+//   const azureApiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
+//   const [aiResponse, setAiResponse] = useState('');
 
-  console.log('from the ai', selectedMonth, selectedDuration);
+//   console.log('from the ai', selectedMonth, selectedDuration);
 
-  const systemPrompt = {
-    role: 'system',
-    content: `You are a travel agent that takes information based on the users choices. You are to recommend them an itinerary`,
-  };
+//   const systemPrompt = {
+//     role: 'system',
+//     content: `You are a travel agent that takes information based on the users choices. You are to recommend  `,
+//   };
 
-  const handleSubmit = async (event) => {
-    const userMessage = {
-      role: 'user',
-      content: `The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}.`,
-    };
+//   const handleSubmit = async (event) => {
+//     const userMessage = {
+//       role: 'user',
+//       content: `The user wants to go away in the month of ${selectedMonth} for ${selectedDuration}.`,
+//     };
 
-    event.preventDefault();
+//     event.preventDefault();
 
-    try {
-      const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-      const deploymentId = 'gpt-4';
-      console.log('Hit3');
+//     try {
+//       const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
+//       const deploymentId = 'gpt-4';
+//       console.log('Hit3');
 
-      const messages = [systemPrompt, userMessage];
-      const result = await client.getChatCompletions(deploymentId, messages);
-      const aiResponse = result.choices[0].message.content;
-      setAiResponse(aiResponse);
-      console.log(aiResponse);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+//       const messages = [systemPrompt, userMessage];
+//       const result = await client.getChatCompletions(deploymentId, messages);
+//       const aiResponse = result.choices[0].message.content;
+//       setAiResponse(aiResponse);
+//       console.log(aiResponse);
+//     } catch (error) {
+//       console.error('Error:', error);
+//     }
+//   };
 
-  return (
-    <></>
-  );
-};
+//   return (
+//     <></>
+//   );
+// };
